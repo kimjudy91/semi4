@@ -14,17 +14,16 @@ public class FindIdDao {
 	public static FindIdDao getDao() {
 		return dao;
 	}
-	public String findId(String phone,String email,String pwd) {
+	public String findId(String phone,String email) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select id from members where phone=? and email=? and pwd=?";
+			String sql="select id from members where phone=? and email=? ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, phone);
 			pstmt.setString(2, email);
-			pstmt.setString(3, pwd);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String id=rs.getString("id");

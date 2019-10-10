@@ -20,8 +20,7 @@ public class FindIdController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String phone=req.getParameter("phone");
 		String email=req.getParameter("email");
-		String pwd=req.getParameter("pwd");
-		String id=FindIdDao.getDao().findId(phone, email, pwd);
+		String id=FindIdDao.getDao().findId(phone, email);
 		if(id!=null) {
 			req.setAttribute("id", id);
 			req.getRequestDispatcher("findId/result.jsp").forward(req, resp);

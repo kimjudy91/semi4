@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>findId</title>
+<link rel="stylesheet" type="text/css" href="${cp }/findId/findIdCss.css">
 <script type="text/javascript">
 	function clearPhone(){
 		var phone=document.getElementById("phone");
@@ -37,34 +38,22 @@
 			email.style.color="silver";
 		}
 	}
-	function clearPwd(){
-		var pwd=document.getElementById("pwd");
-		pwd.type="password";
-		if(pwd.value=="비밀번호"){
-			pwd.style.color="black";
-			pwd.value="";
-			pwd.focus();	
-		}
-	}
-	function setPwd(){
-		var pwd=document.getElementById("pwd");
-		if(pwd.value==""){
-			pwd.type="text";
-			pwd.value="비밀번호";
-			pwd.style.color="silver";
-		}
-	}
+
 </script>
 </head>
 <body>
+<div id="main">
+<div id="header">
+<h1>아이디 찾기</h1>
+</div>
 <form method="post" action="${cp }/findId" id="findId">
 <input type="text" value="전화번호" id="phone" name="phone" onclick="clearPhone()" onblur="setPhone()" style="color:silver;"><br>
 <input type="text" value="이메일" id="email" name="email" onclick="clearEmail()" onblur="setEmail()" style="color:silver;"><br>
-<input type="text" value="비밀번호" id="pwd" name="pwd" onclick="clearPwd()" onblur="setPwd()" style="color:silver;"><br>
 <c:if test="${errMsg!=null}">
 <span style="color:red;font-size: 12px; " id="errMsg">아이디가 존재하지 않습니다.</span><br>
 </c:if>
 <input type="submit" value="아이디 찾기" id="findIdBtn">
 </form>
+</div>
 </body>
 </html>
