@@ -24,7 +24,6 @@
 			<li>메뉴2</li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
-			<audio src="" controls="controls"></audio>
 		</ul>
 		<div id="users">
 		회원정보
