@@ -1,6 +1,6 @@
 package members.vo.min;
 
-public class membersVo {
+public class MembersVo {
 	private String id;
 	private String pwd;
 	private String name;
@@ -13,8 +13,8 @@ public class membersVo {
 	private int grade;
 	private int warning;
 	
-	private membersVo() {}
-	public membersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
+	private MembersVo() {}
+	public MembersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
 			int write_count, int reply_count, int grade, int warning) {
 		super();
 		this.id = id;
