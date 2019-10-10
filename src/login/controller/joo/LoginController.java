@@ -19,10 +19,7 @@ import login.dao.joo.LoginDao;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");
 		String pwd=req.getParameter("pwd");
-		System.out.println(id);
-		System.out.println(pwd);
 		int n=LoginDao.getDao().login(id,pwd);
-		System.out.println(n);
 		if(n>0) {
 			req.getSession().setAttribute("id", id);
 			resp.sendRedirect(req.getContextPath()+"/index/index.jsp");
