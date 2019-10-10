@@ -1,9 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login.html</title>
-<link rel="stylesheet" type="text/css" href="loginCss.css">
+<title>login.jsp</title>
+<link rel="stylesheet" type="text/css" href="${cp }/login/loginCss.css">
 </head>
 <script type="text/javascript">
 	function clearId(){
@@ -44,13 +47,16 @@
 <div id="header">
 <h1>세미 프로젝트</h1>
 </div>
-<form action="" id="login">
-<input type="text" value="아이디" id="id" onclick="clearId()" onblur="setId()" style="color:silver;"><br>
-<input type="text" value="비밀번호" id="pwd" onclick="clearPwd()" onblur="setPwd()" style="color:silver;"><br>
+<form method="post" action="${cp }/logins" id="login">
+<input type="text" value="아이디" id="id" name="id" onclick="clearId()" onblur="setId()" style="color:silver;"><br>
+<input type="text" value="비밀번호" id="pwd" name="pwd" onclick="clearPwd()" onblur="setPwd()" style="color:silver;"><br>
+<c:if test="${errMsg!=null}">
+<span style="color:red;font-size: 12px; " id="errMsg">아이디 또는 비밀번호가 잘못되었습니다.</span><br>
+</c:if>
 <input type="submit" value="로그인" id="loginbtn">
 </form>
 <div id="menus">
-<a href="" class="menu">아이디 찾기</a>
+<a href="${cp }/findId" class="menu">아이디 찾기</a>
 <a href="" class="menu">비밀번호 찾기</a>
 <a href="" class="menu">회원가입</a>
 </div>
