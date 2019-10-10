@@ -1,11 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>join.html</title>
+<title>join.jsp</title>
 </head>
 <body>
-
 <link rel="stylesheet" type="text/css" href="../css.min/style.css"> 
 </head>
 <body>
@@ -20,19 +21,14 @@
 	<label>비밀번호</label><input type="password" name="pwd1"><br>
 	<label>비밀번호확인</label><input type="password" name="pwd2" onkeyup="checkOk()">
 	<span id="pwdcheck"></span><br>
-	<label>생년월일</label><input type="text" name="birth"><br>
+	<label>주민등록번호</label><input type="text" name="jumin"><br>
 	<label>전화번호</label><input type="text" name="phone" onkeyup="checkOk()">
 	<span id="phonecheck"></span><br>
-	<label>주소</label><input type="text" name="addr"><br>
-	<label>이메일</label><input type="text" name="eamil" onkeyup="checkOk()">
+	<label>주소</label><input type="text" name="address"><br>
+	<label>이메일</label><input type="text" name="email" onkeyup="checkOk()">
 	<span id="emailcheck"></span><br><br>
 </span>
-<span id="fav">
-	<label id="favjanre">좋아하는 음악장르</label>
-	<input type="checkbox" id="box"><label id="janre">Rock</label>
-	<input type="checkbox" id="box"><label id="janre">포크</label>
-	<input type="checkbox" id="box"><label id="janre">R&B</label>
-</span><br><br>
+
 	<input type="submit" value="회원가입" id="a">
 	<input type="reset" value="회원가입취소" id="a">
 	</div>
