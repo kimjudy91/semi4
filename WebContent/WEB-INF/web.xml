@@ -10,4 +10,12 @@
  <res-type>javax.sql.DataSource</res-type>
  <res-auth>Container</res-auth>
 </resource-ref>
+<filter>
+  	<filter-name>CP</filter-name>
+  	<filter-class>filter.CpFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CP</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
