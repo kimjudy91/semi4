@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>tset10_css.html</title>
-<link rel="stylesheet" type="text/css" href="indexCss.css">
+<link rel="stylesheet" type="text/css" href="${cp }/index/indexCss.css">
 <style>
 </style>
 </head>
@@ -16,26 +17,30 @@
 </div>
 	<div id="menu">
 		<div id="logins">
-		<input type="button" value="로그인">
+		<input type="button" value="로그인" onclick="location.href='${cp}/logins'">
 		<input type="button" value="회원가입">
 		</div>
 		<ul id="menus">
-			<li>메뉴1</li>
+			<li><a href="${cp }/index?page=board1">메뉴1</a></li>
 			<li>메뉴2</li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
-			<audio src="" controls="controls"></audio>
 		</ul>
 		<div id="users">
 		회원정보
 		</div>
 	</div>
 	<div id="home">
-		<h2>메인화면</h2><br>
-		<div id="homeLeft">왼쪽</div>
-		<div id="homeRight">오른쪽</div>
-		<div id="ad">광고</div>
-	</div>
+	<c:choose>
+		<c:when test="${page==board1 }">	
+			<jsp:include page="/test/test2.jsp"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/test/test1.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
+		
+	</div>	
 </div>
 <div id="footer">
 풋터
