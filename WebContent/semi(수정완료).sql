@@ -61,9 +61,9 @@ create sequence write_num_seq;
 
 -- 댓글게시판(커뮤니티)
 
-drop table comment;
+drop table comments;
 
-create table comment(
+create table comments(
 	comments_num number(5) primary key,
 	write_num number REFERENCES music(write_num),
 	id varchar2(15) REFERENCES members(id),
@@ -88,7 +88,7 @@ create table music_file(
 	contents varchar2(100) not null,
 	r_date date not null,
 	views number(10),
-	like number,
+	likes number,
 	genre_num number(5) REFERENCES genre(genre_num)
 
 );
