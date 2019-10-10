@@ -18,7 +18,7 @@
 	<div id="menu">
 		<div id="logins">
 		<input type="button" value="로그인" onclick="location.href='${cp}/logins'">
-		<input type="button" value="회원가입">
+		<input type="button" value="회원가입" onclick="location.href='${cp}/join/insert'">
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">메뉴1</a></li>

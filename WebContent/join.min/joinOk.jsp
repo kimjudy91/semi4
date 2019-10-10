@@ -16,6 +16,6 @@
 		<h1>오류로 인해 가입에 실패했습니다ㅠ_ㅜ</h1>
 	</c:otherwise>
 </c:choose>
-<a href="${pageContext.request.contextPath }/join.min/join.jsp">돌아가기</a>
+<a href="${cp}/index">돌아가기</a>
 </body>
 </html>

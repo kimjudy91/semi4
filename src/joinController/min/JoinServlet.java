@@ -20,7 +20,6 @@ public class JoinServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
 		req.setCharacterEncoding("utf-8");
 		String id=req.getParameter("id");
 		String pwd=req.getParameter("pwd1");

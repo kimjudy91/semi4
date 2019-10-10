@@ -12,7 +12,7 @@
 <body>
 <h1>회원가입</h1>
 <hr>
-<form method="post" action="${pageContext.request.contextPath }/join/insert">
+<form method="post" action="${cp }/join/insert">
 <div id="form">
 <span>
 	<label>이름</label><input type="text" name="name"><br>
