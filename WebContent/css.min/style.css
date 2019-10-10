@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+hr {
+    margin-top: 25px;
+}
+
+body {
+    width: 1000px;
+    padding-top: 80px;
+    height: 700px;
+    text-align: center;
+    margin: auto;
+}
+
+#form {
+    padding-top: 50px;
+    margin-left: -180px;
+}
+
+#form span input {
+    height: 25px;
+}
+
+#form span label {
+    display: inline-block;
+    width: 250px;
+    text-align: right;
+    font-size: 1.3em;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+#form #fav {
+    display: inline-block;
+    margin-left: 150px;
+}
+
+#form #fav #favjanre {
+    font-size: 1.3em;
+    padding-top: 10px;
+    padding-right: 15px;
+    margin-left: -85px;
+}
+
+#form #fav #box {
+    position: relative;
+    margin-bottom: inherit;
+    top: 4px;
+}
+
+#form #fav #janre {
+    position: relative;
+    top: -3px;
+    padding-right: 20px;
+    font-size: 1em;
+    margin-left: -210px;
+    padding-bottom: 10px;
+}
+
+#form #a {
+    font-size: 1em;
+    padding: 5px 3px;
+    margin: auto;
+}
+
+#form span #idcheck {color: red; font-size: 12px;}
+#form span #pwdcheck {color: red; font-size: 12px;}
+#form span #phonecheck {color: red; font-size: 12px;}
+#form span #emailcheck {color: red; font-size: 12px;}
+
