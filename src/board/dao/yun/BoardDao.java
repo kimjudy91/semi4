@@ -24,7 +24,7 @@ public class BoardDao {
 		try {
 			con=JdbcUtil.getConn();
 			String sql="";
-			if(field==null || field.equals("")) { //검색조건이 없는 경우 (field가 없는경우)
+			if(field==null || field.equals("")) { //검색조건이 없는 경우
 				sql="select * from " +
 					"(" +
 					" select aa.*, rownum rnum from " + 
@@ -32,7 +32,17 @@ public class BoardDao {
 					" select * from music order by write_num desc" +
 					" )aa" +
 					" ) where rnum>=? and rnum<=?";
-			}else { //검색조건이 있는 경우
+			}else if(field.equals("TC")) { //검색조건이 있는 경우 (제목+내용)
+				sql="select * from " +
+					"(" +
+					" select aa.*, rownum rnum from " +
+					" (" +
+					" select * from music " +
+					" where p_title like '%"+ keyword+"%' or contents like '%" +keyword+
+					"%' order by write_num desc " +
+					" )aa" +
+					" ) where rnum>=? and rnum<=?";
+			}else { //검색조건이 있는 경우 (제목, 내용, 작성자)
 				sql="select * from " +
 					"(" +
 					" select aa.* , rownum rnum from " +
@@ -74,8 +84,11 @@ public class BoardDao {
 		try {
 			con=JdbcUtil.getConn();
 			String sql="select NVL(count(write_num),0) from music";
-			if(field!=null && !field.equals("")) {
-				sql += " where " + field + " like '&" + keyword + "&'";
+			if(field!=null && field.equals("TC")) {
+				sql += " where p_title like '%" + keyword + "%' or contents like '%"+ keyword+"%'";
+			}
+			else if(field!=null && !field.equals("")) {
+				sql += " where " + field + " like '%" + keyword + "%'";
 			}
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -90,6 +103,26 @@ public class BoardDao {
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int insert(BoardVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="insert into music values(write_num_seq,?,?,?,sysdate,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getP_title());
+			pstmt.setString(3, vo.getContents());
+			pstmt.setInt(4, vo.getViews());
+			pstmt.setString(5, vo.getGenre());
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
 		}
 	}
 }

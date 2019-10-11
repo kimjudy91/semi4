@@ -34,9 +34,15 @@ public class BoardListServlet extends HttpServlet{
 			endPageNum=pageCount;
 		}
 		
-		req.setAttribute("list", list);
 		req.setAttribute("top","/board/header.jsp");
 		req.setAttribute("content","/board/community.jsp");
+		req.setAttribute("list", list);
+		req.setAttribute("pageCount", pageCount);
+		req.setAttribute("startPageNum", startPageNum);
+		req.setAttribute("endPageNum", endPageNum);
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("field", field);
+		req.setAttribute("keyword", keyword);
 		req.getRequestDispatcher("/board/main").forward(req, resp);
 	}
 }
