@@ -13,11 +13,12 @@ public class IndexController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			String spage=req.getParameter("page");
-			if(spage!=null) {
+
+			if(spage==null) {
+				resp.sendRedirect(req.getContextPath()+"/index/index.jsp");			
+			}else {
 				req.setAttribute("page", spage);
 				req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
-			}else {
-				resp.sendRedirect(req.getContextPath()+"/index/index.jsp");			
 			}			
 	}
 }
