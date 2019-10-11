@@ -17,8 +17,18 @@
 </div>
 	<div id="menu">
 		<div id="logins">
-		<input type="button" value="로그인" onclick="location.href='${cp}/logins'">
-		<input type="button" value="회원가입" onclick="location.href='${cp}/join/insert'">
+		<c:choose>
+			<c:when test="${sessionScope.id==null }">
+				<input type="button" value="로그인" onclick="location.href='${cp}/logins'">
+				<input type="button" value="회원가입" onclick="location.href='${cp}/join/insert'">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="마이페이지" onclick="location.href='${cp}/myPage'">
+				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
+			</c:otherwise>
+		</c:choose>
+		
+
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">메뉴1</a></li>
