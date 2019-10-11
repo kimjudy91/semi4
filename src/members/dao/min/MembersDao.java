@@ -2,6 +2,7 @@ package members.dao.min;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jdbc.JdbcUtil;
@@ -15,7 +16,7 @@ public class MembersDao {
 		
 		try {
 			con=JdbcUtil.getConn();
-			String sql="insert into members values(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql="insert into members values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
@@ -28,6 +29,7 @@ public class MembersDao {
 			pstmt.setInt(9, vo.getReply_count());
 			pstmt.setInt(10, vo.getGrade());
 			pstmt.setInt(11, vo.getWarning());
+			pstmt.setInt(12, vo.getGenre_num());
 			return pstmt.executeUpdate();			
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
@@ -35,6 +37,6 @@ public class MembersDao {
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
 		}
-		
 	}
+
 }

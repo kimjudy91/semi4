@@ -12,10 +12,11 @@ public class MembersVo {
 	private int reply_count;
 	private int grade;
 	private int warning;
+	private int genre_num;
 	
 	private MembersVo() {}
 	public MembersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
-			int write_count, int reply_count, int grade, int warning) {
+			int write_count, int reply_count, int grade, int warning, int genre_num) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -28,7 +29,11 @@ public class MembersVo {
 		this.reply_count = reply_count;
 		this.grade = grade;
 		this.warning = warning;
+		this.genre_num=genre_num;
 	}
+	public int getGenre_num() {return genre_num;}
+	public void setGenre_num(int genre_num) {this.genre_num = genre_num;}
+	
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}
 	

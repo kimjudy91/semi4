@@ -20,6 +20,7 @@ public class JoinServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 		req.setCharacterEncoding("utf-8");
 		String id=req.getParameter("id");
 		String pwd=req.getParameter("pwd1");
@@ -28,9 +29,17 @@ public class JoinServlet extends HttpServlet{
 		String email=req.getParameter("email");
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
-		MembersVo vo=new MembersVo(id, pwd, name, jumin, email, address, phone, 0, 0, 1, 0);
+		int favm=Integer.parseInt(req.getParameter("favm"));
+		MembersVo vo=new MembersVo(id, pwd, name, jumin, email, address, phone, 0, 0, 1, 0, favm);
 		MembersDao dao=new MembersDao();
 		int n=dao.insert(vo);
+		if(favm==1) {
+			req.setAttribute("rock", favm);
+		}else if(favm==2) {
+			req.setAttribute("folk",favm);
+		}else if(favm==3) {
+			req.setAttribute("R&B", favm);
+		}
 		if(n>0) {
 			req.setAttribute("code", "success");
 		}else {
