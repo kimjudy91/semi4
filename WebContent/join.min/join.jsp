@@ -68,14 +68,11 @@
 	function pwdcheck(){
 		var pwd1=document.getElementById("pwd1").value;
 		var pwd2=document.getElementById("pwd2").value;
-		var pwdspan=document.getElementById("pwdcheck");
+		var pwdspan=document.getElementById("pwdcheck");	
+			
+
 		
-		if(pwd[0].value.length<5){
-			pwdspan.innerHTML = " 숫자(5자이상),문자,특수문자(@또는!)를 포함하여 입력해주세요.";
-			return false;
-		}
-	
-/*		if (pwd1.length > 5) {
+		if (pwd1.length > 5) {
 			var cnt = 0;
 			for (var i = 0; i < pwd1.length; i++) {
 				var pp = pwd1.charAt(i);
@@ -88,21 +85,23 @@
 					}else{
 						pwdspan.innerHTML = "";
 					}
-				}else{					
-					if (pwd1 != pwd2) {
+				
+				}
+			if(pwd2!=""){
+				if (pwd1 != pwd2) {
 						pwdspan.style.color = "red";
 						pwdspan.innerHTML = "비밀번호가 일치하지 않습니다.";
 					}else{
 						pwdspan.style.color = "blue";
 						pwdspan.innerHTML = "비밀번호가 일치합니다.";
-				}		
-					
-			}		
-		}
+				}			
+			}
+		}		
+
 		if (pwd1 == "") {
 			pwdspan.innerHTML = "";
 		}
-*/
+	
 
 	var pxhr = null;
 	function phonecheck() {
