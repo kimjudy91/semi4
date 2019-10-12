@@ -69,23 +69,36 @@
 		var pwd1=document.getElementById("pwd1").value;
 		var pwd2=document.getElementById("pwd2").value;
 		var pwdspan=document.getElementById("pwdcheck");	
-			
-
 		
-		if (pwd1.length > 5) {
+		if (pwd1 == "") {
+			pwdspan.innerHTML = "";
+		}
+		
+		if (pwd1.length >3) {
 			var cnt = 0;
+			var cnt2 = 0;
+			
 			for (var i = 0; i < pwd1.length; i++) {
 				var pp = pwd1.charAt(i);
+				
 				if (pp == '@' || pp == '!')
 					cnt++;
-				}		
+				}	
+				if((pp>='a' && pp<='z') || (pp>='A' && pp<='Z')){
+					cnt2++;			
+				}
 				if(cnt == 0){
 					pwdspan.style.color = "red";
-					pwdspan.innerHTML = pp + " 숫자(5자이상),문자,특수문자(@또는!)를 포함하여 입력해주세요.";
-					}else{
-						pwdspan.innerHTML = "";
-					}
+					pwdspan.innerHTML ="숫자(5자이상),문자,특수문자(@또는!)를 포함하여 입력해주세요.";
+					
+					if(cnt2==0){
+						pwdspan.style.color = "red";
+						pwdspan.innerHTML ="문자(하나이상)포함해서 입력해주세요.";
+					}	
 				
+				}else{
+						pwdspan.innerHTML = "";
+					}			
 				}
 			if(pwd2!=""){
 				if (pwd1 != pwd2) {
@@ -97,11 +110,6 @@
 				}			
 			}
 		}		
-
-		if (pwd1 == "") {
-			pwdspan.innerHTML = "";
-		}
-	
 
 	var pxhr = null;
 	function phonecheck() {
