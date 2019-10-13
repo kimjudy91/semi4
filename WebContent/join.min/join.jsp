@@ -17,7 +17,7 @@
 <span>
 	<label>이름</label><input type="text" name="name"><br>
 	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()"><br>
-	<span id="idcheck"></span><br>
+	<span id="idcheck"></span><br> 
 	<label>비밀번호</label><input type="password" name="pwd1" id="pwd1" onkeyup="pwdcheck()"><br>
 	<label>비밀번호확인</label><input type="password" name="pwd2" id="pwd2" onkeyup="pwdcheck()"><br>
 	<span id="pwdcheck"></span><br>
