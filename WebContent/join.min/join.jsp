@@ -7,25 +7,29 @@
 <title>join.jsp</title>
 </head>
 <body>
-<!-- <link rel="stylesheet" type="text/css" href="../css.min/style.css">  -->
+<!-- <link rel="stylesheet" type="text/css" href="../css.min/style.css"> -->
 </head>
 <body>
 <h1>회원가입</h1>
 <hr>
-<form method="post" action="${pageContext.request.contextPath }/join/insert">
+<form name="frm" method="post" action="${pageContext.request.contextPath }/join/insert">
 <div id="form">
 <span>
 	<label>이름</label><input type="text" name="name"><br>
 	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()"><br>
 	<span id="idcheck"></span><br>
-	<label>비밀번호</label><input type="password" name="pwd1" id="pwd1" onkeyup="pwdcheck()"><br>
-	<label>비밀번호확인</label><input type="password" name="pwd2" id="pwd2" onkeyup="pwdcheck()"><br>
+	<label>비밀번호</label><input type="password" name="pwd" id="pwd1" onclick="pwdcheck()"><br>
+	<span id="c">숫자(5자이상),문자(하나이상),특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
+	<label>비밀번호확인</label><input type="password" name="pwd" id="pwd2" onclick="pwdcheck()"><br>
 	<span id="pwdcheck"></span><br>
-	<label>주민등록번호</label><input type="text" name="jumin"><br>
-	<label>전화번호</label><input type="text" name="phone" onkeyup="phonecheck()">
+<!--	<label>주민등록번호</label><input type="text" name="jumin" id="j6" onclick="jumincheck()">-<iput type="text" name="jumin" id="j7" onclick="jumincheck()"><br>
+	<span id="jumincheck"></span><br>  -->
+	<label>전화번호</label><input type="text" name="phone" id="phone" onclick="phonecheck()">
+<!---<input type="text" name="phone" id="p2">
+	-<input type="text" name="phone" id="p3" onclick="phonecheck()">  -->	
 	<span id="phonecheck"></span><br>
 	<label>주소</label><input type="text" name="address"><br>
-	<label>이메일</label><input type="text" name="email" onkeyup="emailcheck()">
+	<label>이메일</label><input type="text" name="email" id="email" onclick="emailcheck()"><br>
 	<span id="emailcheck"></span><br><br>
 	<span id="fav">
 	<label id="favjanre">좋아하는 음악장르</label>
@@ -65,89 +69,205 @@
 			}				
 		}	
 	}
+	
+	//비밀번호 유효성검사
 	function pwdcheck(){
-		var pwd1=document.getElementById("pwd1").value;
-		var pwd2=document.getElementById("pwd2").value;
+		var pwd=document.frm.pwd;
+		var jumin=document.frm.jumin;
+		var pwd1=document.getElementById("pwd1");
+		var pwd2=document.getElementById("pwd2");
 		var pwdspan=document.getElementById("pwdcheck");	
 		
-		if (pwd1 == "") {
-			pwdspan.innerHTML = "";
+		if(pwd1.value.length != ""){
+			pwdspan.innerHTML="필수 정보입니다";
+		}else if(pwd.value.length == ""){
+			pwdspan.style.color="red";
+			pwdspan.innerHTML="필수 정보입니다";
+			pwd1.focus();
+			return false;
 		}
-		
-		if (pwd1.length >3) {
-			var cnt = 0;
-			var cnt2 = 0;
+		//비밀번호 길이
+		if(pwd1.value.length>=3 && pwd1.value.length<=8){
+			pwdspan.innerHTML="";
+		}else if(pwd1.value.length<3 || pwd1.value.length>7){
+			pwdspan.style.color="red";
+			pwdspan.innerHTML="비밀번호를 3~7자까지 입력해주세요."
+			pwd1.focus();
+			return false;
+		}	
+		//소문자,대문자,특수문자(@또는!)하나 이상
+		if (pwd1.value.length > 0) {
+			var cnt =0;
+			var cnt2 =0;
+			for (var i = 0; i < pwd1.value.length; i++) {
+				var ch = pwd1.value.charAt(i);			
 			
-			for (var i = 0; i < pwd1.length; i++) {
-				var pp = pwd1.charAt(i);
-				
-				if (pp == '@' || pp == '!')
-					cnt++;
-				}	
-				if((pp>='a' && pp<='z') || (pp>='A' && pp<='Z')){
-					cnt2++;			
-				}
-				if(cnt == 0){
-					pwdspan.style.color = "red";
-					pwdspan.innerHTML ="숫자(5자이상),문자,특수문자(@또는!)를 포함하여 입력해주세요.";
-					
-					if(cnt2==0){
-						pwdspan.style.color = "red";
-						pwdspan.innerHTML ="문자(하나이상)포함해서 입력해주세요.";
-					}	
-				
-				}else{
-						pwdspan.innerHTML = "";
-					}			
-				}
-			if(pwd2!=""){
-				if (pwd1 != pwd2) {
-						pwdspan.style.color = "red";
-						pwdspan.innerHTML = "비밀번호가 일치하지 않습니다.";
-					}else{
-						pwdspan.style.color = "blue";
-						pwdspan.innerHTML = "비밀번호가 일치합니다.";
+				if((ch>='a' && ch<='z') || (ch>='A' && ch<='Z')){
+					cnt++;		
+				}				
+				if (ch == '@' || ch == '!') {
+					cnt2++;					
 				}			
 			}
+			if(cnt==0){
+				pwdspan.style.color = "red";
+				pwdspan.innerHTML =cnt + "문자(하나이상)포함해서 입력해주세요.";		
+				pwd1.focus();
+				return false;
+			}
+			if(cnt2 == 0){
+				pwdspan.style.color = "red";
+				pwdspan.innerHTML = cnt2 + "특수문자(@또는!)를 포함하여 입력해주세요.";	
+				pwd1.focus();
+				return false;	
+			}		
+		}	
+		if(pwd2.value!=""){ 
+			if (pwd1.value != pwd2.value) {
+				pwdspan.style.color = "red";
+				pwdspan.innerHTML = "비밀번호가 일치하지 않습니다.";
+			}else{
+				pwdspan.style.color = "blue";
+				pwdspan.innerHTML = "비밀번호가 일치합니다.";
+			}			
+		}
+	}
+	
+/*	function jumincheck(){
+		var jumin=document.frm.jumin;
+		var phone=document.frm.phone;
+		var j6=document.getElementById("j6");
+		var j7=document.getElementById("j7");
+		var jspan=document.getElementById("jumincheck");
+		
+		if(jumin.value.length != ""){
+			jspan.innerHTML="";
+		}else if(jumin.value.length == ""){
+			jspan.style.color="red";
+			jspan.innerHTML="필수 정보입니다";
+			j6.focus();
+			return false;
+		}
+		
+		if(jumin.value.length!=13){
+			jspan.style.color = "red";
+			jspan.innerHTML = "주민등록번호를 올바르게 입력해주세요.";
+			jumin.focus();
+			return false;
+		} 
+	}
+*/
+	
+	//전화번호 검사
+	var pxhr=null;
+	function phonecheck(){
+		var pspan=document.getElementById("phonecheck");
+		pxhr=new XMLHttpRequest();
+		var phone=document.getElementById("phone").value;
+		var pspan=document.getElementById("phonecheck");
+		
+		if(phone==""){
+			document.getElementById("phonecheck").innerHTML="";
+		}
+		
+		var cnt=0;
+		if(phone.length == ""){
+			pspan.style.color="red";
+			pspan.innerHTML="필수 정보입니다";
+			return false;
+		}
+		for(var i=0; i<phone.length;i++){
+			var ph=phone.charAt(i);		
+			if(ph=="-"){
+				cnt++;
+			}		
 		}		
-
-	var pxhr = null;
-	function phonecheck() {
-		pxhr = new XMLHttpRequest();
-		var phone = document.getElementById("phone").value;
-		pwdxhr.onreadystatechange = phoneOk;
-		pwdxhr.open('get', 'phoneOk.jsp?phone=' + phone, true);
-		pwdxhr.send();
-	}
-
-	function phoneOk() {
-		if (pxhr.readyState == 4 && pxhr.status == 200) {
-			var phonespan = document.getElementById("phonecheck");
-			if (using == 'true') {
-				phonespan.innerHTML = "사용중인 전화번호입니다.";
-			} else {
-				phonespan.innerHTML = "사용가능한 전화번호입니다.";
-			}
+		if(!(cnt==2)){
+			pspan.style.color="red";
+			pspan.innerHTML="(-)포함해서 올바르게 입력해주세요 예)010-0000-0000";
+			return false;
+		}else if(!(ph >= '0' && ph <= '9')){
+			pspan.style.color="red";
+			pspan.innerHTML="올바른 번호를 입력하세요.";
+			return false;
+		}else{
+			pspan.innerHTML="";
+			return true;
 		}
+		
+		pxhr.onreadystatechange=phoneOk;
+		pxhr.open('get','phoneOk.jsp?phone=' + phone, true);
+		pxhr.send();		
 	}
 
-	var exhr = null;
-	function emailcheck() {
-		exhr = new XMLHttpRequest();
-		exhr.onreadystatechange = emailOk;
-		exhr.open('get', 'emailOk.jsp?email=' + email, true);
-		exhr.send();
+	function phoneOk(){
+		if(pxhr.readyState==4 && pxhr.status==200){
+			var data=pxhr.responseXML;
+			var check=data.getElementsByTagName("check")[0].firstChild.nodeValue;
+			var pspan=document.getElementById("phonecheck");
+			if(check=='true'){
+				pspan.style.color="red";
+				pspan.innerHTML="사용중인 전화번호 입니다.";
+			}		
+		}		
 	}
-	function emailOk() {
-		if (exhr.readyState == 4 && exhr.status == 200) {
-			var emailspan = document.getElementById("emailcheck");
-			if (using == 'true') {
-				emailspan.innerHTML = "사용중인 이메일입니다.";
-			} else {
-				emailspan.innerHTML = "사용가능한 이메일입니다.";
-			}
+	
+	
+	
+	// email중복검사
+	var exhr=null;
+	function emailcheck(){
+		var espan=document.getElementById("emailcheck");
+		exhr=new XMLHttpRequest();
+		var email=document.getElementById("email").value;
+		var espan=document.getElementById("emailcheck");
+		
+		if(email==""){
+			document.getElementById("emailcheck").innerHTML="";
 		}
+				
+		var cnt=0;
+		if(email.length == ""){
+			espan.style.color="red";
+			espan.innerHTML="필수 정보입니다";
+			return false;
+		}
+		for(var i=0; i<email.length;i++){
+			var e=email.charAt(i);
+			if(e== '@' || e == '!'){
+				cnt++;		
+			}				
+		}
+		if(cnt == 0){
+			espan.style.color = "red";
+			espan.innerHTML= "이메일이 올바른 형태가 아닙니다.";
+			return false;
+		}else{
+			espan.innerHTML= "";
+			return true;
+		}
+		
+		
+		
+		exhr.onreadystatechange=emailOk;
+		exhr.open('get','emailOk.jsp?email=' + email, true);
+		exhr.send();	
+		
 	}
+	
+	function emailOk(){
+		if(exhr.readyState==4 && exhr.status==200){
+			var data=exhr.responseXML;
+			var check=data.getElementsByTagName("check")[0].firstChild.nodeValue;
+			var espan=document.getElementById("emailcheck");
+			if(check=='true'){
+				espan.style.color="red";
+				espan.innerHTML="사용중인 email 입니다.";
+			}		
+		}	
+		
+	}
+	
 </script>
 </body>
 </html>
