@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="sessionListener.joo.SessionIdListener"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,6 +12,9 @@
 <style>
 </style>
 </head>
+<script type="text/javascript">
+
+</script>
 <body>
 <div id="main">
 <div id="header">
@@ -27,8 +32,6 @@
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:otherwise>
 		</c:choose>
-		
-
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">커뮤니티게시판</a></li>
@@ -37,7 +40,15 @@
 			<li>메뉴4</li>
 		</ul>
 		<div id="users">
-		회원정보
+		접속자명단<br>
+		<%
+		ArrayList<String> userIds=SessionIdListener.getUserId();
+		for(String a:userIds){
+			%>
+			<%=a %><br>
+			<%
+		}
+		%>
 		</div>
 	</div>
 	<div id="home">
