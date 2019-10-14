@@ -26,6 +26,7 @@ public class BoardListServlet extends HttpServlet{
 		int endRow=pageNum*10;
 		int startRow=endRow-9;
 		BoardDao dao=BoardDao.getinstance();
+		
 		ArrayList<BoardVo> list=dao.list(startRow, endRow, field, keyword);
 		int pageCount=(int)Math.ceil(dao.getCount(field,keyword)/10.0);
 		int startPageNum=((pageNum-1)/10*10)+1;

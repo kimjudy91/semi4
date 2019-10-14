@@ -30,7 +30,7 @@
     <c:forEach var="vo" items="${list}">
 	<tr>
 		<td>${vo.write_num }</td>
-		<td><a href="#">${vo.p_title }</a></td> 
+		<td><a href="${cp }/board/detail?write_num=${vo.write_num}">${vo.p_title }</a></td> 
 		<td>${vo.id }</td>
 		<td>${vo.r_date }</td>
 		<td>${vo.views }</td>
@@ -77,7 +77,7 @@
       
 <!-- 검색 폼 영역 --> 
 <div id="divSearchOption">
-  	  <form method="get" action="${cp }/board/insert">
+  	 <form method="get" action="${cp }/board/community">
       <select name='field'>
          <option value='TC' <c:if test="${field=='TC'}">selected</c:if>>제목+내용</option>
          <option value='p_title' <c:if test="${field=='p_title' }">selected</c:if>>제목</option>
@@ -86,8 +86,11 @@
       </select>
          <input type="text" name="keyword" value="${keyword }" >
          <input type='submit' value='검색'>
+        </form>
+        <form method="get" action="${cp }/board/insert">
          <input type='submit' value='글쓰기'>
        </form>  
+       
 </div>	
 </body>
 </html>

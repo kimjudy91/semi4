@@ -1,7 +1,6 @@
 package board.controller.yun;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,23 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.dao.yun.BoardDao;
 import board.vo.yun.BoardVo;
-@WebServlet("/board/insert")
-public class BoardInsertServlet extends HttpServlet{
+
+@WebServlet("/board/update")
+public class BoardUpdateServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/insert.jsp");
-		req.getRequestDispatcher("/board/insert.jsp").forward(req, resp);
+		int write_num=Integer.parseInt(req.getParameter("write_num"));
+		BoardDao dao=new BoardDao();
+		BoardVo vo=dao.select(write_num);
+		req.setAttribute("vo", vo);
+		req.getRequestDispatcher("/board/update.jsp").forward(req, resp);
+		
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		int write_num=Integer.parseInt(req.getParameter("write_num"));
 		String id=req.getParameter("id");
 		String p_title=req.getParameter("p_title");
 		String contents=req.getParameter("contents");
-		BoardVo vo=new BoardVo(0, id, p_title, contents, null, 0, 1);
-		BoardDao dao=BoardDao.getinstance();
-		int n=dao.insert(vo);
+		int views=Integer.parseInt(req.getParameter("views"));
+		BoardVo vo=new BoardVo(write_num, id, p_title, contents, null, views , 1);
+		BoardDao dao=new BoardDao();
+		int n=dao.update(vo);
 		if(n>0) {
 			req.setAttribute("code", "success");
 		}else {
@@ -35,6 +41,6 @@ public class BoardInsertServlet extends HttpServlet{
 		}
 		req.setAttribute("top", "header.jsp");
 		req.setAttribute("content", "/board/result.jsp");
-		req.getRequestDispatcher("/board/main.jsp").forward(req, resp);
+		req.getRequestDispatcher("/board/detail").forward(req, resp);
 	}
 }

@@ -12,7 +12,7 @@ import jdbc.JdbcUtil;
 
 public class BoardDao {
 	private static BoardDao instance=new BoardDao();
-	private BoardDao() {}
+	public BoardDao() {}
 	public static BoardDao getinstance() {
 		return instance;
 	}
@@ -23,7 +23,7 @@ public class BoardDao {
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="";
+			String sql="";		
 			if(field==null || field.equals("")) { //검색조건이 없는 경우
 				sql="select * from " +
 					"(" +
@@ -65,11 +65,11 @@ public class BoardDao {
 				String contents=rs.getString("contents");
 				Date r_date=rs.getDate("r_date");
 				int views=rs.getInt("views");
-				String genre=rs.getString("genre");
+				int genre=rs.getInt("genre_num");
 				BoardVo vo=new BoardVo(write_num, id, p_title, contents, r_date, views, genre);
 				list.add(vo);
 			}
-				return list;
+			return list;
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
 			return null;
@@ -109,14 +109,14 @@ public class BoardDao {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
-			con=JdbcUtil.getConn();
-			String sql="insert into music values(write_num_seq,?,?,?,sysdate,?,?)";
+			con=JdbcUtil.getConn();	
+			String sql="insert into music values(write_num_seq.nextval,?,?,?,sysdate,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getP_title());
 			pstmt.setString(3, vo.getContents());
 			pstmt.setInt(4, vo.getViews());
-			pstmt.setString(5, vo.getGenre());
+			pstmt.setInt(5, vo.getGenre_num());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
@@ -125,4 +125,101 @@ public class BoardDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public BoardVo detail(int write_num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from music where write_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, write_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				String id=rs.getString("id");
+				String p_title=rs.getString("p_title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");
+				int views=rs.getInt("views");
+				int genre_num=rs.getInt("genre_num");
+				BoardVo vo=new BoardVo(write_num, id, p_title, contents, r_date, views, genre_num);
+				return vo;
+			}
+			return null;
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}finally {
+			JdbcUtil.close(con,pstmt,rs);
+		}
+	}
+	
+	public int update(BoardVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+
+		try {
+			con=JdbcUtil.getConn();
+			String sql="update music set contents=?, p_title=? where write_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getContents());
+			pstmt.setString(2, vo.getP_title());	
+			pstmt.setInt(3, vo.getWrite_num());			
+			return pstmt.executeUpdate();
+		
+			
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	public BoardVo select(int write_num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from music where write_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,write_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				String id=rs.getString("id");
+				String p_title=rs.getString("p_title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");
+				int views=rs.getInt("views");
+				int genre_num=rs.getInt("genre_num");
+				BoardVo vo=new BoardVo(write_num, id, p_title, contents, r_date, views, genre_num);
+				return vo;
+			}
+			return null;
+			
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

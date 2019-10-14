@@ -9,10 +9,11 @@ public class BoardVo {
 	private String contents;
 	private Date r_date;
 	private int views;
-	private String genre;
+	private int likes;
+	private int genre_num;
 	public BoardVo() {}
 	public BoardVo(int write_num, String id, String p_title, String contents, Date r_date, int views,
-			String genre) {
+			int genre_num) {
 		super();
 		this.write_num = write_num;
 		this.id = id;
@@ -20,7 +21,7 @@ public class BoardVo {
 		this.contents = contents;
 		this.r_date = r_date;
 		this.views = views;
-		this.genre = genre;
+		this.genre_num = genre_num;
 	}
 	public int getWrite_num() {
 		return write_num;
@@ -58,11 +59,11 @@ public class BoardVo {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	public String getGenre() {
-		return genre;
+	public int getGenre_num() {
+		return genre_num;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setGenre_num(int genre_num) {
+		this.genre_num = genre_num;
 	}
-	
+
 }
