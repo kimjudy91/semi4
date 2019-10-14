@@ -35,23 +35,19 @@
 	<span id="addrcheck"></span><br>
 	<label>이메일</label><input type="text" name="email" id="email" onkeyup="emailcheck()"><br>
 	<span id="emailcheck"></span><br><br>
-	<span id="fav">
 	<label id="favjanre">좋아하는 음악장르</label>
 	<select name="janre" size="1">
 		<option value="1" id="Rock">Rock</option>
 		<option value="2" id="folk">folk</option>
-		<option value="3" id="RB">R&B</option>
+		<option value="3" id="RB">RB</option>
 	</select><br>
-
 	<input type="submit" value="회원가입" >
 	<input type="reset" value="회원가입취소">
 	</span>
-</span>
 </div>
 </form>
 <script type="text/javascript">
 	
-
 	function namecheck(){
 		var name=document.getElementById("name");
 		var nspan=document.getElementById("namespan");
@@ -73,9 +69,6 @@
 			document.getElementById("idcheck").innerHTML="";
 			return;
 		}
-		
-		
-		
 		idxhr.onreadystatechange=idOk;
 		idxhr.open('get','idOk.jsp?id=' + id, true);
 		idxhr.send();
@@ -203,8 +196,11 @@
 		var pspan=document.getElementById("phonecheck");
 		
 		if(phone==""){
-			document.getElementById("phonecheck").innerHTML="";
+			pspan.innerHTML="";
 		}
+		pxhr.onreadystatechange=phoneOk;
+		pxhr.open('get','phoneOk.jsp?phone=' + phone, true);
+		pxhr.send();		
 		
 		var cnt=0;
 		if(phone.length == ""){
@@ -231,9 +227,7 @@
 			return true;
 		}
 		
-		pxhr.onreadystatechange=phoneOk;
-		pxhr.open('get','phoneOk.jsp?phone=' + phone, true);
-		pxhr.send();		
+		
 		
 	}
 
@@ -245,7 +239,7 @@
 			if(check=='true'){
 				pspan.style.color="red";
 				pspan.innerHTML="사용중인 전화번호 입니다.";
-			}		
+			}
 		}	
 	}
 	
@@ -272,7 +266,11 @@
 		
 		if(email==""){
 			document.getElementById("emailcheck").innerHTML="";
+			return;
 		}
+		exhr.onreadystatechange=emailOk;
+		exhr.open('get','emailOk.jsp?email=' + email, true);
+		exhr.send();	
 				
 		var cnt=0;
 		var cnt2=0;
@@ -302,9 +300,7 @@
 			espan.innerHTML= "";
 			return true;
 		}	
-		exhr.onreadystatechange=emailOk;
-		exhr.open('get','emailOk.jsp?email=' + email, true);
-		exhr.send();	
+		
 		
 	}
 	
@@ -316,7 +312,7 @@
 			if(check=='true'){
 				espan.style.color="red";
 				espan.innerHTML="사용중인 email 입니다.";
-			}		
+			}
 		}		
 	}
 	
