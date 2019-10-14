@@ -128,6 +128,7 @@ public class BoardDao {
 	public BoardVo detail(int write_num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		PreparedStatement pstmt2=null;
 		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
@@ -141,6 +142,12 @@ public class BoardDao {
 				String contents=rs.getString("contents");
 				Date r_date=rs.getDate("r_date");
 				int views=rs.getInt("views");
+				views ++;
+				sql="update music set views=? where write_num=?";
+				pstmt2=con.prepareStatement(sql);
+				pstmt2.setInt(1, views);
+				pstmt2.setInt(2, write_num);
+				pstmt2.executeUpdate();
 				int genre_num=rs.getInt("genre_num");
 				BoardVo vo=new BoardVo(write_num, id, p_title, contents, r_date, views, genre_num);
 				return vo;
@@ -204,22 +211,22 @@ public class BoardDao {
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
 		}
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int delete(int write_num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="delete from music where write_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,write_num);
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
