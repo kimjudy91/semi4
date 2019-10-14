@@ -14,7 +14,7 @@
 		var okEmail=document.getElementById("okEmail");
 		okEmail.style.display="inline";
 		var email=document.getElementById("email");
-		email.disabled=false;
+		email.readOnly=false;
 	}
 	function updateEmail2(){
 		var updateEmail=document.getElementById("updateEmail");
@@ -22,7 +22,7 @@
 		var okEmail=document.getElementById("okEmail");
 		okEmail.style.display="none";
 		var email=document.getElementById("email");
-		email.disabled=true;
+		email.readOnly=true;
 	}
 	function updatePhone1(){
 		var updatePhone=document.getElementById("updatePhone");
@@ -30,7 +30,7 @@
 		var okPhone=document.getElementById("okPhone");
 		okPhone.style.display="inline";
 		var phone=document.getElementById("phone");
-		phone.disabled=false;
+		phone.readOnly=false;
 	}
 	function updatePhone2(){
 		var updatePhone=document.getElementById("updatePhone");
@@ -38,7 +38,7 @@
 		var okPhone=document.getElementById("okPhone");
 		okPhone.style.display="none";
 		var phone=document.getElementById("phone");
-		phone.disabled=true;
+		phone.readOnly=true;
 	}
 	function updateAddress1(){
 		var updateAddress=document.getElementById("updateAddress");
@@ -46,7 +46,7 @@
 		var okAddress=document.getElementById("okAddress");
 		okAddress.style.display="inline";
 		var address=document.getElementById("address");
-		address.disabled=false;
+		address.readOnly=false;
 	}
 	function updateAddress2(){
 		var updateAddress=document.getElementById("updateAddress");
@@ -54,14 +54,15 @@
 		var okAddress=document.getElementById("okAddress");
 		okAddress.style.display="none";
 		var address=document.getElementById("address");
-		address.disabled=true;
+		address.readOnly=true;
 	}
 </script>
 <body>
-<h1>마이페이지z</h1>
-이메일   <input type="text" value="${vo.email }" disabled="disabled" id="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
-전화번호   <input type="text" value="${vo.phone }" disabled="disabled" id="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"><br>
-주소   <input type="text" value="${vo.address }" disabled="disabled" id="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"><br>
+<h1>마이페이지</h1>
+<form action="${cp }/updateMembers" method="post">
+이메일   <input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
+전화번호   <input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"><br>
+주소   <input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"><br>
 등급
 <c:choose>
 	<c:when test="${vo.grade=='1' }">
@@ -75,5 +76,7 @@
 	</c:when>
 </c:choose>
 <br>
+<input type="submit" value="저장하기">
+</form>
 </body>
 </html>
