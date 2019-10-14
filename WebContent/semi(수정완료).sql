@@ -6,7 +6,7 @@ create table members(
 	id varchar2(15) primary key,
 	pwd varchar2(20) not null,
 	name varchar2(10) not null,
-	jumin varchar2(20) not null unique,
+	jumin varchar2(20) not null ,
 	email varchar2(20) not null unique,
 	address varchar2(20) not null,
 	phone varchar2(20) not null unique,
