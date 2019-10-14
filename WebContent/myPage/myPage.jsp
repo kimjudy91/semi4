@@ -58,7 +58,7 @@
 	}
 </script>
 <body>
-<h1>마이페이지</h1>
+<h1>마이페이지z</h1>
 이메일   <input type="text" value="${vo.email }" disabled="disabled" id="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
 전화번호   <input type="text" value="${vo.phone }" disabled="disabled" id="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"><br>
 주소   <input type="text" value="${vo.address }" disabled="disabled" id="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"><br>
