@@ -13,7 +13,7 @@
 <body>
 <h1>회원가입</h1>
 <hr>
-<form name="frm" method="post"  action="${pageContext.request.contextPath }/join/insert">
+<form name="frm" onsubmit="return checkForm();" method="post"   action="${pageContext.request.contextPath }/join/insert">
 <div id="form">
 <span>
 	<label>이름</label><input type="text" name="name" id="name" onkeyup="namecheck()"><br>
@@ -21,7 +21,7 @@
 	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()" ><br>
 	<span id="idcheck"></span><br> 
 	<label>비밀번호</label><input type="password" name="pwd" id="pwd1" onkeyup="pwdcheck()"><br>
-	<span id="c">숫자(5자이상),문자(하나이상),특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
+	<span id="c">3자이상,영문 대소문자,특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
 	<label>비밀번호확인</label><input type="password" name="pwd" id="pwd2" onkeyup="pwdcheck()"><br>
 	<span id="pwdcheck"></span><br>
 	<label>주민등록번호</label><input type="text" name="jumin" id="j6" onkeyup="jumincheck()">
@@ -36,17 +36,55 @@
 	<label>이메일</label><input type="text" name="email" id="email" onkeyup="emailcheck()"><br>
 	<span id="emailcheck"></span><br><br>
 	<label id="favjanre">좋아하는 음악장르</label>
-	<select name="janre" size="1">
+	<select name="janre" id="janre" size="1">
+		<option selected>선택</option>
 		<option value="1" id="Rock">Rock</option>
 		<option value="2" id="folk">folk</option>
 		<option value="3" id="RB">RB</option>
 	</select><br>
-	<input type="submit" value="회원가입" >
+	<input type="submit" value="회원가입">
 	<input type="reset" value="회원가입취소">
 	</span>
 </div>
 </form>
 <script type="text/javascript">
+	
+	function checkForm(){
+		form=document.frm;
+
+		
+		if(form.name.value == "" || form.id.value == "" || form.pwd.value == "" || form.jumin.value == "" 
+				|| form.phone.value == "" || form.email.value == "" || form.janre.value == ""){
+			if(form.name.value == ""){
+				alert("이름 입력해주세요.");
+				form.name.focus();
+				return false;
+			}else if(form.id.value == ""){
+				alert("아이디 입력해주세요.");
+				form.id.focus();
+				return false;
+			}else if(form.pwd1.value == "" || form.pwd2.value == ""){
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			}else if(form.j6.value == ""){
+				alert("주민등록번호를 입력해주세요.");
+				return false;
+			}else if(form.j1.value == ""){
+				alert("주민등록번호 뒷자리를 입력해주세요.");
+				return false;
+			}else if(form.phone.value == ""){
+				alert("전화번호를 입력해주세요.");
+				return false;
+			}else if(form.email.value == ""){
+				alert("email을 입력해주세요.");
+				return false;			
+			}else if(form.janre.selectedIndex<1){
+				alert("장르를 선택해주세요.");
+				return false;
+			}
+		}
+	}
+	
 	
 	function namecheck(){
 		var name=document.getElementById("name");
@@ -131,7 +169,7 @@
 
 			if(cnt==0){
 				pwdspan.style.color = "red";
-				pwdspan.innerHTML ="특수문자(@또는!)를 포함하여 입력해주세요.";		
+				pwdspan.innerHTML ="영문 대소문자,특수문자(@또는!)를 포함하여 입력해주세요.";		
 				pwd1.focus();
 				return false;
 			}
