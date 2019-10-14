@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>board/community.jsp</title>
 <style type="text/css">
@@ -30,7 +31,20 @@
     <c:forEach var="vo" items="${list}">
 	<tr>
 		<td>${vo.write_num }</td>
-		<td><a href="${cp }/board/detail?write_num=${vo.write_num}">${vo.p_title }</a></td> 
+		<td>
+		<c:choose>
+			<c:when test="${vo.genre_num==1 }">
+				[알앤비]
+			</c:when>
+			<c:when test="${vo.genre_num==2 }">
+				[팝]
+			</c:when>
+			<c:when test="${vo.genre_num==3 }">
+				[가요]
+			</c:when>	
+		</c:choose>
+		<a href="${cp }/board/detail?write_num=${vo.write_num}">
+		${vo.p_title }</a></td> 
 		<td>${vo.id }</td>
 		<td>${vo.r_date }</td>
 		<td>${vo.views }</td>
@@ -43,7 +57,7 @@
 <div id="divPaging">
      <c:choose>
      	<c:when test="${startPageNum>10 }">
-     		<a href="${cp }/boared/community?pageNum=${startPageNum-1 }&field=${field}&keyword=${keyword}">◀</a> 
+     		<a href="${cp }/boared/community?pageNum=${startPageNum-1 }&field=${field }&keyword=${keyword}">◀</a> 
      	</c:when>
      	<c:otherwise>
      		    ◀
@@ -52,14 +66,18 @@
      <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
      	<c:choose>
      		<c:when test="${pageNum==i }">
-     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}">
-     				<span style="color:blue;">[${i}]</span>
-     			</a>	
+     			<span style="color:blue;">
+     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}" >
+     				[${i}]
+     			</a>
+     			</span>	
      		</c:when>
      		<c:otherwise>
+     			<span style="color:#555;">
      			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}">
-     				<span style="color:#555;">[${i}]</span>
+     				[${i}]
      			</a>
+     			</span>
      		</c:otherwise>
      	</c:choose>
      </c:forEach>
@@ -90,7 +108,7 @@
         <form method="get" action="${cp }/board/insert">
          <input type='submit' value='글쓰기'>
        </form>  
-
+       
 </div>	
 </body>
 </html>
