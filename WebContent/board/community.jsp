@@ -43,7 +43,7 @@
 <div id="divPaging">
      <c:choose>
      	<c:when test="${startPageNum>10 }">
-     		<a href="${cp }/boared/community?pageNum=${startPageNum-1 }&field=${field }&keyword=${keyword}">◀</a> 
+     		<a href="${cp }/boared/community?pageNum=${startPageNum-1 }&field=${field}&keyword=${keyword}">◀</a> 
      	</c:when>
      	<c:otherwise>
      		    ◀
@@ -90,7 +90,7 @@
         <form method="get" action="${cp }/board/insert">
          <input type='submit' value='글쓰기'>
        </form>  
-       
+
 </div>	
 </body>
 </html>

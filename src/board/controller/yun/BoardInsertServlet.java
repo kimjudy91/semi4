@@ -30,6 +30,13 @@ public class BoardInsertServlet extends HttpServlet{
 		int n=dao.insert(vo);
 		if(n>0) {
 			req.setAttribute("code", "success");
+			dao.increWriteCount(id);
+			int write_count=dao.getWriteCount(id);
+			if(write_count==10) {
+				dao.increGrade(id);
+			}else if(write_count==5) {
+				dao.increGrade(id);
+			}
 		}else {
 			req.setAttribute("code", "fail");
 		}

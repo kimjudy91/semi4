@@ -19,6 +19,8 @@ public class BoardUpdateServlet extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		BoardVo vo=dao.select(write_num);
 		req.setAttribute("vo", vo);
+		req.setAttribute("top","/board/header.jsp");
+		req.setAttribute("content","/board/update.jsp");
 		req.getRequestDispatcher("/board/update.jsp").forward(req, resp);
 		
 	}

@@ -229,4 +229,89 @@ public class BoardDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public int increWriteCount(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update members set write_count=? where id=?";
+			int n=getWriteCount(id);
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, n+1);
+			pstmt.setString(2, id);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}
+	}
+	public int getWriteCount(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select write_count from members where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("write_count");
+			}
+			return -1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int increGrade(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update members set grade=? where id=?";
+			int n=getGrade(id);
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, n+1);
+			pstmt.setString(2, id);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}
+	}
+	public int getGrade(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select grade from members where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("grade");
+			}
+			return -1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
