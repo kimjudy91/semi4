@@ -6,9 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jdbc.JdbcUtil;
+import login.dao.joo.LoginDao;
 import members.vo.min.MembersVo;
 
 public class MembersDao {
+	private static MembersDao dao=new MembersDao();
+	private MembersDao() {}
+	public static MembersDao getDao() {
+		return dao;
+	}
 	
 	public int insert(MembersVo vo) {
 		Connection con=null;
@@ -38,5 +44,68 @@ public class MembersDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-
+	public MembersVo search(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select * from members where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				String pwd=rs.getString("pwd");
+				String name=rs.getString("name");
+				String email=rs.getString("email");
+				String address=rs.getString("address");
+				String phone=rs.getString("phone");
+				int write_count=rs.getInt("write_count");
+				int reply_count=rs.getInt("reply_count");
+				int grade=rs.getInt("grade");
+				int warning=rs.getInt("warning");
+				int genre_num=rs.getInt("genre_num");
+				int jumin=rs.getInt("jumin");
+				MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, write_count, reply_count, grade, warning, genre_num, jumin);
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

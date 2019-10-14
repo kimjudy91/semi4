@@ -15,8 +15,8 @@ public class MembersVo {
 	private int genre_num;
 	
 	private MembersVo() {}
-	public MembersVo(String id, String pwd, String name, int jumin, String email, String address, String phone,
-			int write_count, int reply_count, int grade, int warning, int genre_num) {
+	public MembersVo(String id, String pwd, String name,  String email, String address, String phone,
+			int write_count, int reply_count, int grade, int warning, int genre_num, int jumin) {
 		super();
 		this.id = id;
 		this.pwd = pwd;

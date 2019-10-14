@@ -9,7 +9,19 @@
 </head>
 <body>
 <h1>마이페이지</h1>
-<img  src="../images/gold.png">
-
+이메일
+전화번호
+주소
+<c:choose>
+	<c:when test="">
+	<img  src="../images/bronze.png">
+	</c:when>
+	<c:when test="">
+	<img  src="../images/silver.png">
+	</c:when>
+	<c:when test="">
+	<img  src="../images/gold.png">
+	</c:when>
+</c:choose>
 </body>
 </html>

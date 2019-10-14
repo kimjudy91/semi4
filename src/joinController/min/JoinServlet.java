@@ -30,9 +30,8 @@ public class JoinServlet extends HttpServlet{
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
 		int favm=Integer.parseInt(req.getParameter("favm"));
-		MembersVo vo=new MembersVo(id, pwd, name, jumin, email, address, phone, 0, 0, 1, 0, favm);
-		MembersDao dao=new MembersDao();
-		int n=dao.insert(vo);
+		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, favm, jumin);
+		int n=MembersDao.getDao().insert(vo);
 		if(favm==1) {
 			req.setAttribute("rock", favm);
 		}else if(favm==2) {
