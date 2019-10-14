@@ -23,21 +23,22 @@ public class JoinServlet extends HttpServlet{
 	
 		req.setCharacterEncoding("utf-8");
 		String id=req.getParameter("id");
-		String pwd=req.getParameter("pwd1");
-		String name=req.getParameter("name");
-		String jumin=req.getParameter("jumin");
+		String pwd=req.getParameter("pwd");
+		String name=req.getParameter("name");	
 		String email=req.getParameter("email");
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
-		int favm=Integer.parseInt(req.getParameter("favm"));
-		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, favm, jumin);
-		int n=MembersDao.getDao().insert(vo);
-		if(favm==1) {
-			req.setAttribute("rock", favm);
-		}else if(favm==2) {
-			req.setAttribute("folk",favm);
-		}else if(favm==3) {
-			req.setAttribute("R&B", favm);
+		int janre=Integer.parseInt(req.getParameter("janre"));
+		int jumin=Integer.parseInt(req.getParameter("jumin"));
+		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, janre, jumin);
+		MembersDao dao=new MembersDao();
+		int n=dao.insert(vo);
+		if(janre==1) {
+			req.setAttribute("rock", janre);
+		}else if(janre==2) {
+			req.setAttribute("folk",janre);
+		}else if(janre==3) {
+			req.setAttribute("RB", janre);
 		}
 		if(n>0) {
 			req.setAttribute("code", "success");

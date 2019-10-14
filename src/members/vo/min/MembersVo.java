@@ -3,8 +3,7 @@ package members.vo.min;
 public class MembersVo {
 	private String id;
 	private String pwd;
-	private String name;
-	private String jumin;
+	private String name;	
 	private String email;
 	private String address;
 	private String phone;
@@ -13,20 +12,15 @@ public class MembersVo {
 	private int grade;
 	private int warning;
 	private int genre_num;
+	private int jumin;
 	
 	private MembersVo() {}
-<<<<<<< HEAD
-	public MembersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
-			int write_count, int reply_count, int grade, int warning, int genre_num) {
-=======
-	public MembersVo(String id, String pwd, String name,  String email, String address, String phone,
+	public MembersVo(String id, String pwd, String name, String email, String address, String phone,
 			int write_count, int reply_count, int grade, int warning, int genre_num, int jumin) {
->>>>>>> branch 'master' of https://github.com/kimjudy91/semi4.git
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
-		this.jumin = jumin;
 		this.email = email;
 		this.address = address;
 		this.phone = phone;
@@ -35,6 +29,7 @@ public class MembersVo {
 		this.grade = grade;
 		this.warning = warning;
 		this.genre_num=genre_num;
+		this.jumin = jumin;
 	}
 	public int getGenre_num() {return genre_num;}
 	public void setGenre_num(int genre_num) {this.genre_num = genre_num;}
@@ -47,9 +42,6 @@ public class MembersVo {
 	
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
-	
-	public String getJumin() {return jumin;}
-	public void setJumin(String jumin) {this.jumin = jumin;}
 	
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
@@ -71,4 +63,7 @@ public class MembersVo {
 	
 	public int getWarning() {return warning;}
 	public void setWarning(int warning) {this.warning = warning;}
+	
+	public int getJumin() {return jumin;}
+	public void setJumin(int jumin) {this.jumin = jumin;}
 }
