@@ -16,8 +16,9 @@
 <form name="frm" method="post"  action="${pageContext.request.contextPath }/join/insert">
 <div id="form">
 <span>
-	<label>이름</label><input type="text" name="name"><br>
-	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()"><br>
+	<label>이름</label><input type="text" name="name" id="name" onkeyup="namecheck()"><br>
+	<span id="namespan"></span><br>
+	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()" ><br>
 	<span id="idcheck"></span><br> 
 	<label>비밀번호</label><input type="password" name="pwd" id="pwd1" onkeyup="pwdcheck()"><br>
 	<span id="c">숫자(5자이상),문자(하나이상),특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
@@ -25,8 +26,10 @@
 	<span id="pwdcheck"></span><br>
 	<label>주민등록번호</label><input type="text" name="jumin" id="j6" onkeyup="jumincheck()">
 	 -<input type="text" name="jumin" id="j1" onkeyup="jumincheck()">xxxxxx<br>
+	 <p>예) 123456-1xxxxxx</p><br> 
 	<span id="jumincheck"></span><br> 
-	<label>전화번호</label><input type="text" name="phone" id="phone" onkeyup="phonecheck()"><br>
+	<label>전화번호</label><input type="text" name="phone" id="phone" onkeyup="phonecheck()">
+	 <p>예) 010-0000-0000</p><br>
 	<span id="phonecheck"></span><br>
 	<label>주소</label><input type="text" name="address" id="addr" onkeyup="addrcheck()"><br>
 	<span id="addrcheck"></span><br>
@@ -34,11 +37,12 @@
 	<span id="emailcheck"></span><br><br>
 	<span id="fav">
 	<label id="favjanre">좋아하는 음악장르</label>
-	<select name="janre">
+	<select name="janre" size="1">
 		<option value="1" id="Rock">Rock</option>
 		<option value="2" id="folk">folk</option>
 		<option value="3" id="RB">R&B</option>
 	</select><br>
+
 	<input type="submit" value="회원가입" >
 	<input type="reset" value="회원가입취소">
 	</span>
@@ -47,31 +51,18 @@
 </form>
 <script type="text/javascript">
 	
-	function click(){
-		var id=document.getElementById("id");
-		var pwd=document.frm.pwd;
-		var pwd1=document.getElementById("pwd1");
-		var pwd2=document.getElementById("pwd2");
-		var jumin=document.frm.jumin;
-		var j6=document.getElementById("j6");
-		var j1=document.getElementById("j1");
+
+	function namecheck(){
+		var name=document.getElementById("name");
+		var nspan=document.getElementById("namespan");
 		
-		
-		if(pwd1.value.length != ""){
-			pwdspan.innerHTML="필수 정보입니다";
-		}else if(pwd.value.length == ""){
-			pwdspan.style.color="red";
-			pwdspan.innerHTML="필수 정보입니다";
-			pwd1.focus();
-			return false;
-		}else if(jumin.value.length == ""){
-			jspan.style.color="red";
-			document.getElementById("jumincheck").innerHTML="필수 정보입니다";
-			return false;
+		if(name.value.length != ""){
+			nspan.innerHTML="";
+		}else if(name.value.length == ""){
+			nspan.style.color="red";
+			nspan.innerHTML="필수 정보입니다";
 		}
 	}
-
-
 
 	// 아이디유효성 검사
 	var idxhr=null;
@@ -82,6 +73,9 @@
 			document.getElementById("idcheck").innerHTML="";
 			return;
 		}
+		
+		
+		
 		idxhr.onreadystatechange=idOk;
 		idxhr.open('get','idOk.jsp?id=' + id, true);
 		idxhr.send();
@@ -111,7 +105,7 @@
 		var pwdspan=document.getElementById("pwdcheck");	
 		
 		if(pwd1.value.length != ""){
-			pwdspan.innerHTML="필수 정보입니다";
+			pwdspan.innerHTML="";
 		}else if(pwd.value.length == ""){
 			pwdspan.style.color="red";
 			pwdspan.innerHTML="필수 정보입니다";
@@ -184,7 +178,7 @@
 			
 		if(j6.value.length !=6){
 			jspan.style.color="red";
-			jspan.innerHTML="올바르게 입력해주세요.";
+			jspan.innerHTML="생년월일6자리와 뒷자리 하나만 입력해주세요.";
 			j6.focus();
 			return false;
 		}
@@ -226,7 +220,7 @@
 		}		
 		if(!(cnt==2)){
 			pspan.style.color="red";
-			pspan.innerHTML="(-)포함해서 올바르게 입력해주세요 예)010-0000-0000";
+			pspan.innerHTML="(-)포함해서 올바르게 입력해주세요.";
 			return false;
 		}else if(!(ph >= '0' && ph <= '9')){
 			pspan.style.color="red";
