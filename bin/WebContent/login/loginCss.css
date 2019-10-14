@@ -1,0 +1,60 @@
+@charset "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+	margin: auto;
+}
+#header{
+	width:100%;
+	height:120px;
+	text-align: center;
+}
+body{
+	width:1000px;
+	height:800px;
+	background-color: silver;
+	font-size: 1.5em;
+	position: relative;
+}
+#main{
+	width:1000px;
+	height:700px;
+	background-color: white;
+}
+#login{
+	width:100%;
+	height:50%;
+	text-align: center;
+
+}
+#login #id{
+	width:300px;
+	height:50px;
+	font-size: 20px;
+	margin-top: 30px;
+	
+}
+#login #pwd{
+	width:300px;
+	height:50px;
+	font-size: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#menus{
+	text-align: center;
+	width:1000px;
+	height:100px;
+	position: absolute;bottom: 200px; 
+}
+.menu{
+	color: silver;
+	text-decoration:none;
+}
+#loginbtn{
+	width:300px;
+	height:50px;
+	font-size: 20px;
+	
+}
