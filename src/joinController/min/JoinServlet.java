@@ -31,8 +31,7 @@ public class JoinServlet extends HttpServlet{
 		int janre=Integer.parseInt(req.getParameter("janre"));
 		int jumin=Integer.parseInt(req.getParameter("jumin"));
 		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, janre, jumin);
-		MembersDao dao=new MembersDao();
-		int n=dao.insert(vo);
+		int n=MembersDao.getDao().insert(vo);
 		if(janre==1) {
 			req.setAttribute("rock", janre);
 		}else if(janre==2) {
