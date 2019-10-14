@@ -21,7 +21,7 @@ public class MembersDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getName());
-			pstmt.setString(4, vo.getJumin());
+			pstmt.setInt(4, vo.getJumin());
 			pstmt.setString(5, vo.getEmail());
 			pstmt.setString(6, vo.getAddress());
 			pstmt.setString(7, vo.getPhone());
