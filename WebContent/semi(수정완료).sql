@@ -17,7 +17,7 @@ create table members(
 	genre_num number(5) REFERENCES genre(genre_num)
 	
 );
-
+--
 
 
 ---------------------------------------------------------------------------------
