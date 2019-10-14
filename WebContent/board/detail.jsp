@@ -19,7 +19,7 @@
 		<th>글번호</th>
 		<td>${vo.write_num }</td>
 		<th>조회수</th>
-		<td>${views }</td>
+		<td>${vo.views }</td>
 	</tr>
 	<tr>
 		<th>아이디</th>
@@ -36,9 +36,9 @@
 	
 	<tr>
 		<td colspan="4" class="text-center">
-			<input type="button" class="btn-update" value="답글쓰기">
+			<input type="button" class="btn-update" value="답글쓰기" onclick="location.href='${cp}/board/comments?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
-			<input type="button" class="btn-delete" value="삭제하기">
+			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
 		
 			<input type="submit" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>

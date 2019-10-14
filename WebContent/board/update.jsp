@@ -13,6 +13,7 @@
 <h1>글수정하기</h1>
 <form method="post" action="${cp }/board/update">
 	글번호 <input type="text" name="write_num" value="${vo.write_num}" readonly="readonly">
+
 	조회수 <input type="text" name="views" value="${vo.views }" readonly="readonly">
 	<br>
 	작성자<br>

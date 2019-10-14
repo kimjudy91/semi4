@@ -25,7 +25,7 @@ public class JoinServlet extends HttpServlet{
 		String id=req.getParameter("id");
 		String pwd=req.getParameter("pwd1");
 		String name=req.getParameter("name");
-		int jumin=Integer.parseInt(req.getParameter("jumin"));
+		String jumin=req.getParameter("jumin");
 		String email=req.getParameter("email");
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
