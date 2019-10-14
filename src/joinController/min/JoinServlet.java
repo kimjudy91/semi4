@@ -29,16 +29,11 @@ public class JoinServlet extends HttpServlet{
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
 		int janre=Integer.parseInt(req.getParameter("janre"));
+		System.out.println(janre);
 		int jumin=Integer.parseInt(req.getParameter("jumin"));
 		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, janre, jumin);
 		int n=MembersDao.getDao().insert(vo);
-		if(janre==1) {
-			req.setAttribute("rock", janre);
-		}else if(janre==2) {
-			req.setAttribute("folk",janre);
-		}else if(janre==3) {
-			req.setAttribute("RB", janre);
-		}
+	
 		if(n>0) {
 			req.setAttribute("code", "success");
 		}else {
