@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jdbc.JdbcUtil;
-import login.dao.joo.LoginDao;
+
 import members.vo.min.MembersVo;
 
 public class MembersDao {
@@ -19,6 +19,7 @@ public class MembersDao {
 	public int insert(MembersVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		
 		try {
 			con=JdbcUtil.getConn();
 			String sql="insert into members values(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -26,7 +27,6 @@ public class MembersDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPwd());
 			pstmt.setString(3, vo.getName());
-			pstmt.setInt(12, vo.getJumin());
 			pstmt.setString(4, vo.getEmail());
 			pstmt.setString(5, vo.getAddress());
 			pstmt.setString(6, vo.getPhone());
@@ -35,6 +35,7 @@ public class MembersDao {
 			pstmt.setInt(9, vo.getGrade());
 			pstmt.setInt(10, vo.getWarning());
 			pstmt.setInt(11, vo.getGenre_num());
+			pstmt.setInt(12, vo.getJumin());
 			return pstmt.executeUpdate();			
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
