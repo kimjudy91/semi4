@@ -17,16 +17,10 @@
 <span>
 	<label>이름</label><input type="text" name="name"><br>
 	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()"><br>
-<<<<<<< HEAD
 	<span id="idcheck"></span><br> 
-	<label>비밀번호</label><input type="password" name="pwd1" id="pwd1" onkeyup="pwdcheck()"><br>
-	<label>비밀번호확인</label><input type="password" name="pwd2" id="pwd2" onkeyup="pwdcheck()"><br>
-=======
-	<span id="idcheck"></span><br>
 	<label>비밀번호</label><input type="password" name="pwd" id="pwd1" onclick="pwdcheck()"><br>
 	<span id="c">숫자(5자이상),문자(하나이상),특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
 	<label>비밀번호확인</label><input type="password" name="pwd" id="pwd2" onclick="pwdcheck()"><br>
->>>>>>> branch 'master' of https://github.com/kimjudy91/semi4.git
 	<span id="pwdcheck"></span><br>
 <!--	<label>주민등록번호</label><input type="text" name="jumin" id="j6" onclick="jumincheck()">-<iput type="text" name="jumin" id="j7" onclick="jumincheck()"><br>
 	<span id="jumincheck"></span><br>  -->
