@@ -4,7 +4,7 @@ public class MembersVo {
 	private String id;
 	private String pwd;
 	private String name;
-	private String jumin;
+	private int jumin;
 	private String email;
 	private String address;
 	private String phone;
@@ -15,7 +15,7 @@ public class MembersVo {
 	private int genre_num;
 	
 	private MembersVo() {}
-	public MembersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
+	public MembersVo(String id, String pwd, String name, int jumin, String email, String address, String phone,
 			int write_count, int reply_count, int grade, int warning, int genre_num) {
 		super();
 		this.id = id;
@@ -43,8 +43,8 @@ public class MembersVo {
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	
-	public String getJumin() {return jumin;}
-	public void setJumin(String jumin) {this.jumin = jumin;}
+	public int getJumin() {return jumin;}
+	public void setJumin(int jumin) {this.jumin = jumin;}
 	
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
