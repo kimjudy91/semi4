@@ -29,36 +29,44 @@ public class FindPwdController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");
 		String email=req.getParameter("email");
-		String temPwd=FindPwdDao.getDao().getTemPwd();
-		FindPwdDao.getDao().updateTemPwd(id, temPwd);
-		
-		String host="smtp.naver.com";
-		String user="suizka81@naver.com";
-		String password="wnGUSwn12!";
-		
-		Properties props=new Properties();
-		props.put("mail.smtp.host",host);
-		props.put("mail.smtp.port",587);
-		props.put("mail.smtp.auth",true);
-		
-		Session session=Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(user, password);
+		int n =FindPwdDao.getDao().searchPwd(id, email);
+		if(n>0) {
+			String temPwd=FindPwdDao.getDao().getTemPwd();
+			FindPwdDao.getDao().updateTemPwd(id, temPwd);
+
+			String host="smtp.naver.com";
+			String user="suizka81@naver.com";
+			String password="wnGUSwn12!";
+
+			Properties props=new Properties();
+			props.put("mail.smtp.host",host);
+			props.put("mail.smtp.port",587);
+			props.put("mail.smtp.auth",true);
+
+			Session session=Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(user, password);
+				}
+			});
+
+			try{
+				MimeMessage message= new MimeMessage(session);
+				message.setFrom(new InternetAddress(user));
+				message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));
+				message.setSubject("임시비밀번호입니다.");
+				message.setText(temPwd);
+				Transport.send(message);
+
+			}catch(MessagingException me) {
+				me.printStackTrace();
 			}
-		});
-		
-		try{
-			MimeMessage message= new MimeMessage(session);
-			message.setFrom(new InternetAddress(user));
-			message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));
-			message.setSubject("임시비밀번호입니다.");
-			message.setText(temPwd);
-			Transport.send(message);
-			
-		}catch(MessagingException me) {
-			me.printStackTrace();
+			req.setAttribute("id", email);
+			req.setAttribute("code", "success");
+			req.getRequestDispatcher("/findPwd/result.jsp").forward(req, resp);
+		}else {
+			req.setAttribute("code", "fail");
+			req.getRequestDispatcher("/findPwd/result.jsp").forward(req, resp);
 		}
-		
-		resp.sendRedirect(req.getContextPath()+"/login/login.jsp");
+
 	}
 }
