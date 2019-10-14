@@ -15,8 +15,13 @@ public class MembersVo {
 	private int genre_num;
 	
 	private MembersVo() {}
+<<<<<<< HEAD
 	public MembersVo(String id, String pwd, String name, String jumin, String email, String address, String phone,
 			int write_count, int reply_count, int grade, int warning, int genre_num) {
+=======
+	public MembersVo(String id, String pwd, String name,  String email, String address, String phone,
+			int write_count, int reply_count, int grade, int warning, int genre_num, int jumin) {
+>>>>>>> branch 'master' of https://github.com/kimjudy91/semi4.git
 		super();
 		this.id = id;
 		this.pwd = pwd;

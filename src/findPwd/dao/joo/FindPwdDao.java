@@ -42,4 +42,54 @@ public class FindPwdDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public int searchPwd(String id,String email) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select * from members where id=? and email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return 1;
+			}else {
+				return -1;
+			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;	
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
