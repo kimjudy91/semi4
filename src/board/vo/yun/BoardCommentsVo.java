@@ -73,4 +73,4 @@ public class BoardCommentsVo {
 		this.step = step;
 	}
 	
-}
+ } 
