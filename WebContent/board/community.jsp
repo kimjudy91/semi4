@@ -96,7 +96,7 @@
 <div id="divPaging">
      <c:choose>
      	<c:when test="${startPageNum>10 }">
-     		<a href="${cp }/boared/community?pageNum=${startPageNum-1 }&field=${field }&keyword=${keyword}">◀</a> 
+     		<a href="${cp }/board/community?pageNum=${startPageNum-1 }&field=${field }&keyword=${keyword}">◀</a> 
      	</c:when>
      	<c:otherwise>
      		    ◀
@@ -106,14 +106,14 @@
      	<c:choose>
      		<c:when test="${pageNum==i }">
      			<span style="color:blue;">
-     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}" >
+     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}" style="text-decoration: none">
      				[${i}]
      			</a>
      			</span>	
      		</c:when>
      		<c:otherwise>
      			<span style="color:#555;">
-     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}">
+     			<a href="${cp }/board/community?pageNum=${i}&field=${field}&keyword=${keyword}" style="text-decoration: none">
      				[${i}]
      			</a>
      			</span>
