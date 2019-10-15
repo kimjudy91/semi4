@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import jdbc.JdbcUtil;
 import members.vo.min.MembersVo;
@@ -18,6 +19,7 @@ public class NquireDao {
 		return dao;
 	}
 	
+	// 회원아이디 select
 	public MembersVo select(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -53,6 +55,7 @@ public class NquireDao {
 		}	
 	}
 	
+	// 문의게시판 글insert
 	public int insert(NquireVo vo) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -72,9 +75,37 @@ public class NquireDao {
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
+		}	
+	}
+	
+	// 문의게시판 list
+	public ArrayList<NquireVo> list() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from nquire";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			ArrayList<NquireVo> list=new ArrayList<NquireVo>();
+			while(rs.next()) {
+				int nquire_num=rs.getInt("nquire_num");
+				String id=rs.getString("id");
+				String title=rs.getString("title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");		
+				String comments=rs.getString("comments");
+				NquireVo vo=new NquireVo(nquire_num, id, title, contents, r_date, comments);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
 		}
-		
-		
-		
 	}
 }
