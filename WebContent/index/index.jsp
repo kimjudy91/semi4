@@ -27,20 +27,31 @@
 				<input type="button" value="로그인" onclick="location.href='${cp}/logins'">
 				<input type="button" value="회원가입" onclick="location.href='${cp}/join/insert'">
 			</c:when>
-			<c:otherwise>
+			<c:when test="${sessionScope.id eq 'admin' }">
+				<c:choose>
+				<c:when test="${report2Count==-1||report2Count==0||report2Count==null }">
+					<input type="button" value="신고" onclick="location.href='${cp}/reportList'">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="신고[${report2Count }]" onclick="location.href='${cp}/reportList'" size="10"><br>
+				</c:otherwise>
+				</c:choose>
+				<input type="button" value="회원관리" onclick="location.href='${cp}/myPage'">
+				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
+			</c:when>
+			<c:when test="${sessionScope.id!=null }">
 				<input type="button" value="마이페이지" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
-			</c:otherwise>
+			</c:when>
 		</c:choose>
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">커뮤니티게시판</a></li>
-			<li><a href="${cp }/nquire/list">문의게시판</a></li>
+			<li><a href="${cp }/index?page=board2">문의게시판</a></li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
-			<li>메뉴5</li>
 		</ul>
-		<div id="users">
+		<div id="users">		
 		접속자명단<br>
 		<%
 		ArrayList<String> userIds=SessionIdListener.getUserId();
@@ -55,7 +66,10 @@
 	<div id="home">
 	<c:choose>
 		<c:when test="${page=='board1' }">	
-			<jsp:include page="/board/community.jsp"></jsp:include>
+			<c:import url="/board/community"/>
+		</c:when>
+		<c:when test="${page=='board2' }">	
+			<c:import url="/nquire/list"/>
 		</c:when>
 		<c:otherwise>
 			<jsp:include page="/test/test1.jsp"></jsp:include>

@@ -108,4 +108,36 @@ public class NquireDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	
+	public NquireVo detail(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from nquire where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+		
+			if(rs.next()) {
+				int nquire_num=rs.getInt("nquire_num");
+				String title=rs.getString("title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");		
+				String comments=rs.getString("comments");
+				NquireVo vo=new NquireVo(nquire_num, id, title, contents, r_date, comments);
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	
 }

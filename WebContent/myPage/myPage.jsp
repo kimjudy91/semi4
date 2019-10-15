@@ -59,6 +59,15 @@
 </script>
 <body>
 <h1>마이페이지</h1>
+<c:if test="${rlist!=null }">
+<h2>신고내역</h2>
+<c:forEach var="aa" items="${rlist }">
+	신고내용:${aa.report_content }<br>
+	답변내용:<c:if test="${aa.comments==null }">X</c:if><c:if test="${aa.comments!=null }">${aa.comments }</c:if>
+	<hr>
+</c:forEach>
+</c:if>
+<h2>정보수정</h2>
 <form action="${cp }/updateMembers" method="post">
 이메일   <input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
 전화번호   <input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"><br>
