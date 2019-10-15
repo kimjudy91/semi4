@@ -35,7 +35,7 @@
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">커뮤니티게시판</a></li>
-			<li><a href="${cp }/board/nquire?id=id">문의게시판</a></li>
+			<li><a href="${cp }/nquire/insert?id=id">문의게시판</a></li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
 			<li>메뉴5</li>
