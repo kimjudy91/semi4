@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+body {
+    width: 1000px;
+    padding-top: 80px;
+    height: 700px;
+    text-align: center;
+    margin: auto;
+}
+
+table, th, td {
+	border: 1px solid #bcbcbc;
+}
+
+table{
+	margin-top: 30px;
+	width: 500px;
+	margin: auto;
+}
+td{
+	text-align: left;
+}
+a{
+	padding-top: 30px;
+}
