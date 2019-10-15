@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" Content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <style type="text/css">
-
+<!-- -->
 	body {font-size:11pt; padding:0; margin:0; text-align: center;}
 	h3 {color: #85144b; font-size: 14pt; margin:10 auto; padding: 10px;}
 	.contents {width: 800px; height: 400px; background-color: #d6d6d6; margin: 0 auto;}
