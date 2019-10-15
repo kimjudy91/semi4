@@ -72,7 +72,7 @@
 			<c:import url="/nquire/list"/>
 		</c:when>
 		<c:otherwise>
-			<jsp:include page="/test/test1.jsp"></jsp:include>
+			<jsp:include page="/test/test2.jsp"></jsp:include>
 		</c:otherwise>
 	</c:choose>
 		
