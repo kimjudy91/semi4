@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.dao.yun.BoardDao;
 import board.vo.yun.BoardVo;
+import members.dao.min.MembersDao;
+import members.vo.min.MembersVo;
 @WebServlet("/board/insert")
 public class BoardInsertServlet extends HttpServlet{
 	@Override
@@ -25,18 +27,26 @@ public class BoardInsertServlet extends HttpServlet{
 		String id=req.getParameter("id");
 		String p_title=req.getParameter("p_title");
 		String contents=req.getParameter("contents");
-		BoardVo vo=new BoardVo(0, id, p_title, contents, null, 0, 1);
-		BoardDao dao=BoardDao.getinstance();
-		int n=dao.insert(vo);
+		String trans=req.getParameter("trans");
+		int genre_num=0;
+		
+		if (trans.equals("rnb")) {
+			 genre_num=1;
+		}else if(trans.equals("pop")) {
+			 genre_num=2;
+		}else if(trans.equals("oldsong")) {
+			 genre_num=3;
+		}
+
+	
+		BoardVo vo1=new BoardVo(0, id, p_title, contents, null, 0, genre_num);
+		BoardDao dao1=BoardDao.getinstance();
+		int n=dao1.insert(vo1);
 		if(n>0) {
 			req.setAttribute("code", "success");
-			dao.increWriteCount(id);
-			int write_count=dao.getWriteCount(id);
-			if(write_count==10) {
-				dao.increGrade(id);
-			}else if(write_count==5) {
-				dao.increGrade(id);
-			}
+			
+	
+			
 		}else {
 			req.setAttribute("code", "fail");
 		}

@@ -10,6 +10,9 @@
 	<input type="text" name="id"><br>
 	제목<br>
 	<input type="text" name="p_title"><br>
+	<label><input type="radio" name="trans" value="rnb">알앤비</label>
+	<label><input type="radio" name="trans" value="pop">팝</label>
+	<label><input type="radio" name="trans" value="oldsong">가요</label><br>
 	내용<br>
 	<textarea rows="5" cols="60" name="contents"></textarea><Br>
 	<input type="submit" value="등록">	
