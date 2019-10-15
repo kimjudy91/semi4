@@ -35,9 +35,10 @@
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">커뮤니티게시판</a></li>
-			<li>메뉴2</li>
+			<li></li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
+			<li>메뉴5</li>
 		</ul>
 		<div id="users">
 		접속자명단<br>
