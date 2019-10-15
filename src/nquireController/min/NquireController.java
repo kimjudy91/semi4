@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import members.dao.min.MembersDao;
+import members.vo.min.MembersVo;
 import nquire.dao.min.NquireDao;
 import nquire.vo.min.NquireVo;
 
@@ -16,11 +18,9 @@ import nquire.vo.min.NquireVo;
 public class NquireController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		String id=req.getParameter("id");
-		NquireDao dao=NquireDao.getDao();
-		NquireVo vo=dao.select(id);	
-		req.setAttribute("vo", vo);	
+		String id=(String)req.getSession().getAttribute("id");
+		MembersVo vo=MembersDao.getDao().search(id);
+		req.setAttribute("vo", vo);
 		req.setAttribute("top", "header.jsp");
 		req.setAttribute("content", "/board/nquire.insert.jsp");
 		req.getRequestDispatcher("/nquire.min/nquire.insert.jsp").forward(req, resp);

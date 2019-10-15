@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jdbc.JdbcUtil;
+import members.vo.min.MembersVo;
 import nquire.vo.min.NquireVo;
 
 public class NquireDao {
@@ -17,7 +18,7 @@ public class NquireDao {
 		return dao;
 	}
 	
-	public NquireVo select(String id) {
+	public MembersVo select(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -29,13 +30,19 @@ public class NquireDao {
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				int nquire_num=rs.getInt("nquire_num");
-				String title=rs.getString("title");
-				String contents=rs.getString("contents");
-				Date r_date=rs.getDate("r_date");
-				String comments=rs.getString("comments");
-				NquireVo vo=new NquireVo(nquire_num, id, title, contents, r_date, comments);
-				return vo;			
+				String pwd=rs.getString("pwd");
+				String name=rs.getString("name");
+				String email=rs.getString("email");
+				String address=rs.getString("address");
+				String phone=rs.getString("phone");
+				int write_count=rs.getInt("write_count");
+				int reply_count=rs.getInt("reply_count");
+				int grade=rs.getInt("grade");
+				int warning=rs.getInt("warning");
+				int genre_num=rs.getInt("genre_num");
+				int jumin=rs.getInt("jumin");
+				MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, write_count, reply_count, grade, warning, genre_num, jumin);
+				return vo;		
 			}
 			return null;
 		}catch(SQLException se) {
