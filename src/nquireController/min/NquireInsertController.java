@@ -15,14 +15,14 @@ import nquire.dao.min.NquireDao;
 import nquire.vo.min.NquireVo;
 
 @WebServlet("/board/nquire")
-public class NquireController extends HttpServlet{
+public class NquireInsertController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=(String)req.getSession().getAttribute("id");
 		MembersVo vo=MembersDao.getDao().search(id);
 		req.setAttribute("vo", vo);
 		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/nquire.insert.jsp");
+		req.setAttribute("content", "/nquire.min/nquire.insert.jsp");
 		req.getRequestDispatcher("/nquire.min/nquire.insert.jsp").forward(req, resp);
 
 	}
@@ -43,8 +43,8 @@ public class NquireController extends HttpServlet{
 			
 		}
 		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/nquireOk.jsp");
-		req.getRequestDispatcher("/board/nquireOk.jsp").forward(req, resp);
+		req.setAttribute("content", "/nquire.min/nquireOk.jsp");
+		req.getRequestDispatcher("/nquire.min/nquireOk.jsp").forward(req, resp);
 		
 		
 		
