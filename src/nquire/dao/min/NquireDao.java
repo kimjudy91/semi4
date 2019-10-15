@@ -24,7 +24,7 @@ public class NquireDao {
 		
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from members id=?";		
+			String sql="select * from members where id=?";		
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
