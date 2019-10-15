@@ -10,12 +10,13 @@
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <table border='1' width=500px>
-	<tr><th>글번호</th><th>작성자</th><th>제목</th><th>작성일</th></tr>
+	<tr><th>글번호</th><th>작성자</th><th>제목</th><th>답변</th><th>작성일</th></tr>
 	<c:forEach var="vo" items="${list}">
 	<tr>
 	<td>${vo.nquire_num}</td>
 	<td>${vo.id}</td>
 	<td><a href="${cp}/nquire/insert?id=${vo.id}">${vo.title}</a></td>
+	<td>asdfasdf</td>
 	<td>${vo.r_date }</td>
 	</tr>
 	</c:forEach>
