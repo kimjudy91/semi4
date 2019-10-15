@@ -48,8 +48,8 @@
 <h1>세미 프로젝트</h1>
 </div>
 <form method="post" action="${cp }/logins" id="login">
-<input type="text" value="아이디" id="id" name="id" onclick="clearId()" onblur="setId()" style="color:silver;"><br>
-<input type="text" value="비밀번호" id="pwd" name="pwd" onclick="clearPwd()" onblur="setPwd()" style="color:silver;"><br>
+<input type="text" value="아이디" id="id" name="id" onfocus="clearId()" onblur="setId()" style="color:silver;"><br>
+<input type="text" value="비밀번호" id="pwd" name="pwd" onfocus="clearPwd()" onblur="setPwd()" style="color:silver;"><br>
 <c:if test="${errMsg!=null}">
 <span style="color:red;font-size: 12px; " id="errMsg">아이디 또는 비밀번호가 잘못되었습니다.</span><br>
 </c:if>
