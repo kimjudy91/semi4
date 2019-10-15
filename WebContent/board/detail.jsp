@@ -27,7 +27,17 @@
 	</tr>
 		<tr>
 		<th>장르</th>
-		<td>${genre_name}</td>
+		<c:choose>
+			<c:when test="${vo.genre_num==1 }">
+				<td>가요</td>
+			</c:when>
+			<c:when test="${vo.genre_num==2 }">
+				<td>R&B</td>
+			</c:when>
+			<c:when test="${vo.genre_num==3 }">
+				<td>PoP</td>
+			</c:when>
+		</c:choose>
 	</tr>
 	<tr>
 		<th>제목</th>
@@ -43,7 +53,7 @@
 			<input type="button" class="btn-update" value="답글쓰기" onclick="location.href='${cp}/board/comments?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
-		
+			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>
 	</tr>	
