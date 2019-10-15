@@ -16,6 +16,7 @@ public class BoardListServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		String genre=req.getParameter("genre");
 		String spageNum=req.getParameter("pageNum");
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
@@ -34,7 +35,7 @@ public class BoardListServlet extends HttpServlet{
 		if(endPageNum>pageCount) {
 			endPageNum=pageCount;
 		}
-		
+		req.setAttribute("genre",genre);
 		req.setAttribute("top","/board/header.jsp");
 		req.setAttribute("content","/board/community.jsp");
 		req.setAttribute("list", list);
