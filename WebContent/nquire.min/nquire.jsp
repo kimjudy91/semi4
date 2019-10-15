@@ -15,7 +15,7 @@
 	<tr>
 	<td>${vo.nquire_num}</td>
 	<td>${vo.id}</td>
-	<td>${vo.title}</td>
+	<td><a href="${cp}/nquire/insert?id=${vo.id}">${vo.title}</a></td>
 	<td>${vo.r_date }</td>
 	</tr>
 	</c:forEach>
