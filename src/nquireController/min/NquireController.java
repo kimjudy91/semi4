@@ -17,7 +17,14 @@ public class NquireController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		int nquire_num=Integer.parseInt(req.getParameter("nquire_num"));
 		String id=req.getParameter("id");
+		String title=req.getParameter("title");
+		String contents=req.getParameter("contents");
+		String comments=req.getParameter("comments");
+		NquireDao dao=NquireDao.getDao();
+		NquireVo vo=dao.select(id);	
+		req.setAttribute("vo", vo);	
 		req.setAttribute("top", "header.jsp");
 		req.setAttribute("content", "/board/nquire.insert.jsp");
 		req.getRequestDispatcher("/nquire.min/nquire.insert.jsp").forward(req, resp);

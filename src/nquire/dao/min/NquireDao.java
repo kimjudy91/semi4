@@ -1,6 +1,7 @@
 package nquire.dao.min;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,18 +17,26 @@ public class NquireDao {
 		return dao;
 	}
 	
-	public String select(String id) {
+	public NquireVo select(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select id from members id=?";		
+			String sql="select * from members id=?";		
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
-			
+			if(rs.next()) {
+				int nquire_num=rs.getInt("nquire_num");
+				String title=rs.getString("title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");
+				String comments=rs.getString("comments");
+				NquireVo vo=new NquireVo(nquire_num, id, title, contents, r_date, comments);
+				return vo;			
+			}
 			return null;
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
