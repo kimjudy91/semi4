@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <form method="post" action="${cp }/nquire/insert">
+<input type="hidden" value="${vo.id }" name="id">
 <table border='1' width=500px>
 	<tr><th>아이디</th><td>${vo.id}</td></tr>
 	<tr><th>제목</th><td><input type="text" name="title"></td></tr>
