@@ -14,7 +14,7 @@ import members.vo.min.MembersVo;
 import nquire.dao.min.NquireDao;
 import nquire.vo.min.NquireVo;
 
-@WebServlet("/board/nquire")
+@WebServlet("/nquire/insert")
 public class NquireInsertController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
