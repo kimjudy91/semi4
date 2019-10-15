@@ -47,7 +47,7 @@
 		</div>
 		<ul id="menus">
 			<li><a href="${cp }/index?page=board1">커뮤니티게시판</a></li>
-			<li>메뉴2</li>
+			<li><a href="${cp }/index?page=board2">문의게시판</a></li>
 			<li>메뉴3</li>
 			<li>메뉴4</li>
 		</ul>
@@ -66,7 +66,10 @@
 	<div id="home">
 	<c:choose>
 		<c:when test="${page=='board1' }">	
-			<jsp:include page="/board/community.jsp"></jsp:include>
+			<c:import url="/board/community"/>
+		</c:when>
+		<c:when test="${page=='board2' }">	
+			<c:import url="/nquire/list"/>
 		</c:when>
 		<c:otherwise>
 			<jsp:include page="/test/test1.jsp"></jsp:include>
