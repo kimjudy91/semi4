@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>board/community.jsp</title>
 <style type="text/css">
+
 	table{width: 100%; text-align: center;}
 	   #divPaging {clear:both;  margin:0 auto; width:220px; height:50px;}
 	   #divPaging > div {float:left; width: 30px; margin:0 auto; margin-top: 30px;text-align:center;}
@@ -20,16 +21,27 @@
 <body>
 <hr>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
+<table border="1" width="20">
+</table>
+	<c:set var="a" value="${genre }"/>
+	<select id="viewSongList" onchange="aa(this.value)">
+			<option value="0" <c:if test='${a==0 }'>selected</c:if> >전체선택</option>
+			<option value="1" <c:if test='${a==1 }'>selected</c:if> >알앤비</option>
+			<option value="2" <c:if test='${a==2 }'>selected</c:if> >팝</option>
+			<option value="3" <c:if test='${a==3 }'>selected</c:if> >가요</option>
+	</select>
 
-	
 <!-- 게시판 body 영역 -->
+
+
 <table border="1" width="600">
 	<tr>
 		<th>글번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회</th>
 	</tr>
-
     <c:forEach var="vo" items="${list}">
-	<tr>
+    <c:choose>
+    	<c:when test="${vo.genre_num==a }">
+    	<tr>
 		<td>${vo.write_num }</td>
 		<td>
 		<c:choose>
@@ -49,7 +61,34 @@
 		<td>${vo.r_date }</td>
 		<td>${vo.views }</td>
 		</tr>
+    	</c:when>
+    	<c:when test="${genre==null ||a==0}">
+	    	<tr>
+			<td>${vo.write_num }</td>
+			<td>
+			<c:choose>
+				<c:when test="${vo.genre_num==1 }">
+					[알앤비]
+				</c:when>
+				<c:when test="${vo.genre_num==2 }">
+					[팝]
+				</c:when>
+				<c:when test="${vo.genre_num==3 }">
+					[가요]
+				</c:when>	
+			</c:choose>
+			<a href="${cp }/board/detail?write_num=${vo.write_num}">
+			${vo.p_title }</a></td> 
+			<td>${vo.id }</td>
+			<td>${vo.r_date }</td>
+			<td>${vo.views }</td>
+			</tr>
+    	</c:when>
+    </c:choose>
+		
 	</c:forEach>
+	
+	
 </table>
 
 
@@ -110,6 +149,13 @@
        </form>  
        
 </div>	
-</body>
-</html>
+
+<script type="text/javascript">
+function aa(n){
+	location.href='${cp }/board/community?genre='+n;
+	
+
+}
+
+</script>
 	
