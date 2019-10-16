@@ -1,5 +1,5 @@
 
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta http-equiv="Content-Type" Content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <style type="text/css">	
@@ -51,9 +51,10 @@
 <body>
 	<div class="banner">
 			<ul>
-				<li><img src="https://ncache.ilbe.com/files/attach/new/20150326/377678/8823920/5537097613/7108a74fda00e617d1f4b9c33b5ab5f0.jpg" width="500" height="150px"></li>
-				<li><img src="https://imgnews.pstatic.net/image/311/2012/12/24/1356329552712_59_20121224151509.jpg?type=w647" width="500" height="150px"></li>
-				<li><img src="https://t1.daumcdn.net/cfile/tistory/252BF73751F7502C1B" width="500" height="150px"></li>
+				<c:forEach var="ad" items="${adList }">
+					<li><img src="${ad.ad_image }" width="500" height="150px"></li>
+				</c:forEach>
+
 			</ul>
 		</div>
 </body>
