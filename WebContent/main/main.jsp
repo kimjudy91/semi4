@@ -4,3 +4,9 @@
 <div>
 	<c:import url="/ad"/>
 </div>
+<div>
+	<c:import url="/ad"/>
+</div>
+<div>
+	<c:import url="/ad"/>
+</div>

@@ -36,6 +36,7 @@
 					<input type="button" value="신고[${report2Count }]" onclick="location.href='${cp}/reportList'" size="10"><br>
 				</c:otherwise>
 				</c:choose>
+				<input type="button" value="광고" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="회원관리" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
