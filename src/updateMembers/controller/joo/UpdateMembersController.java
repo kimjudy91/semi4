@@ -21,10 +21,11 @@ public class UpdateMembersController extends HttpServlet {
 		int n=UpdateDao.getDao().update(id, email, phone, address);
 		if(n>0) {
 			req.setAttribute("code", "success");
-			req.getRequestDispatcher("/myPage/result.jsp").forward(req, resp);
 		}else {
-			req.setAttribute("code", "fail");
-			req.getRequestDispatcher("/myPage/result.jsp").forward(req, resp);
+			req.setAttribute("code", "fail");		
 		}
+		req.setAttribute("page","/myPage/result.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
 	}
 }

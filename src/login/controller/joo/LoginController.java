@@ -25,7 +25,7 @@ import report.dao.joo.ReportDao;
 			int report2Count=ReportDao.getDao().newReport2Count();	
 			req.setAttribute("report2Count", report2Count);
 			req.getSession().setAttribute("id", id);
-			req.setAttribute("page", "/test/test2.jsp");
+			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
 			
