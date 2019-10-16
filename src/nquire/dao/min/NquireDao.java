@@ -19,7 +19,37 @@ public class NquireDao {
 		return dao;
 	}
 	
-	// 회원아이디 select
+	// nquire테이블에서 글번호 select
+	public NquireVo selectNquire(int nquire_num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select * from nquire where nquire_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, nquire_num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				String id=rs.getString("id");
+				String title=rs.getString("title");
+				String contents=rs.getString("contents");
+				Date r_date=rs.getDate("r_date");
+				String comments=rs.getString("comments");
+				NquireVo vo=new NquireVo(nquire_num, id, title, contents, r_date, comments);
+				return vo;
+			}
+			return null;
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
+	// members테이블에서 회원아이디 select
 	public MembersVo select(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -109,6 +139,7 @@ public class NquireDao {
 		}
 	}
 	
+	// 문의게시판 글 상세보기
 	public NquireVo detail(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -139,5 +170,24 @@ public class NquireDao {
 		}
 	}
 	
-	
+	// 문의게시판 답변
+	public int updateComments(int nquire_num, String comments) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="update nquire set comments=? where nquire_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, comments);
+			pstmt.setInt(2, nquire_num);
+			return pstmt.executeUpdate();
+					
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
