@@ -140,20 +140,21 @@ public class NquireDao {
 	}
 	
 	// 문의게시판 글 상세보기
-	public NquireVo detail(String id) {
+	public NquireVo detail(int nquire_num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from nquire where id=?";
+			String sql="select * from nquire where nquire_num=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
+			pstmt.setInt(1, nquire_num);
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()) {
-				int nquire_num=rs.getInt("nquire_num");
+				nquire_num=rs.getInt("nquire_num");
+				String id=rs.getString("id");
 				String title=rs.getString("title");
 				String contents=rs.getString("contents");
 				Date r_date=rs.getDate("r_date");		

@@ -18,11 +18,11 @@ public class NquireDetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		req.setCharacterEncoding("utf-8");
-		String id=req.getParameter("id");
+		int nquire_num=Integer.parseInt(req.getParameter("nquire_num"));
 		NquireDao dao=NquireDao.getDao();
-		NquireVo vo=dao.detail(id);
+		NquireVo vo=dao.detail(nquire_num);
 		req.setAttribute("vo",vo);
-		req.setAttribute("page","/nquire.min/nquire.datail.jsp");
+		req.setAttribute("page","/nquire.min/nquire.detail.jsp");
 		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 
 	}

@@ -18,7 +18,7 @@
 	<tr>
 	<td>${vo.nquire_num}</td>
 	<td>${vo.id}</td>
-	<td><c:if test="${vo.id==vo.id }"><a href="${cp}/nquire/detail?id=${vo.id}">${vo.title}</a></c:if></td>
+	<td><c:if test="${vo.id==vo.id }"><a href="${cp}/nquire/detail?nquire_num=${vo.nquire_num}">${vo.title}</a></c:if></td>
 	<c:if test="${vo.comments!=null }"><td>O</td></c:if><c:if test="${vo.comments==null }"><td>X</td></c:if>
 	<td>${vo.r_date }</td>
 	</tr>

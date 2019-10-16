@@ -32,7 +32,7 @@ public class NquireInsertController extends HttpServlet{
 		String title=req.getParameter("title");
 		String contents=req.getParameter("contents");
 		String comments=req.getParameter("comments");
-		NquireVo vo=new NquireVo(0, id, title, contents, null, comments);
+		NquireVo vo=new NquireVo(0, id, title, contents, null, null);
 		int n=NquireDao.getDao().insert(vo);
 		if(n>0) {
 			req.setAttribute("code", "success");

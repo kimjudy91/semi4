@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>nquire.detail.jsp</title>
 </head>
+<script type="text/javascript">
+	function showComm(){
+		var comm=document.getElementById("comm");
+		comm.style.display="block";
+	}
+</script>
 <body>
 <link rel="stylesheet" type="text/css" href="../css.min/detailStyle.css">
 <h1>문의하기</h1>
@@ -15,24 +21,28 @@
 <input type="hidden" value="${vo.id }" name="id">
 <table>
 	<tr><th>아이디</th><td>${vo.id}</td></tr>
-	<tr><th>문의유형</th><td>${vo.id}</td></tr>
-	<tr><th>제목</th><td>${vo.id}</td></tr>
-	<tr><th>내용</th><td><textarea cols='50' rows='15' name="contents">${vo.contents}</textarea></td></tr>
+	<tr><th>제목</th><td>${vo.title}</td></tr>
+	<tr><th>내용</th><td><textarea cols='50' rows='8' name="contents">${vo.contents}</textarea></td></tr>
 </table>
-<form method="post" action="${cp }/nquire/comm">
+<c:choose>
+<c:when test="${vo.comments!=null }">
 <table>
-	<c:if test="${vo.id!='admin'}"><tr><th><input type="submit" value="답글달기" style="visibility:hidden;"></th></c:if>
-	<c:if test="${vo.id=='admin'}"><tr><th><input type="submit" value="답글달기" style="visibility:visible;"></th></tr></c:if>
-	<c:choose>
-		<c:when test="${vo.id=='admin'}">
-			<tr><th>답변</th><td><textarea cols='50' rows='15' name="contents">${vo.contents}</textarea></td></tr>
-		</c:when>
-		<c:otherwise>
-			<tr><th>답변</th><td><textarea cols='50' rows='15' name="contents">${vo.contents}</textarea></td></tr>
-		</c:otherwise>
-	</c:choose>
+			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments" readonly="readonly">${vo.comments }</textarea></td></tr>
 </table>
+</c:when>
+<c:otherwise>
+<c:if test="${sessionScope.id eq 'admin' }">
+	<input type="button" value="댓글달기" onclick="showComm()">
+</c:if>
+<form method="post" action="${cp }/nquire/comm" id="comm" style="display: none;">
+<input type="hidden" value=${vo.nquire_num } name="nquire_num">
+<table>
+			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments"></textarea></td></tr>
+</table>
+	<input type="submit" value="저장"><br>
 </form>
+</c:otherwise>
+</c:choose><br><br><br>
 <a href="${cp }/nquire/list">목록으로 돌아가기</a>
 </body>
 </html>

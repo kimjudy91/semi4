@@ -29,7 +29,9 @@ public class NquireCommentsController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
 		req.setCharacterEncoding("utf-8");
 		int nquire_num=Integer.parseInt(req.getParameter("nquire_num"));
+		System.out.println(nquire_num+"/////");
 		String comments=req.getParameter("comments");
+		System.out.println(comments+"/////zzzzzz");
 		NquireDao.getDao().updateComments(nquire_num, comments);
 		resp.sendRedirect(req.getContextPath()+"/index");
 	}
