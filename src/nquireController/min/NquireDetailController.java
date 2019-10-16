@@ -22,7 +22,8 @@ public class NquireDetailController extends HttpServlet{
 		NquireDao dao=NquireDao.getDao();
 		NquireVo vo=dao.detail(id);
 		req.setAttribute("vo",vo);
-		req.setAttribute("top", "header.jsp");
-		req.getRequestDispatcher("/nquire.min/nquire.datail.jsp").forward(req, resp);
+		req.setAttribute("page","/nquire.min/nquire.datail.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
 	}
 }

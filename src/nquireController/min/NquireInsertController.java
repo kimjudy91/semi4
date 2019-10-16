@@ -21,9 +21,8 @@ public class NquireInsertController extends HttpServlet{
 		String id=(String)req.getSession().getAttribute("id");
 		MembersVo vo=MembersDao.getDao().search(id);
 		req.setAttribute("vo", vo);
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/nquire.min/nquire.insert.jsp");
-		req.getRequestDispatcher("/nquire.min/nquire.insert.jsp").forward(req, resp);
+		req.setAttribute("page","/nquire.min/nquire.insert.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 
 	}
 	@Override
@@ -42,11 +41,8 @@ public class NquireInsertController extends HttpServlet{
 			req.setAttribute("code", "fail");
 			
 		}
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/nquire.min/nquireOk.jsp");
-		req.getRequestDispatcher("/nquire.min/nquireOk.jsp").forward(req, resp);
 		
-		
-		
+		req.setAttribute("page","/nquire.min/nquireOk.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

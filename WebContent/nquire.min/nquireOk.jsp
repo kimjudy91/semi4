@@ -10,4 +10,4 @@
 		<h1>오류ㅠ_ㅜ</h1>
 	</c:otherwise>
 </c:choose>
-<a href="${pageContext.request.contextPath }/nquire/insert">돌아가기</a>
+<a href ="${cp }/index">메인가기</a>
