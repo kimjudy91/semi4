@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AdController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		req.getRequestDispatcher("/banner/ganggo.jsp").forward(req, resp);
 	}
 }
