@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import login.dao.joo.LoginDao;
+import report.dao.joo.ReportDao;
 @WebServlet("/logins")
 	public class LoginController extends HttpServlet{
 	@Override
@@ -21,6 +22,8 @@ import login.dao.joo.LoginDao;
 		String pwd=req.getParameter("pwd");
 		int n=LoginDao.getDao().login(id,pwd);
 		if(n>0) {
+			int report2Count=ReportDao.getDao().newReport2Count();	
+			req.setAttribute("report2Count", report2Count);
 			req.getSession().setAttribute("id", id);
 			req.setAttribute("page", "/test/test2.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);

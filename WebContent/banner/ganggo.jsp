@@ -49,7 +49,7 @@
 				//뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
 				$(this).find("li:first").remove();
 				$(this).css("left", 0);
-				/
+				
 			});
 		}
 	}); 
