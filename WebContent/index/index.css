@@ -7,20 +7,22 @@
 body{
 	width:1000px;
 	height:1000px;
-	background-color: silver;
+	background-color: #ffffff;
 	font-size: 1.5em;
 
 }
 #header{
 	width:100%;
 	height:120px;
+	border:1px solid black;
 	text-align: center;
 
 }
 #main{
 	width:1000px;
 	height:800px;
-	background-color: #393339;
+	border:1px solid black;
+	background-color: #ffffff;
 	
 }
 #main #menu{
@@ -33,36 +35,11 @@ body{
 #main #home{
 	width:80%;
 	height:90%;
-	background-color:maroon;
+	background-color:#ffffff;
 	float: right;
 	position: relative;
 }
-#main #home #homeLeft{
-	width:40%;
-	height:60%;
-	float: left;
-	background-color:maroon;
-	float: left;
-	margin-left:10px;
-	border:1px solid green;
-}
-#main #home #homeRight{
-	width:40%;
-	height:60%;
-	float: right;
-	background-color:maroon;
-	float: right;
-	margin-right:10px;
-	border:1px solid orange;
-}
-#main #home #ad{
-	width:80%;
-	height:20%;
-	background-color:maroon;
-	position: absolute;bottom: 5px; 
-	margin-left:10px;
-	border:1px solid white;
-}
+
 #main #menu #menus{
 	width:90%;
 	height:30%;
@@ -87,6 +64,7 @@ body{
 #footer{
 	width:100%;
 	height:80px;
-	background-color: #800080;
+	border:1px solid black;
+	background-color: #c0c0c0;
 	display: block;
 }

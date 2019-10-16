@@ -10,3 +10,4 @@
 		<h1>오류로 인해 요청작업을 수행하지 못했습니다.</h1>
 	</c:otherwise>
 </c:choose>
+<a href ="${cp }/index">메인가기</a>

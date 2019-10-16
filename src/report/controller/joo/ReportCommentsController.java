@@ -22,7 +22,9 @@ public class ReportCommentsController extends HttpServlet{
 		BoardVo bvo=BoardDao.getinstance().select(write_num);
 		req.setAttribute("vo", vo);
 		req.setAttribute("bvo", bvo);
-		req.getRequestDispatcher("/report/reportComments.jsp").forward(req, resp);
+		req.setAttribute("page","/report/reportComments.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -11,11 +11,11 @@
 <c:choose>
 	<c:when test="${code=='success' }">
 		<h1>신고성공</h1>
-		<a href="${cp }/index/index.jsp">메인</a>
+		<a href ="${cp }/index">메인가기</a>
 	</c:when>
 	<c:otherwise>
 		<h1>신고실패</h1>
-		<a href="${cp }/index/index.jsp">메인</a>
+		<a href ="${cp }/index">메인가기</a>
 	</c:otherwise>
 </c:choose>
 </body>

@@ -19,6 +19,8 @@ public class ReportListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<Report2Vo> listReport2=ReportDao.getDao().listReport2();
 		req.setAttribute("listReport2", listReport2);
-		req.getRequestDispatcher("/report/reportlist.jsp").forward(req, resp);
+		req.setAttribute("page","/report/reportlist.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
 	}
 }

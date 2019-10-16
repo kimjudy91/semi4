@@ -19,7 +19,8 @@ public class ReportController extends HttpServlet {
 		int write_num=Integer.parseInt(req.getParameter("write_num"));
 		BoardVo vo=BoardDao.getinstance().select(write_num);
 		req.setAttribute("vo", vo);
-		req.getRequestDispatcher("/report/report.jsp").forward(req, resp);
+		req.setAttribute("page","/report/report.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,10 +31,11 @@ public class ReportController extends HttpServlet {
 		int n=ReportDao.getDao().insertReport2(id, write_num, report_content);
 		if(n>0) {
 			req.setAttribute("code", "success");
-			req.getRequestDispatcher("/report/result.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("code", "fail");
-			req.getRequestDispatcher("/report/result.jsp").forward(req, resp);
 		}
+		req.setAttribute("page","/report/result.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
 	}
 }
