@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	<div id="home">
-		<jsp:include page="${page }"/>
+			<c:import url="${page }"/>
 	</div>	
 </div>
 <div id="footer">
