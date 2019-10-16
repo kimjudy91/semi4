@@ -1,4 +1,4 @@
-package logout.controller.joo;
+package test.controller.joo;
 
 import java.io.IOException;
 
@@ -7,12 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet{
+@WebServlet("/test")
+public class TestController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getSession().invalidate();
-		req.setAttribute("page", "/test/test2.jsp");
-		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/test.test2.jsp").forward(req, resp);
 	}
 }

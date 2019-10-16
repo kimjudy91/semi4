@@ -19,9 +19,8 @@ public class BoardUpdateServlet extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		BoardVo vo=dao.select(write_num);
 		req.setAttribute("vo", vo);
-		req.setAttribute("top","/board/header.jsp");
-		req.setAttribute("content","/board/update.jsp");
-		req.getRequestDispatcher("/board/update.jsp").forward(req, resp);
+		req.setAttribute("page","/board/update.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		
 	}
 	
@@ -41,8 +40,7 @@ public class BoardUpdateServlet extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/result.jsp");
-		req.getRequestDispatcher("/board/detail").forward(req, resp);
+		req.setAttribute("page","/board/result.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

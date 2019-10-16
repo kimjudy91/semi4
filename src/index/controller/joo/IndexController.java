@@ -19,7 +19,7 @@ public class IndexController extends HttpServlet{
 		int report2Count=ReportDao.getDao().newReport2Count();	
 		req.setAttribute("report2Count", report2Count);
 		if(spage==null) {
-			req.setAttribute("page", "/test/test.jsp");
+			req.setAttribute("page", "/test/test2.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("page", spage);

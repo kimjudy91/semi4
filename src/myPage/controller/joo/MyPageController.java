@@ -24,7 +24,8 @@ public class MyPageController extends HttpServlet{
 		ArrayList<Report2Vo> rlist=ReportDao.getDao().searchListReport2(id);
 		req.setAttribute("rlist", rlist);
 		req.setAttribute("vo", vo);
-		req.getRequestDispatcher("/myPage/myPage.jsp").forward(req, resp);
+		req.setAttribute("page","/myPage/myPage.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		
 	}
 }

@@ -18,12 +18,11 @@ public class BoardDeleteServlet extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		int n=dao.delete(write_num);
 		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/board/community");
+			req.setAttribute("page","/board/community.jsp");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
-			req.setAttribute("top", "header.jsp");
-			req.setAttribute("content", "/board/community.jsp");
-			req.getRequestDispatcher("/board/main.jsp").forward(req, resp);
+			req.setAttribute("page","/board/community.jsp");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}
 	}
-
 }

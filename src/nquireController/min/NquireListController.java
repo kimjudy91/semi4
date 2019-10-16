@@ -21,6 +21,7 @@ public class NquireListController extends HttpServlet{
 		ArrayList<NquireVo> list=dao.list();
 				
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("/nquire.min/nquire.jsp").forward(req, resp);
+		req.setAttribute("page","/nquire.min/nquire.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

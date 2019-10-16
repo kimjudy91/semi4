@@ -17,9 +17,8 @@ import members.vo.min.MembersVo;
 public class BoardInsertServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/insert.jsp");
-		req.getRequestDispatcher("/board/insert.jsp").forward(req, resp);
+		req.setAttribute("page","/board/insert.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,8 +49,7 @@ public class BoardInsertServlet extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/board/result.jsp");
-		req.getRequestDispatcher("/board/main.jsp").forward(req, resp);
+		req.setAttribute("page","/board/result.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

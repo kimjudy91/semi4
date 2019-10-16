@@ -22,7 +22,8 @@ import login.dao.joo.LoginDao;
 		int n=LoginDao.getDao().login(id,pwd);
 		if(n>0) {
 			req.getSession().setAttribute("id", id);
-			resp.sendRedirect(req.getContextPath()+"/index/index.jsp");
+			req.setAttribute("page", "/test/test2.jsp");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
 			
 			req.setAttribute("errMsg", "fail");

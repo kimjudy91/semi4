@@ -19,8 +19,7 @@ public class BoardDetailServlet extends HttpServlet{
 		BoardDao dao=new BoardDao();
 		BoardVo vo=dao.detail(write_num);
 		req.setAttribute("vo", vo);	
-		req.setAttribute("top","/board/header.jsp");
-		req.setAttribute("content","/board/detail.jsp");
-		req.getRequestDispatcher("/board/main").forward(req, resp);
+		req.setAttribute("page","/board/detail.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }
