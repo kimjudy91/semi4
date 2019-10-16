@@ -34,14 +34,82 @@ public class BoardCommentsDao {
 		}	
 	}
 	
-	public int insert(BoardCommentsVo vo) {
+	public int getCount() {//전체글의 갯수 구하기
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		String sql="insert into comments values(comments_num_seq.nextval,?,?,?,sysdate,?,?,?)";
+		ResultSet rs=null;
 		try {
 			con=JdbcUtil.getConn();
+			String sql="select NVL(count(num),0) from comments";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getWrite_num());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int num=rs.getInt(1);
+				return num;	
+			}else {
+				return 0;
+			}
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);		
+		}
+	}
+	
+	
+	public int getMaxNum() {//가장 큰 글번호 얻어오기
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select NVL(max(write_num),0) as maxnum from comments";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				//int num=rs.getInt(1);
+				int num=rs.getInt("maxnum");
+				return num;	
+			}else {
+				return 0;
+			}
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);		
+		}
+	}
+	
+	
+	
+	public int insert(BoardCommentsVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;//이게 글등록용
+		PreparedStatement pstmt1=null;//step -update
+		try {
+			con=JdbcUtil.getConn();
+			int boardNum=getMaxNum() + 1;
+			int write_num=vo.getWrite_num();
+			int ref=vo.getRef();
+			int lev=vo.getLev();
+			int step=vo.getStep();
+			if(write_num==0) {
+				ref=boardNum;
+			}else {
+				String sql1="update comments set " + 
+		                " step=step+1 where ref=? and step>?";
+				pstmt1=con.prepareStatement(sql1);
+				pstmt1.setInt(1,ref);
+				pstmt1.setInt(2,step);
+				pstmt1.executeUpdate();
+				lev=lev+1;
+				step=step+1;
+			}
+			String sql="insert into comments values(comments_num_seq.nextval,?,?,?,sysdate,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
 			pstmt.setString(2, vo.getId());
 			pstmt.setString(3, vo.getComments_contents());
 			pstmt.setInt(4, vo.getRef());
@@ -52,9 +120,13 @@ public class BoardCommentsDao {
 			System.out.println(e.getMessage());
 			return -1;
 		}finally {
-			JdbcUtil.close(con, pstmt, null);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con, pstmt1, null);
 		}
 	}
+	
+	
+	
 	public ArrayList<BoardCommentsVo> list(int write_num){
 		String sql="select * from comments where write_num=?";
 		Connection con=null;
