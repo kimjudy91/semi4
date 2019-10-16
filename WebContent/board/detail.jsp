@@ -11,44 +11,28 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <h1>상세글보기</h1>
 <script type="text/javascript">
-	window.onload=function(){
-		getList();
-	};
-	var xhrList=null;
-
-	function getList() {
-		xhrList = new XMLHttpRequest();
-		xhrList.onreadystatechange = listOk;
-		xhrList.open('get', 'board/comments?write_num=${vo.write_num}&cmd=list', true);
-		xhrList.send();
-	}
-
-	function listOk() {
-		if (xhrList.readyState == 4 && xhrList.status == 200) {
-			removeComm();
-			var data = xhrList.responseText;
-			var list = JSON.parse(data)[0];
-			var commList = document.getElementById("commList");
-			for (var i = 0; i < list.length; i++) {
-				var str = list[i].num + "<br>" + list[i].id + "<br>"
-						+ list[i].comments + "<br>"
-						+ "<a href='javascript:delComm(" + list[i].num
-						+ ")'>삭제</a>";
-				var div = document.createElement("div");
-				div.innerHTML = str;
-				div.className = "comm";
-				commList.appendChild(div);
-			}
+	function showComm(){
+		var a=document.getElementsByClassName("a");
+		var showComm=document.getElementById("showComm");
+		showComm.style.display="none";
+		var hideComm=document.getElementById("hideComm");
+		hideComm.style.display="inline";
+		for (var i = 0; i < a.length; i++) {
+			a[i].style.display="block";
 		}
 	}
-
-	function showComm() {
-		var comm = document.getElementById("comm");
-		comm.style.display = "inline";
-
+	function hideComm(){
+		var a=document.getElementsByClassName("a");
+		var showComm=document.getElementById("showComm");
+		showComm.style.display="inline";
+		var hideComm=document.getElementById("hideComm");
+		hideComm.style.display="none";
+		for (var i = 0; i < a.length; i++) {
+			a[i].style.display="none";
+		}
 	}
 </script>
-<div style="text-align: center;">
+<div>
 
 <table border="1" width="600">
 	<tr>
@@ -86,17 +70,33 @@
 	
 	<tr>
 		<td colspan="4" class="text-center">
-			<input type="button" class="btn-update" value="답글쓰기" onclick="showComm()">
-			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
-			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
+			<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
+			<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
 			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
-			<input type="submit" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
+			<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>
 	</tr>	
 </table>
-
+<div id="commList">
+	<c:forEach var="comLi" items="${commList }">
+		<c:choose>
+		<c:when test="${comLi.lev==0 }">
+			<div style="border:1px solid red;">
+				${comLi.comments_contents }
+				<input type="button" value="답글보기" onclick="showComm()" id="showComm">
+				<input type="button" value="답글감추기" onclick="hideComm()" id="hideComm" style="display: none">
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div style="display: none" class="a">
+				${comLi.comments_contents }
+			</div>
+		</c:otherwise>
+	</c:choose>
+	</c:forEach>
+</div>
 <div>
-<form action="${cp }/board/comments" method="post" id="comm" style="display: none;" >
+<form action="${cp }/board/comments" method="post"  >
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">

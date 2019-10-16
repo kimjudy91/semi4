@@ -22,76 +22,26 @@ public class BoardCommentsServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String cmd=req.getParameter("cmd");
-		if(cmd!=null && cmd.equals("list")) {
-			list(req,resp);
-		}else if(cmd!=null && cmd.equals("insert")) {
+		if(cmd!=null && cmd.equals("insert")) {
 			insert(req,resp);
-		}else if(cmd!=null && cmd.equals("delete")) {
-			delete(req,resp);
-		}else if(cmd!=null && cmd.equals("insertComm")) {
-			insertComm(req,resp);
 		}
-	}
-	protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int comments_num=Integer.parseInt(req.getParameter("comments_num"));
-		BoardCommentsDao dao=BoardCommentsDao.getCommentsDao();
-		int n=dao.delete(comments_num);
-		resp.setContentType("text/plain;charset=utf-8");
-		PrintWriter pw=resp.getWriter();
-		JSONObject json=new JSONObject();
-		if(n>0) {
-			json.put("code", "success");
-		}else {
-			json.put("code", "fail");
-		}
-		pw.print(json);
-	}
-	protected void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int write_num=Integer.parseInt(req.getParameter("write_num"));
-		resp.setContentType("text/plain;charset=utf-8");
-		PrintWriter pw=resp.getWriter();
-		BoardCommentsDao dao=BoardCommentsDao.getCommentsDao();
-		ArrayList<BoardCommentsVo> list=dao.list(write_num);
-		JSONArray arr=new JSONArray();
-		arr.put(list);
-		pw.print(arr);
-	
 	}
 	protected void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int write_num=Integer.parseInt(req.getParameter("write_num"));
 		String id=req.getParameter("id");
 		String comments_contents=req.getParameter("comments_contents");
-		BoardCommentsVo vo=new BoardCommentsVo(0, write_num, id, comments_contents, null, 0,0,0);
 		BoardCommentsDao dao=BoardCommentsDao.getCommentsDao();
-		int n=dao.insert(vo);
-		resp.setContentType("text/plain);charset=utf-8");
-		PrintWriter pw=resp.getWriter();
-		JSONObject json=new JSONObject();
-		if(n>0) {
-			json.put("code", "success");
-		}else {
-			json.put("code", "fail");
-		}
-		pw.print(json);
-		}
-	protected void insertComm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int write_num=Integer.parseInt(req.getParameter("write_num"));
-		String id=req.getParameter("id");
-		String comments_contents=req.getParameter("comments_contents");
 		BoardCommentsVo vo=new BoardCommentsVo(0, write_num, id, comments_contents, null, 0,0,0);
-		BoardCommentsDao dao=BoardCommentsDao.getCommentsDao();
+		ArrayList<BoardCommentsVo> commList=BoardCommentsDao.getCommentsDao().getCommList(write_num);
+		req.setAttribute("commList", commList);
 		int n=dao.insert(vo);
-		resp.setContentType("text/plain);charset=utf-8");
-		PrintWriter pw=resp.getWriter();
-		JSONObject json=new JSONObject();
 		if(n>0) {
-			json.put("code", "success");
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}else {
-			json.put("code", "fail");
-		}
-		pw.print(json);
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}
 	}
+}
 
 
 
