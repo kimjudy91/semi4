@@ -80,7 +80,7 @@
 <div id="commList">
 	<c:forEach var="comLi" items="${commList }">
 			<div id="cw${comLi.comments_num }">
-			<div style="border:1px solid red;" id="c${comLi.comments_num }">
+			<div style="border:1px solid red;" id="c${comLi.comments_num }" >
 				<c:set var="id" value="${comLi.id }"/>
 				<c:set var="ref" value="${comLi.comments_num }"/>
 				<%
@@ -107,22 +107,11 @@
 				
 				${comLi.comments_contents }
 				<a href="">삭제</a>
-				<a href="javascript:showSr(${comLi.comments_num})">댓글달기</a>
 				<br>
-				<form action="${cp }/board/comments" method="post"  id="sr${comLi.comments_num }" style="display: none">
-				<input type="hidden" value="${sessionScope.id }" name="id">
-				<input type="hidden" value="insertCom" name="cmd">
-				<input type="hidden" value="${comLi.write_num }" name="write_num">
-				<input type="hidden" value="${comLi.ref }" name="ref">
-				<input type="hidden" value="${comLi.lev }" name="lev">
-				<input type="hidden" value="${comLi.step }" name="step">
-				댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
-				<input type="submit" value="저장"><input type="button" value="취소" onclick="hideSr(${comLi.comments_num})"><br>
-			</form>
 				<c:choose>
 					<c:when test="${cnt!=0 }">
-						<input type="button" value="댓글보기(${cnt })" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
-						<input type="button" value="댓글보기(${cnt })" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+						<input type="button" value="댓글보기(${cnt })" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기(${cnt })" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:when>
 					<c:otherwise>	
 						<input type="button" value="댓글보기" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
@@ -131,10 +120,19 @@
 				</c:choose>
 				<br>
 			</div>
+						<form action="${cp }/board/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
+					<input type="hidden" value="${sessionScope.id }" name="id">
+					<input type="hidden" value="insertCom" name="cmd">
+					<input type="hidden" value="${comLi.write_num }" name="write_num">
+					<input type="hidden" value="${comLi.ref }" name="ref">
+					<input type="hidden" value="${comLi.lev }" name="lev">
+					<input type="hidden" value="${comLi.step }" name="step">
+					댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
+					<input type="submit" value="저장"><br>
+			</form>
 			</div>
 	</c:forEach>
 </div>
-
 </div>
 </body>
 <script type="text/javascript">
@@ -157,10 +155,10 @@
 			for(var i=0;i<comm.length;i++){
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
-				div.innerHTML=comm[i].comments_contents +"<a href=\"javascript:showSr('"+ id +"')\">댓글달기</a>";
+				div.innerHTML=comm[i].id+"<br>"+comm[i].comments_contents;
 				div.style.marginLeft=50*comm[i].lev+"px";
 				div.style.border="1px solid blue";
-				div.className="cl"+comm[0].ref;
+				div.className="cl"+comm[i].ref;
 				div.id=id;
 				com.appendChild(div);
 			}

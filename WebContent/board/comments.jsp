@@ -1,3 +1,6 @@
+<%@page import="members.dao.min.MembersDao"%>
+<%@page import="members.vo.min.MembersVo"%>
+<%@page import="board.vo.yun.BoardVo"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="board.vo.yun.BoardCommentsVo"%>
 <%@page import="java.util.ArrayList"%>
