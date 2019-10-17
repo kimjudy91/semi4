@@ -36,9 +36,12 @@ public class BoardCommentsServlet extends HttpServlet{
 		req.setAttribute("commList", commList);
 		int n=dao.insert(vo);
 		if(n>0) {
-			req.getRequestDispatcher("/board/detail").forward(req, resp);
+			req.setAttribute("page", "//board/detail");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
-			req.getRequestDispatcher("/board/detail").forward(req, resp);
+		
+			req.setAttribute("page", "//board/detail");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}
 	}
 }

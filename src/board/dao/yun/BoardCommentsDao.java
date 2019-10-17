@@ -22,7 +22,7 @@ public class BoardCommentsDao {
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select * from comments where write_num =? order by lev asc , step desc";
+			String sql="select * from comments where write_num =? and lev =0 order by ref desc,step asc";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, write_num);
 			rs=pstmt.executeQuery();
@@ -72,14 +72,13 @@ public class BoardCommentsDao {
 		PreparedStatement pstmt=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="insert into comments values(comments_num_seq.nextval,?,?,?,sysdate,?,?,?)";
+			String sql="insert into comments values(comments_num_seq.nextval,?,?,?,sysdate,comments_num_seq.currval,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, vo.getWrite_num());
 			pstmt.setString(2, vo.getId());
 			pstmt.setString(3,vo.getComments_contents());
-			pstmt.setInt(4, vo.getRef());
-			pstmt.setInt(5, vo.getLev());
-			pstmt.setInt(6, vo.getStep());
+			pstmt.setInt(4, vo.getLev());
+			pstmt.setInt(5, vo.getStep());
 			return pstmt.executeUpdate();
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -88,7 +87,72 @@ public class BoardCommentsDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public ArrayList<BoardCommentsVo> getCommAndList(int write_num,int ref){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select * from comments where write_num =? and ref=? and lev!=0 order by ref desc,step asc";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, write_num);
+			pstmt.setInt(2, ref);
+			rs=pstmt.executeQuery();
+			ArrayList<BoardCommentsVo> list=new ArrayList<BoardCommentsVo>();
+			while(rs.next()) {
+				String id=rs.getString("id");
+				String comments_contents=rs.getString("comments_contents");
+				Date comments_date=rs.getDate("comments_date");
+				int comments_num=rs.getInt("comments_num");
+				int lev=rs.getInt("lev");
+				int step=rs.getInt("step");
+				BoardCommentsVo vo=new BoardCommentsVo(comments_num, write_num, id, comments_contents, comments_date, ref, lev, step);
+				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

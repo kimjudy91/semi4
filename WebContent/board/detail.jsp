@@ -79,20 +79,11 @@
 </table>
 <div id="commList">
 	<c:forEach var="comLi" items="${commList }">
-		<c:choose>
-		<c:when test="${comLi.lev==0 }">
-			<div style="border:1px solid red;">
+			<div style="border:1px solid red;" id="c${comLi.comments_num }">
 				${comLi.comments_contents }
-				<input type="button" value="답글보기" onclick="showComm()" id="showComm">
-				<input type="button" value="답글감추기" onclick="hideComm()" id="hideComm" style="display: none">
+				<input type="button" value="댓글" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
+				<input type="button" value="댓글숨기기" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 			</div>
-		</c:when>
-		<c:otherwise>
-			<div style="display: none" class="a">
-				${comLi.comments_contents }
-			</div>
-		</c:otherwise>
-	</c:choose>
 	</c:forEach>
 </div>
 <div>
@@ -100,12 +91,52 @@
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">
-내용<br><textarea rows="10" cols="30" name="comments_contents"></textarea>
+댓글달기<br><textarea rows="10" cols="30" name="comments_contents"></textarea>
 <input type="submit" value="저장">
 </form>
 </div>
 </div>
 </body>
+<script type="text/javascript">
+	var xhr=null;
+	function showComm(w,c){
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=success;
+		xhr.open('get','comments.jsp?ref='+c+'&write_num='+w,true);
+		xhr.send();
+	}
+	function success(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var data=xhr.responseText;
+			var comm=JSON.parse(data)[0];
+			var com=document.getElementById('c'+comm[0].ref);
+			var b1=document.getElementById('b1'+comm[0].ref);
+			b1.style.display="none";
+			var b2=document.getElementById('b2'+comm[0].ref);
+			b2.style.display="inline";
+			for(var i=0;i<comm.length;i++){
+				var div=document.createElement("div");
+				div.innerHTML=comm[i].comments_contents;
+				div.style.marginLeft=50*comm[i].lev+"px";
+				div.style.border="1px solid blue";
+				div.className="cl"+comm[0].ref;
+				com.appendChild(div);
+			}
+		}
+	}
+	function hideComm(w,c){
+		var divs=document.getElementsByClassName("cl"+c);
+		var b1=document.getElementById('b1'+c);
+		b1.style.display="inline";
+		var b2=document.getElementById('b2'+c);
+		b2.style.display="none";
+		var com=document.getElementById('c'+c);
+		var n=divs.length;
+		for (var i = 0; i <n ; i++) {
+			com.removeChild(com.lastChild);
+		}
+	}
+</script>
 </html>
 
 

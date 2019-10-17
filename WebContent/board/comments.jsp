@@ -1,27 +1,25 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="org.json.JSONArray"%>
+<%@page import="board.vo.yun.BoardCommentsVo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="board.dao.yun.BoardCommentsDao"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="org.json.JSONObject"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>board/comments</title>
-</head>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+ 
+<%
+	int ref=Integer.parseInt(request.getParameter("ref"));
+	int write_num=Integer.parseInt(request.getParameter("write_num"));
+	ArrayList<BoardCommentsVo> list=BoardCommentsDao.getCommentsDao().getCommAndList(write_num, ref);
+	JSONArray arr=new JSONArray();
+	arr.put(list);
+	
+	response.setContentType("text/plain;charset=utf-8");
+	PrintWriter pw=response.getWriter();
+	pw.println(arr.toString());
+%>
 
-<body>
-<h1>댓글 달기</h1>
-<c:set var="cp" value="${pageContext.request.contextPath }"/>
 
-<form method="post" action="${cp }/board/community">
-	글번호 <br>
-	<input type="text" name="write_num" value="${vo.write_num}" readonly="readonly">
-	<br>작성자<br>
-	<input type="text" name="id" value="${vo.id}" readonly="readonly"><br>
-	제목<br>
-	<input type="text" name="p_title" value="${vo.p_title}" readonly="readonly"><br>
-	내용<br>
-	<textarea rows="5" cols="60" name="contents" >${vo.contents}</textarea><Br>
-	<input type="submit" value="등록">	
-</form>
-</body>
-</html>-->
+
+
