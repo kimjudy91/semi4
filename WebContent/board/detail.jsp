@@ -1,6 +1,18 @@
+<%@page import="board.dao.yun.BoardCommentsDao"%>
+<%@page import="members.vo.min.MembersVo"%>
+<%@page import="members.dao.min.MembersDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	BoardCommentsDao bcdDao=BoardCommentsDao.getCommentsDao();
+	MembersDao dao=MembersDao.getDao();
+	String id="";
+	int grade=0;
+	int ref=0;
+	int cnt=0;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +22,7 @@
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <h1>상세글보기</h1>
-<script type="text/javascript">
-	function showComm(){
-		var a=document.getElementsByClassName("a");
-		var showComm=document.getElementById("showComm");
-		showComm.style.display="none";
-		var hideComm=document.getElementById("hideComm");
-		hideComm.style.display="inline";
-		for (var i = 0; i < a.length; i++) {
-			a[i].style.display="block";
-		}
-	}
-	function hideComm(){
-		var a=document.getElementsByClassName("a");
-		var showComm=document.getElementById("showComm");
-		showComm.style.display="inline";
-		var hideComm=document.getElementById("hideComm");
-		hideComm.style.display="none";
-		for (var i = 0; i < a.length; i++) {
-			a[i].style.display="none";
-		}
-	}
-</script>
+
 <div>
 
 <table border="1" width="600">
@@ -77,24 +68,73 @@
 		</td>
 	</tr>	
 </table>
-<div id="commList">
-	<c:forEach var="comLi" items="${commList }">
-			<div style="border:1px solid red;" id="c${comLi.comments_num }">
-				${comLi.comments_contents }
-				<input type="button" value="댓글" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
-				<input type="button" value="댓글숨기기" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
-			</div>
-	</c:forEach>
-</div>
 <div>
 <form action="${cp }/board/comments" method="post"  >
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">
-댓글달기<br><textarea rows="10" cols="30" name="comments_contents"></textarea>
+댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
 <input type="submit" value="저장">
 </form>
 </div>
+<div id="commList">
+	<c:forEach var="comLi" items="${commList }">
+			<div id="cw${comLi.comments_num }">
+			<div style="border:1px solid red;" id="c${comLi.comments_num }">
+				<c:set var="id" value="${comLi.id }"/>
+				<c:set var="ref" value="${comLi.comments_num }"/>
+				<%
+					 id=(String)pageContext.getAttribute("id");
+					MembersVo memVo=dao.search(id);
+					grade=memVo.getGrade();
+					ref=(Integer)pageContext.getAttribute("ref");
+					cnt=bcdDao.getCommCount(ref)-1;
+					pageContext.setAttribute("grade",grade);
+					pageContext.setAttribute("cnt",cnt);
+				%>
+				<c:choose>
+					<c:when test="${grade==1 }">
+						<img  src="${cp }/images/bronze.png">
+					</c:when>
+					<c:when test="${grade==2 }">
+						<img  src="${cp }/images/silver.png">
+					</c:when>
+					<c:when test="${grade==3 }">
+						<img  src="${cp }/images/gold.png">
+					</c:when>
+				</c:choose>
+				${comLi.id }<br>
+				
+				${comLi.comments_contents }
+				<a href="">삭제</a>
+				<a href="javascript:showSr(${comLi.comments_num})">댓글달기</a>
+				<br>
+				<form action="${cp }/board/comments" method="post"  id="sr${comLi.comments_num }" style="display: none">
+				<input type="hidden" value="${sessionScope.id }" name="id">
+				<input type="hidden" value="insertCom" name="cmd">
+				<input type="hidden" value="${comLi.write_num }" name="write_num">
+				<input type="hidden" value="${comLi.ref }" name="ref">
+				<input type="hidden" value="${comLi.lev }" name="lev">
+				<input type="hidden" value="${comLi.step }" name="step">
+				댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
+				<input type="submit" value="저장"><input type="button" value="취소" onclick="hideSr(${comLi.comments_num})"><br>
+			</form>
+				<c:choose>
+					<c:when test="${cnt!=0 }">
+						<input type="button" value="댓글보기(${cnt })" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기(${cnt })" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+					</c:when>
+					<c:otherwise>	
+						<input type="button" value="댓글보기" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+					</c:otherwise>
+				</c:choose>
+				<br>
+			</div>
+			</div>
+	</c:forEach>
+</div>
+
 </div>
 </body>
 <script type="text/javascript">
@@ -116,10 +156,12 @@
 			b2.style.display="inline";
 			for(var i=0;i<comm.length;i++){
 				var div=document.createElement("div");
-				div.innerHTML=comm[i].comments_contents;
+				var id=comm[0].ref+""+ i;
+				div.innerHTML=comm[i].comments_contents +"<a href=\"javascript:showSr('"+ id +"')\">댓글달기</a>";
 				div.style.marginLeft=50*comm[i].lev+"px";
 				div.style.border="1px solid blue";
 				div.className="cl"+comm[0].ref;
+				div.id=id;
 				com.appendChild(div);
 			}
 		}
@@ -135,6 +177,14 @@
 		for (var i = 0; i <n ; i++) {
 			com.removeChild(com.lastChild);
 		}
+	}
+	function showSr(c){
+		var sr=document.getElementById("sr"+c);
+		sr.style.display="inline";
+	}
+	function hideSr(c){
+		var sr=document.getElementById("sr"+c);
+		sr.style.display="none";
 	}
 </script>
 </html>

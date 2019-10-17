@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 import board.dao.yun.BoardCommentsDao;
 import board.vo.yun.BoardCommentsVo;
+import members.dao.min.MembersDao;
+import members.vo.min.MembersVo;
 
 @WebServlet("/board/comments")
 public class BoardCommentsServlet extends HttpServlet{
@@ -24,6 +26,8 @@ public class BoardCommentsServlet extends HttpServlet{
 		String cmd=req.getParameter("cmd");
 		if(cmd!=null && cmd.equals("insert")) {
 			insert(req,resp);
+		}else if(cmd!=null && cmd.equals("insertCom")) {
+			insertComm(req,resp);
 		}
 	}
 	protected void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,6 +40,26 @@ public class BoardCommentsServlet extends HttpServlet{
 		req.setAttribute("commList", commList);
 		req.setAttribute("wrtie_num", write_num);
 		int n=dao.insert(vo);
+		if(n>0) {
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
+		}else {
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
+		}
+	}
+	protected void insertComm(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+		int write_num=Integer.parseInt(req.getParameter("write_num"));
+		String id=req.getParameter("id");
+		String comments_contents=req.getParameter("comments_contents");
+		int ref=Integer.parseInt(req.getParameter("ref"));
+		int lev=(Integer.parseInt(req.getParameter("lev"))+1);
+		int step=(Integer.parseInt(req.getParameter("step"))+1);
+		BoardCommentsDao dao= BoardCommentsDao.getCommentsDao();
+		BoardCommentsVo vo=new BoardCommentsVo(0, write_num, id, comments_contents, null, ref, lev, step);	
+		int n=dao.insertComm(vo);
+		int n1=dao.increseStep(ref, step);
+		ArrayList<BoardCommentsVo> commList=BoardCommentsDao.getCommentsDao().getCommList(write_num);
+		req.setAttribute("commList", commList);
+		req.setAttribute("wrtie_num", write_num);
 		if(n>0) {
 			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}else {

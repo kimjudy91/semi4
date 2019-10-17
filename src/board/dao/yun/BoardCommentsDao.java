@@ -117,7 +117,65 @@ public class BoardCommentsDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	
+	public int getCommCount(int ref) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select count(*) from comments where ref=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return -1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int increseStep(int ref,int step) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update comments set step=step+1 where ref=? and step>=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, step);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int insertComm(BoardCommentsVo vo) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="insert into comments values(comments_num_seq.nextval,?,?,?,sysdate,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, vo.getWrite_num());
+			pstmt.setString(2, vo.getId());
+			pstmt.setString(3,vo.getComments_contents());
+			pstmt.setInt(4, vo.getRef());
+			pstmt.setInt(5, vo.getLev());
+			pstmt.setInt(6, vo.getStep());
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
 
 
