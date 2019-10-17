@@ -15,6 +15,7 @@
 	int ref=Integer.parseInt(request.getParameter("ref"));
 	int write_num=Integer.parseInt(request.getParameter("write_num"));
 	ArrayList<BoardCommentsVo> list=BoardCommentsDao.getCommentsDao().getCommAndList(write_num, ref);
+	
 	JSONArray arr=new JSONArray();
 	arr.put(list);
 	

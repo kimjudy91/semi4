@@ -114,8 +114,8 @@
 						<input type="button" value="댓글보기(${cnt })" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:when>
 					<c:otherwise>	
-						<input type="button" value="댓글보기" onclick="showComm('${comLi.write_num }','${comLi.comments_num}')" id="b1${comLi.comments_num }">
-						<input type="button" value="댓글보기" onclick="hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+						<input type="button" value="댓글보기" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:otherwise>
 				</c:choose>
 				<br>
