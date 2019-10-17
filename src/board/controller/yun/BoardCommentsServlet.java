@@ -34,14 +34,12 @@ public class BoardCommentsServlet extends HttpServlet{
 		BoardCommentsVo vo=new BoardCommentsVo(0, write_num, id, comments_contents, null, 0,0,0);
 		ArrayList<BoardCommentsVo> commList=BoardCommentsDao.getCommentsDao().getCommList(write_num);
 		req.setAttribute("commList", commList);
+		req.setAttribute("wrtie_num", write_num);
 		int n=dao.insert(vo);
 		if(n>0) {
-			req.setAttribute("page", "//board/detail");
-			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}else {
-		
-			req.setAttribute("page", "//board/detail");
-			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}
 	}
 }
