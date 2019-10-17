@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>tset10_css.html</title>
-<link rel="stylesheet" type="text/css" href="${cp }/index/index.css">
+<link rel="stylesheet" type="text/css" href="${cp }/index/indexCss.css">
 <style>
 </style>
 </head>

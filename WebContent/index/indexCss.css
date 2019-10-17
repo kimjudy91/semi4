@@ -23,7 +23,6 @@ body{
 	height:800px;
 	border:1px solid black;
 	background-color: #ffffff;
-	
 }
 #main #menu{
 	width:20%;
@@ -38,6 +37,7 @@ body{
 	background-color:#ffffff;
 	float: right;
 	position: relative;
+	overflow:auto;
 }
 
 #main #menu #menus{
