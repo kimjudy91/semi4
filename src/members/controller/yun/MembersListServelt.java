@@ -22,11 +22,13 @@ public class MembersListServelt extends HttpServlet{
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
 		String cmd=req.getParameter("cmd");
-		
+		MembersDao mdao=MembersDao.getDao();
 		if(cmd!=null &&cmd.equals("increase")) {
-			MembersDao.getDao().increaseWarning(id);
+			mdao.increaseWarning(id);
+			mdao.setGrade();
 		}else if(cmd!=null &&cmd.equals("down")) {
-			MembersDao.getDao().downWarning(id);
+			mdao.downWarning(id);
+			mdao.setGrade();
 		}
 		int pageNum=1;
 		if(spageNum!=null) {

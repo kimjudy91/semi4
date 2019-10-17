@@ -26,7 +26,6 @@ public class SessionIdListener implements HttpSessionAttributeListener {
 		HttpSession session=event.getSession();
 		//id=(String)session.getAttribute("id");
 		IdList.remove(id);
-		System.out.println(id);
 	}
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent event) {

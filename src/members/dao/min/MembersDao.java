@@ -214,31 +214,6 @@ public class MembersDao {
 		}
 	}
 	
-	
-
-	
-	public int IncreaseCount(String id) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try{
-			con=JdbcUtil.getConn();
-			String sql="select write_count from members where id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				return rs.getInt("write_count");
-			}
-			return -1;
-		}catch(SQLException se) {
-			se.printStackTrace();
-			return -1;
-		}finally {
-			JdbcUtil.close(con, pstmt, rs);
-		}
-	}
-	
 	public int increaseWarning(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -268,6 +243,21 @@ public class MembersDao {
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	public int setGrade() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update members set grade=0 where warning>2";
+			pstmt=con.prepareStatement(sql);
+			return pstmt.executeUpdate();
+		}catch(SQLException  se) {
+			se.printStackTrace();
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
