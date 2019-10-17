@@ -29,6 +29,11 @@ public class MembersListServelt extends HttpServlet{
 		}else if(cmd!=null &&cmd.equals("down")) {
 			mdao.downWarning(id);
 			mdao.setGrade();
+		}else if(cmd!=null &&cmd.equals("setgrade")) {
+			String selgrade=req.getParameter("selgrade");
+			System.out.println(selgrade);
+			mdao.downWarning(id);
+			mdao.setGrade();
 		}
 		int pageNum=1;
 		if(spageNum!=null) {
