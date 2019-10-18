@@ -28,10 +28,12 @@
 			grade="실버";
 		}else if(g==3){
 			grade="골드";
+		}else if(g==0){
+			grade="정지회원으";
 		}
 		if (confirm(id+"님의 등급을 "+grade+"로 바꾸시겟습니까?") == true) { 
-				document.form.submit();
-			} else { //취소
+			location.href="/semi/members_management?id="+id+"&selgrade="+grade+"&cmd=setgrade";
+			} else { 
 				return;
 			}
 		}
@@ -67,10 +69,10 @@
 			</c:when>
 			</c:choose>	
 				<select name="selgrade" onchange="showMsg('${vo.id }',this.value)">
-						<option value="0">정지</option>				
-						<option value="1">브론즈</option>
-						<option value="2">실버</option>
-						<option value="3">금</option>
+						<option value="0" <c:if test='${vo.grade==0 }'>selected</c:if>>정지</option>				
+						<option value="1" <c:if test='${vo.grade==1 }'>selected</c:if>>브론즈</option>
+						<option value="2" <c:if test='${vo.grade==2 }'>selected</c:if>>실버</option>
+						<option value="3" <c:if test='${vo.grade==3 }'>selected</c:if>>금</option>
 				</select>
 		</td>
 	</tr>

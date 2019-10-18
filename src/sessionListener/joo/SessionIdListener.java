@@ -19,7 +19,11 @@ public class SessionIdListener implements HttpSessionAttributeListener {
 	public void attributeAdded(HttpSessionBindingEvent event) {
 		HttpSession session=event.getSession();
 	    id=(String)session.getAttribute("id");
-		IdList.add(id);
+	    if(id==null) {
+	    
+	    }else{
+	    	IdList.add(id);
+	    }
 	}
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent event) {

@@ -305,6 +305,23 @@ public class MembersDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public int setGrade(String id,int grade) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update members set grade=? where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, grade);
+			pstmt.setString(2, id);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
 
 
