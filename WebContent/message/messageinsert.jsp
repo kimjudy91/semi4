@@ -8,7 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String sid=(String)request.getSession().getAttribute("id");
-	System.out.println(sid);
 	String rid=request.getParameter("rid");
 	String contents=request.getParameter("contents");
 	MessageDao.getDao().insertMsg(sid, rid, contents);

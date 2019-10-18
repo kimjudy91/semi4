@@ -108,6 +108,7 @@ public class BoardCommentsDao {
 				int step=rs.getInt("step");
 				BoardCommentsVo vo=new BoardCommentsVo(comments_num, write_num, id, comments_contents, comments_date, ref, lev, step);
 				list.add(vo);
+				System.out.println("teszt");
 			}
 			return list;
 		}catch(SQLException se) {

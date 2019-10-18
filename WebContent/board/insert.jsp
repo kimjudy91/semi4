@@ -7,7 +7,7 @@
 <h1>글등록하기</h1>
 <form method="post" action="${cp }/board/insert">
 	작성자<br>
-	<input type="text" name="id"><br>
+	<input type="text" name="id" value="${id }" readonly="readonly"><br>
 	제목<br>
 	<input type="text" name="p_title"><br>
 	<label><input type="radio" name="trans" value="rnb">알앤비</label>

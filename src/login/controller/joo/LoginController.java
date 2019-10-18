@@ -32,6 +32,7 @@ import report.dao.joo.ReportDao;
 			req.getSession().setAttribute("report2Count", report2Count);
 			int newrf=MessageDao.getDao().getRevFriCount(id);
 			req.getSession().setAttribute("newrf",newrf);
+			System.out.println(newrf);
 			req.getSession().setAttribute("id", id);
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);

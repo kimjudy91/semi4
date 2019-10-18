@@ -131,6 +131,7 @@
          <input type='submit' value='검색' id="sub">      
        </form>
        <form method="get" action="${cp }/board/insert">
+         	 <input type="hidden" value="${id }" name="id">
           <input type='submit' value='글쓰기' id="dv2">
        	</form>
         

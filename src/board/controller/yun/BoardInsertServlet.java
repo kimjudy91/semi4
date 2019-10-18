@@ -17,6 +17,7 @@ import members.vo.min.MembersVo;
 public class BoardInsertServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id=req.getParameter("id");
 		req.setAttribute("page","/board/insert.jsp");
 		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
@@ -43,7 +44,7 @@ public class BoardInsertServlet extends HttpServlet{
 		int n=dao1.insert(vo1);
 		if(n>0) {
 			req.setAttribute("code", "success");
-			
+			dao1.increWriteCount(id);
 	
 			
 		}else {
