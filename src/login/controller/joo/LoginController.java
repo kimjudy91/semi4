@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import login.dao.joo.LoginDao;
 import members.dao.min.MembersDao;
+import message.dao.joo.MessageDao;
 import report.dao.joo.ReportDao;
 @WebServlet("/logins")
 	public class LoginController extends HttpServlet{
@@ -29,6 +30,8 @@ import report.dao.joo.ReportDao;
 			req.setAttribute("warning", warning);
 			int report2Count=ReportDao.getDao().newReport2Count();	
 			req.getSession().setAttribute("report2Count", report2Count);
+			int newrf=MessageDao.getDao().getRevFriCount(id);
+			req.getSession().setAttribute("newrf",newrf);
 			req.getSession().setAttribute("id", id);
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);

@@ -51,6 +51,14 @@
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
 			<c:when test="${sessionScope.id!=null }">
+				<c:choose>
+				<c:when test="${newrf==-1||newrf==0||newrf==null }">
+					<input type="button" value="친구" onclick="showMsg('${cp }/friends','${sessionScope.id}')">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="친구[${newrf }]" onclick="showMsg('${cp }/friends','${sessionScope.id}')">
+				</c:otherwise>
+				</c:choose>
 				<input type="button" value="마이페이지" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
@@ -81,5 +89,11 @@
 <div id="footer">
 풋터
 </div>
+<script type="text/javascript">
+	function showMsg(cp,id){
+		window.open(cp,"메세지","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+	
+</script>
 </body>
 </html>
