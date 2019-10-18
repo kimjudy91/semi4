@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>myPage.jsp</title>
+<link rel="stylesheet" type="text/css" href="${cp }/myPage/myPage.css">
 </head>
 <script type="text/javascript">
 	function updateEmail1(){
@@ -59,14 +60,9 @@
 </script>
 <body>
 <h1>마이페이지</h1>
-<c:if test="${rlist!=null }">
-<h2>신고내역</h2>
-<c:forEach var="aa" items="${rlist }">
-	신고내용:${aa.report_content }<br>
-	답변내용:<c:if test="${aa.comments==null }">X</c:if><c:if test="${aa.comments!=null }">${aa.comments }</c:if>
-	<hr>
-</c:forEach>
-</c:if>
+
+<!-- 정보수정 -->
+<div id="set">
 <h2>정보수정</h2>
 <form action="${cp }/updateMembers" method="post">
 이메일   <input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
@@ -87,5 +83,18 @@
 <br>
 <input type="submit" value="저장하기">
 </form>
+
+<!-- 신고내역 -->
+<div id="rep2">
+<c:if test="${rlist!=null }">
+<h2>신고내역</h2>
+<c:forEach var="aa" items="${rlist }">
+	신고내용:${aa.report_content }<br>
+	답변내용:<c:if test="${aa.comments==null }">X</c:if><c:if test="${aa.comments!=null }">${aa.comments }</c:if>
+	<hr>
+</c:forEach>
+</c:if>
+</div>
+</div>
 </body>
 </html>
