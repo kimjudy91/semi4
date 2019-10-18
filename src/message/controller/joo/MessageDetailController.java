@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import message.dao.joo.MessageDao;
 import message.vo.joo.MessageVo;
-@WebServlet("/messageList")
-public class MessageListController extends HttpServlet {
+@WebServlet("/message/detail")
+public class MessageDetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<String> msgList=MessageDao.getDao().getMsgList((String)req.getSession().getAttribute("id"));
-		req.setAttribute("msgList", msgList);
-		req.getRequestDispatcher("/message/messageList.jsp").forward(req, resp);
+		String sid=(String)req.getSession().getAttribute("id");
+		String rid=req.getParameter("rid");
+		ArrayList<MessageVo> list=MessageDao.getDao().msgDetailList(sid, rid);
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("/message/messageDetail.jsp").forward(req, resp);
 	}
 }

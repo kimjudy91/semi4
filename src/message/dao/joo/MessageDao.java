@@ -16,24 +16,52 @@ public class MessageDao {
 	public static MessageDao getDao() {
 		return dao;
 	}
-	public ArrayList<MessageVo> msgList(String sid){
+	public ArrayList<MessageVo> msgDetailList(String ssid,String rrid){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select * from message where sid=?";
+			String sql="select * from message where (sid=? and rid=?) or (sid=? and rid=?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, sid);
+			pstmt.setString(1, ssid);
+			pstmt.setString(2, rrid);
+			pstmt.setString(3, rrid);
+			pstmt.setString(4, ssid);
 			rs=pstmt.executeQuery();
 			ArrayList<MessageVo> list=new ArrayList<MessageVo>();
 			while(rs.next()) {
 				int message_num=rs.getInt("message_num");
-				String rid=rs.getString("rid");
 				String contents=rs.getString("contents");
 				int checking=rs.getInt("checking");
+				String sid=rs.getString("sid");
+				String rid=rs.getString("rid");
 				MessageVo vo=new MessageVo(message_num, sid, rid, contents, checking);
 				list.add(vo);
+			}
+			return list;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public ArrayList<String> getMsgList(String sid){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select rid from message where sid=? UNION select sid from message where rid= ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sid);
+			pstmt.setString(2, sid);
+			rs=pstmt.executeQuery();
+			ArrayList<String> list=new ArrayList<String> ();
+			while(rs.next()) {
+				String ssid=rs.getString(1);
+				list.add(ssid);
 			}
 			return list;
 		}catch(SQLException se) {
@@ -146,7 +174,55 @@ public class MessageDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
+	public int insertMsg(String sid,String rid,String contents) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			if(contents.equals("")||contents==null) {
+				return -1;
+			}
+			con=JdbcUtil.getConn();
+			String sql="insert into message values(message_num_seq.nexval,?,?,?,0)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sid);
+			pstmt.setString(2, rid);
+			pstmt.setString(3, contents);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
