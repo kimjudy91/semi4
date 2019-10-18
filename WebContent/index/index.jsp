@@ -8,15 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>tset10_css.html</title>
-<link rel="stylesheet" type="text/css" href="${cp }/index/indexCss.css">
+<c:set var="cp" value="${pageContext.request.contextPath }"/>
+<link rel="stylesheet" type="text/css" href="${cp }/index/indexx.css">
 <style>
 </style>
 </head>
-
 <body>
 <div id="main">
 <div id="header">
-<h1>세미 프로젝트</h1>
+<h1></h1>
 <c:if test="${grade==0}">
 	<c:redirect url="/nouse"/>
 </c:if>
@@ -47,7 +47,7 @@
 				</c:otherwise>
 				</c:choose>
 				<input type="button" value="광고" onclick="location.href='${cp}/ad/list'">
-				<input type="button" value="회원관리" onclick="location.href='${cp}/members_management'">
+				<input type="button" value="회원관리" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
 			<c:when test="${sessionScope.id!=null }">
@@ -66,13 +66,23 @@
 		</c:choose>
 		</div>
 		<ul id="menus">
-			<li><a href="${cp }/board/community">커뮤니티게시판</a></li>
-			<li><a href="${cp }/nquire/list">문의게시판</a></li>
-			<li>메뉴3</li>
-			<li>메뉴4</li>
+			<li id="nus1">커뮤니티게시판<br></li>
+			<li><br><a href="${cp }/board/community">Community</a></li>
+			<li><br></li>
+			<li id="nus1">문의게시판<br></li>
+			<li><br><a href="${cp }/nquire/list">문의하기<br></a></li>
+			<li><br></li>
+			<li id="nus1">음악게시판<br></li>
+			<li><br><a href="">Rock<br></a></li>
+			<li><br><a href="">folk<br></a></li>
+			<li><br><a href="">R&B<br></a></li>
+			<li><br></li>
+			<li id="nus1">기타<br></li>
+			<li><br><a href="">문의하기<br></a></li>
 		</ul>
 		<div id="users">		
 		접속자명단<br>
+		<hr id="uhr">
 		<%
 		ArrayList<String> userIds=SessionIdListener.getUserId();
 		for(String a:userIds){

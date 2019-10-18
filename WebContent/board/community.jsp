@@ -2,42 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<link rel="stylesheet" type="text/css" href="${cp }/board/community.css">
 
-<!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="UTF-8">
-<title>board/community.jsp</title>
-<style type="text/css">
-
-	table{width: 100%; text-align: center;}
-	   #divPaging {clear:both;  margin:0 auto; width:220px; height:50px;}
-	   #divPaging > div {float:left; width: 30px; margin:0 auto; margin-top: 30px;text-align:center;}
-       #divSearchOption {clear:both; }
-       #divSearchOption > div {float:left; margin:0 auto; margin-top: 30px; width:auto; height:100px; text-align:center;}
-</style>
-</head>
-<body>
-<hr>
+<div id="home">
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<table border="1" width="20">
-</table>
 	<c:set var="a" value="${genre }"/>
-	<select id="viewSongList" onchange="aa(this.value)">
+<div id="sel">
+	<select id="viewSongList" onclick="aa(this.value)">
 			<option value="0" <c:if test='${a==0 }'>selected</c:if> >전체선택</option>
 			<option value="1" <c:if test='${a==1 }'>selected</c:if> >알앤비</option>
 			<option value="2" <c:if test='${a==2 }'>selected</c:if> >팝</option>
 			<option value="3" <c:if test='${a==3 }'>selected</c:if> >가요</option>
 	</select>
-
+</div>
 <!-- 게시판 body 영역 -->
 
 
-<table border="1" width="600">
-	<tr>
+<table>
+	<tr id="tr1">
 		<th>글번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회</th>
 	</tr>
+	
     <c:forEach var="vo" items="${list}">
     <c:choose>
     	<c:when test="${vo.genre_num==a }">
@@ -84,8 +69,7 @@
 			<td>${vo.views }</td>
 			</tr>
     	</c:when>
-    </c:choose>
-		
+    </c:choose>	
 	</c:forEach>
 	
 	
@@ -128,11 +112,13 @@
   		<c:otherwise>
   			▶
   		</c:otherwise>
-  	</c:choose>     
-</div>       
+  	</c:choose>   
+	</div>         
 
-      
-<!-- 검색 폼 영역 --> 
+  	
+ 
+
+<!-- 검색 폼 영역 -->
 <div id="divSearchOption">
   	 <form method="get" action="${cp }/board/community">
       <select name='field'>
@@ -141,21 +127,19 @@
          <option value='contents' <c:if test="${field=='contents' }">selected</c:if>>내용</option>
          <option value='id' <c:if test="${field=='id' }">selected</c:if>>작성자</option>
       </select>
-         <input type="text" name="keyword" value="${keyword }" >
-         <input type='submit' value='검색'>
-        </form>
-        <form method="get" action="${cp }/board/insert">
-         <input type='submit' value='글쓰기'>
-       </form>  
-       
+         <input type="text" id="keyword" name="keyword" value="${keyword }" >
+         <input type='submit' value='검색' id="sub">      
+       </form>
+       <form method="get" action="${cp }/board/insert">
+          <input type='submit' value='글쓰기' id="dv2">
+       	</form>
+        
 </div>	
 
+</div>
 <script type="text/javascript">
 function aa(n){
 	location.href='${cp }/board/community?genre='+n;
-	
-
 }
 
 </script>
-	
