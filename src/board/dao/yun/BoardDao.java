@@ -216,10 +216,20 @@ public class BoardDao {
 	public int delete(int write_num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
 		try {
 			con=JdbcUtil.getConn();
-			String sql="delete from music where write_num=?";
-			pstmt=con.prepareStatement(sql);
+			String sql1="delete from comments where write_num=?";
+			pstmt1=con.prepareStatement(sql1);
+			pstmt1.setInt(1,write_num);
+			pstmt1.executeUpdate();
+			String sql2="delete from report2 where write_num=?";
+			pstmt2=con.prepareStatement(sql2);
+			pstmt2.setInt(1,write_num);
+			pstmt2.executeUpdate();
+			String sql3="delete from music where write_num=?";
+			pstmt=con.prepareStatement(sql3);
 			pstmt.setInt(1,write_num);
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {

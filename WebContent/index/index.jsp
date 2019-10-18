@@ -12,13 +12,23 @@
 <style>
 </style>
 </head>
-<script type="text/javascript">
 
-</script>
 <body>
 <div id="main">
 <div id="header">
 <h1>세미 프로젝트</h1>
+<c:if test="${grade==0}">
+	<c:redirect url="/nouse"/>
+</c:if>
+<c:if test="${warning!=0 }">
+<c:set var="warning" value="${warning }"/>
+	<script type="text/javascript">
+		function showWarning(){
+			alert("경고"+${warning}+"번을 받았습니다. 조심하세요");
+		}
+		showWarning();
+	</script>
+</c:if>
 </div>
 	<div id="menu">
 		<div id="logins">
@@ -37,7 +47,7 @@
 				</c:otherwise>
 				</c:choose>
 				<input type="button" value="광고" onclick="location.href='${cp}/ad/list'">
-				<input type="button" value="회원관리" onclick="location.href='${cp}/myPage'">
+				<input type="button" value="회원관리" onclick="location.href='${cp}/members_management'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
 			<c:when test="${sessionScope.id!=null }">

@@ -17,7 +17,7 @@ public class IndexController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");	
 		String spage=req.getParameter("page");
 		int report2Count=ReportDao.getDao().newReport2Count();	
-		req.setAttribute("report2Count", report2Count);
+		req.getSession().setAttribute("report2Count", report2Count);
 		if(spage==null) {
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
