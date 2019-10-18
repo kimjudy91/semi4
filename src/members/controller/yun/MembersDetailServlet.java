@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import members.dao.min.MembersDao;
 import members.vo.min.MembersVo;
-@WebServlet("/myPage")
+
 public class MembersDetailServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
