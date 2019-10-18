@@ -8,14 +8,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String sid=(String)request.getSession().getAttribute("id");
+	System.out.println(sid);
 	String rid=request.getParameter("rid");
-	ArrayList<MessageVo> list=MessageDao.getDao().msgDetailList(sid, rid);
-	
-	
-	JSONArray arr=new JSONArray();
-	arr.put(list);
-	
-	response.setContentType("text/plain;charset=utf-8");
-	PrintWriter pw=response.getWriter();
-	pw.println(arr.toString());
+	String contents=request.getParameter("contents");
+	MessageDao.getDao().insertMsg(sid, rid, contents);
 %>
