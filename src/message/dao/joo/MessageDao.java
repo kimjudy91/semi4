@@ -182,7 +182,7 @@ public class MessageDao {
 				return -1;
 			}
 			con=JdbcUtil.getConn();
-			String sql="insert into message values(message_num_seq.nexval,?,?,?,0)";
+			String sql="insert into message values(message_num_seq.nextval,?,?,?,0)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, sid);
 			pstmt.setString(2, rid);
