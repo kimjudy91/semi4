@@ -1,0 +1,119 @@
+@charset "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	width:1800px;
+	height:1550px;
+	background-color: #ffffff;
+	margin: auto;
+}
+#header{ 
+	width:100%;
+	height:120px;
+	padding-top: 35px;
+	text-align: center;
+	margin: auto;
+	color: white;
+	font-size: 1.5em;
+	background-color: #092317; 
+	border-bottom-style: double;
+}
+#main{
+	width:100%;
+	height:100%;	
+	background-color: #ffffff;
+}
+#main #menu{
+	width:13%;
+	height:89%;
+	background-color: white;
+	float: left;
+	position: relative;
+	text-align: center;
+	margin-left: -11px;
+}
+#main #home{
+	width:1550px;
+	height: 1385px;
+	float: right;
+	position: relative;
+	overflow:auto;
+
+}
+
+#main #menu #menus {
+	width:90%;
+	height:50%;
+	border-style: ridge; 
+	list-style: none;
+	margin-left:10px;
+	
+}
+#main #menu #menus li a{
+	text-decoration: none;
+	font-size: 1.0em;
+	font-style: normal;
+	font-family: sans-serif;
+}
+#main #menu #menus li hr{
+	
+}
+#main #menu #menus #nus1{
+	text-decoration: none;
+	font-size: 1.3em;
+	font-style: normal;
+	font-family: sans-serif;
+	background-color: #092317;
+	border-style: outset;
+	color: white;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 15px;
+}
+
+#main #menu #logins{
+	width:90%;
+	height:10%;
+	border-style: ridge;
+	list-style: none;
+	margin-left:10px;
+	margin: center;
+}
+
+#main #menu #logins input{
+	 margin-top: 25px;
+	 background-color: #11442d;
+	 display: block;
+ 	 width: 50%;
+ 	 font-size: 1.3em;
+ 	 margin-left: auto;
+ 	 margin-right: auto;
+ 	 text-align: center;
+ 	 color: white;
+}
+
+#main #menu #users{
+	width:90%;
+	height:20%;
+	border-style: ridge;
+	margin-left:10px;
+	position: absolute;bottom: 5px; 
+	padding-top: 25px;
+	
+}
+#main #menu #users #uhr{
+	display: #092317;
+	border: #092317 0 none;
+	border-top: #092317 1px solid;
+	peight: 1px;
+	margin-top: 20px;
+}
+#footer{
+	width:100%;
+	height:100px;
+	background-color: #c0c0c0;
+	display: block;
+}
