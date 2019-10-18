@@ -108,21 +108,46 @@ public class NquireDao {
 		}	
 	}
 	
-	// 문의게시판 list
-	public ArrayList<NquireVo> list() {
+	// 문의게시판 list (페이징)
+	public ArrayList<NquireVo> list(String id,int startRow, int endRow) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
 		try {
 			con=JdbcUtil.getConn();
-			String sql="select * from nquire";
+			
+			String sql="";
+			if(id==null) {
+			sql="select * from (" +
+								" select aa.*, rownum rnum from" +
+								" (" +
+								"     select * from nquire" +
+								"     order by nquire_num desc" +
+								" )aa" +
+								") where rnum>=? and rnum<=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			}else {
+				sql="select * from (" +
+						" select aa.*, rownum rnum from" +
+						" (" +
+						"     select * from nquire where id=?" +
+						"     order by nquire_num desc" +
+						" )aa" +
+						") where rnum>=? and rnum<=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			}
+			
 			rs=pstmt.executeQuery();
 			ArrayList<NquireVo> list=new ArrayList<NquireVo>();
 			while(rs.next()) {
 				int nquire_num=rs.getInt("nquire_num");
-				String id=rs.getString("id");
+				id=rs.getString("id");
 				String title=rs.getString("title");
 				String contents=rs.getString("contents");
 				Date r_date=rs.getDate("r_date");		
@@ -189,6 +214,32 @@ public class NquireDao {
 			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, null);
+		}
+	}
+	
+	// 페이지 count
+	public int getCount() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select NVL(count(nquire_num),0) from nquire";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int nquire_num=rs.getInt(1);
+				return nquire_num;
+			}else {
+				return 0;
+			}
+			
+		}catch(SQLException se) {
+			System.out.println(se.getMessage());
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
 }
