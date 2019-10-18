@@ -1,12 +1,14 @@
-<%@page import="board.dao.yun.BoardCommentsDao"%>
 <%@page import="members.vo.min.MembersVo"%>
 <%@page import="members.dao.min.MembersDao"%>
+<%@page import="board.filecontroller.dao.FileBoardCommentsDao"%>
+<%@page import="board.filecontroller.dao.FileBoardDao"%>
+<%@page import="board.filecontroller.vo.FileUpLoadVo"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%
-	BoardCommentsDao bcdDao=BoardCommentsDao.getCommentsDao();
+	FileBoardCommentsDao bcdDao=FileBoardCommentsDao.getCommentsDao();
 	MembersDao dao=MembersDao.getDao();
 	String id="";
 	int grade=0;
@@ -18,14 +20,18 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
+<style type="text/css">
+	.comm{width: 100%; height: 100%; border: 1px solid #aaa; margin-bottom: 5px; margin-top: 5px;}
+</style>
 </head>
+<script type="text/javascript">
+
+</script>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <h1>상세글보기</h1>
+<table border="1" width="600" style="text-align: center";>
 
-<div>
-
-<table border="1" width="600">
 	<tr>
 		<th>글번호</th>
 		<td>${vo.write_num }</td>
@@ -35,20 +41,6 @@
 	<tr>
 		<th>아이디</th>
 		<td>${vo.id }</td>
-	</tr>
-		<tr>
-		<th>장르</th>
-		<c:choose>
-			<c:when test="${vo.genre_num==1 }">
-				<td>가요</td>
-			</c:when>
-			<c:when test="${vo.genre_num==2 }">
-				<td>R&B</td>
-			</c:when>
-			<c:when test="${vo.genre_num==3 }">
-				<td>PoP</td>
-			</c:when>
-		</c:choose>
 	</tr>
 	<tr>
 		<th>제목</th>
@@ -60,22 +52,32 @@
 	</tr>
 	
 	<tr>
-		<td colspan="4" class="text-center">
-			<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
-			<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
-			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
-			<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
+		<th>다운로드 파일</th>
+		<td>
+	<a href="${cp}/fileboard.download?f_num=${vo.f_num} ">다운로드</a>
 		</td>
-	</tr>	
+	</tr>
+	
+	
+	<tr>
+		<td colspan="4" class="text-center">
+			
+			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/fileboard/update?write_num=${vo.write_num}'">
+			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/fileboard/delete?write_num=${vo.write_num}&f_num=${vo.f_num}'">
+			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
+			<input type="submit" class="btn-list" value="목록보기" onclick="location.href='${cp}/fileboard/community'">
+		</td>
+	</tr>
 </table>
 
 
+
 <div>
-<form action="${cp }/board/comments" method="post"  >
+<form action="${cp }/fileboard/comments" method="post"  >
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">
-댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
+			댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
 <input type="submit" value="저장">
 </form>
 </div>
@@ -122,7 +124,7 @@
 				</c:choose>
 				<br>
 			</div>
-						<form action="${cp }/board/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
+						<form action="${cp }/fileboard/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
 					<input type="hidden" value="${sessionScope.id }" name="id">
 					<input type="hidden" value="insertCom" name="cmd">
 					<input type="hidden" value="${comLi.write_num }" name="write_num">
@@ -135,7 +137,8 @@
 			</div>
 	</c:forEach>
 </div>
-</div>
+
+
 </body>
 <script type="text/javascript">
 	var xhr=null;
@@ -188,19 +191,5 @@
 	}
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
