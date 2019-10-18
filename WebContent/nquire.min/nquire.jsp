@@ -8,24 +8,64 @@
 <title>nquire.jsp</title>
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="../css.min/detailStyle.css">
+<link rel="stylesheet" type="text/css" href="../css.min/listStyle.css">
 <h1>문의게시판</h1>
 <hr>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<table border='1' width=500px>
-	<tr><th>글번호</th><th>작성자</th><th>제목</th><th>답변여부</th><th>작성일</th></tr>
-	<c:forEach var="vo" items="${list}">
-	<tr>
-	<td>${vo.nquire_num}</td>
-	<td>${vo.id}</td>
-	<td><c:if test="${vo.id==vo.id }"><a href="${cp}/nquire/detail?nquire_num=${vo.nquire_num}">${vo.title}</a></c:if></td>
-	<c:if test="${vo.comments!=null }"><td>O</td></c:if><c:if test="${vo.comments==null }"><td>X</td></c:if>
-	<td>${vo.r_date }</td>
-	</tr>
-	</c:forEach>
+<table >
+	<tr id="tr1"><th>글번호</th><th>작성자</th><th>제목</th><th>답변여부</th><th>작성일</th></tr>
+
+		<c:forEach var="vo" items="${list}">
+			<tr>
+			<td>${vo.nquire_num}</td>
+			<td>${vo.id}</td>	
+		<c:choose>
+			<c:when test="${sessionScope.id eq vo.id || sessionScope.id eq 'admin'}">
+				<td><a href="${cp}/nquire/detail?nquire_num=${vo.nquire_num}">${vo.title}</a></td>
+			</c:when>
+			<c:otherwise>
+				<td>${vo.title}</td>
+			</c:otherwise>
+		</c:choose>
+			<c:if test="${vo.comments!=null }"><td>O</td></c:if><c:if test="${vo.comments==null }"><td>X</td></c:if>
+			<td>${vo.r_date }</td>
+			</tr>
+		</c:forEach>
 </table>
+<!-- form -->
+<div id="ff">
 	<form method="get" action="${cp }/nquire/insert">
-		<input type="submit" value="문의하기">
+		<input type="submit" class="btn-gradient red mini" value="문의하기" id="inp">	
 	</form>
+	<form method="get" action="${cp }/nquire/list">
+		<input type="hidden" name="id" value="${sessionScope.id }">
+		<input type="submit"  class="btn-gradient red mini" value="내문의내역" id="inp">
+	</form>
+<br>
+
+<!-- 페이징 -->
+<div id="paging"> 
+<c:choose>
+		<c:when test="${startPageNum>10 }">
+			<a href="${cp }/nquire/list?pageNum=${startPageNum-1}">◀◀</a>
+		</c:when>
+</c:choose>
+<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+	<c:choose>
+		<c:when test="${pageNum==i }">
+			<a href="${cp }/nquire/list?pageNum=${i}"><span style="color:blue;">${i }</span></a>
+		</c:when>
+		<c:otherwise>
+			<a href="${cp }/nquire/list?pageNum=${i}"><span style="color:#555;">${i }</span></a>
+		</c:otherwise>	
+	</c:choose>
+</c:forEach>
+<c:choose>
+	<c:when test="${endPageNum<pageCount }">
+		<a href="${cp }/nquire/list?pageNum=${endPageNum+1}">▶▶</a>
+	</c:when>
+</c:choose>
+</div>
+</div>
 </body>
 </html>

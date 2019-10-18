@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#home{
+	padding-left: -100px;
+	
+}
+
+table {
+	width: 100%; 
+	text-align: center;
+	margin-top: 30px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-collapse: collapse;
+}
+#tr1{
+	border-bottom: 1px solid gray;
+	
+}
+
+table, th{
+	padding-top: 8px;
+	padding-bottom: 10px;
+	font-size: 1.2em;
+	
+}
+
+
+table, td{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	
+}
+
+tr:nth-child(even){
+	background-color: #f0f0f0;
+}
+#sel{
+	margin-top: 20px;
+	position: relative; 
+	width: 200px; 
+	height: 30px;
+	z-index:2;	
+}
+
+#sel #viewSongList{
+	width: 100%;
+	height: 40px;
+	min-height: 32px;
+	line-height: 32px;
+	padding: 0 10px;
+	
+}
+#divPaging {text-align: center; width:100%; height: 30px; margin-top: 10px; margin-bottom: 10px;}
+#divPaging > div {float:left; width: 30px; margin:0 auto; margin-top: 30px;text-align:center;}
+#divSearchOption{
+	width: 100%;
+	height: 100px;
+	text-align: center;	
+}
+
+#divSearchOption form {
+	height: 100%;
+	width: 100%;
+}
+
+#divSearchOption form select {
+	margin-top: 20px;
+	position: relative; 
+	width: 150px; 
+	height: 35px;
+	text-align: center;
+	z-index:1;	
+	font-size: 1.1em;
+}
+#divSearchOption #keyword{
+	height: 30px;
+	font-size: 20px;
+
+}
+#divSearchOption #sub{
+	 background-color: #11442d;
+ 	 width: 60px;	 
+ 	 font-size: 1.3em;
+ 	 color: white;
+
+}
+#div1 div #div2{
+	position: relative;
+	top: 0px;
+	right: 200px;
+}
+#divSearchOption > div {
+	float:left; 
+	margin:0 auto; 
+	margin-top: 30px; 
+	width:auto; 
+	height:100px; 
+	text-align:center;
+	}
