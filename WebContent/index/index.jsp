@@ -59,6 +59,7 @@
 					<input type="button" value="친구[${newrf }]" onclick="showMsg('${cp }/friends','${sessionScope.id}')">
 				</c:otherwise>
 				</c:choose>
+				<input type="button" value="메세지" onclick="showMsg('${cp }/messageList','${sessionScope.id}')">
 				<input type="button" value="마이페이지" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>

@@ -8,6 +8,8 @@
 <title>message/message.jsp</title>
 </head>
 <body>
-
+<c:forEach var="list" items="${msgList }">
+	<a href="${cp }/message/detail?rid=${list }">${list }</a><br>
+</c:forEach>
 </body>
 </html>
