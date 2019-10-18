@@ -9,10 +9,11 @@
 </head>
 <body>
 <script type="text/javascript">
+	window.onload=function(){
+		getMsg('${rid}');
+	}
 	var ixhr=null;
-	var rid="";
 	function sendMsg(rid){
-		rid=rid;
 		ixhr=new XMLHttpRequest();
 		ixhr.onreadystatechange=success;
 		var contents=document.getElementById("contents");
@@ -23,7 +24,7 @@
 		if(ixhr.readyState==4 && ixhr.status==200){
 			var contents=document.getElementById("contents");
 			contents.value="";
-			getMsg(rid);
+			deleteMsg();
 			}
 		}
 	
@@ -50,6 +51,12 @@
 	}
 	function deleteMsg(){
 		var msgList=document.getElementById("msgList");
+		var msglc=msgList.childNodes;
+		for (var i = msglc.length-1; i >=0; i--) {
+			var msg=msglc.item(i);
+			msgList.removeChild(msg);
+		}
+		getMsg('${rid}');
 	}
 </script>
 <div id="msgList">
@@ -57,21 +64,6 @@
 
 </div>
 
-<c:forEach var="list" items="${list }">	
-	<c:choose>
-		<c:when test="${list.sid eq sessionScope.id }">
-		
-		<c:set var="rid" value="${list.rid }"/>
-			${list.contents }<br>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="i" begin="1" end="20">
-				&nbsp;
-			</c:forEach>
-			${list.contents }<br>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-<input type="text" width="30" id="contents"><input type="button" value="보내기" onclick="sendMsg(${rid})">
+<input type="text" width="30" id="contents"><input type="button" value="보내기" onclick="sendMsg('${rid}')">
 </body>
 </html>
