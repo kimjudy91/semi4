@@ -47,7 +47,7 @@
 				</c:otherwise>
 				</c:choose>
 				<input type="button" value="광고" onclick="location.href='${cp}/ad/list'">
-				<input type="button" value="회원관리" onclick="location.href='${cp}/myPage'">
+				<input type="button" value="회원관리" onclick="location.href='${cp}/members_management'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>
 			<c:when test="${sessionScope.id!=null }">

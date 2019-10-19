@@ -32,14 +32,13 @@
 			grade="정지회원으";
 		}
 		if (confirm(id+"님의 등급을 "+grade+"로 바꾸시겟습니까?") == true) { 
-			location.href="/semi/members_management?id="+id+"&selgrade="+grade+"&cmd=setgrade";
+			location.href="${cp}/members_management?id="+id+"&selgrade="+grade+"&cmd=setgrade";
 			} else { 
 				return;
 			}
 		}
 </script>
 <body>
-<c:set var="cp" value="${pageContext.request.contextPath }"/>
 <table border="1" width="600" style="text-align: center; margin-top: 20px;" >
 
 	<tr>
