@@ -61,8 +61,8 @@
 	
 	<tr>
 		<td colspan="4" class="text-center">
-			<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}'">
-			<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}'">
+			<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}&id=${vo.id}'">
+			<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}&id=${vo.id}'">
 			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
 			<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>
@@ -108,7 +108,7 @@
 				${comLi.id }<br>
 				
 				${comLi.comments_contents }
-				<a href="">삭제</a>
+				<a href="${cp }/board/comments?ref=${comLi.ref}&cmd=delete&id=${comLi.id}&write_num=${comLi.write_num}">삭제</a>
 				<br>
 				<c:choose>
 					<c:when test="${cnt!=0 }">

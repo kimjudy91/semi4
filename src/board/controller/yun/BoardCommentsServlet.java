@@ -28,6 +28,8 @@ public class BoardCommentsServlet extends HttpServlet{
 			insert(req,resp);
 		}else if(cmd!=null && cmd.equals("insertCom")) {
 			insertComm(req,resp);
+		}else if(cmd!=null && cmd.equals("delete")) {
+			delete(req,resp);
 		}
 	}
 	protected void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -62,6 +64,25 @@ public class BoardCommentsServlet extends HttpServlet{
 		req.setAttribute("wrtie_num", write_num);
 		if(n>0) {
 			req.getRequestDispatcher("/board/detail").forward(req, resp);
+		}else {
+			req.getRequestDispatcher("/board/detail").forward(req, resp);
+		}
+	}
+	protected void delete(HttpServletRequest req,HttpServletResponse resp)throws ServletException,IOException{
+		int ref=Integer.parseInt(req.getParameter("ref"));
+		String id=(String)req.getSession().getAttribute("id");
+		int write_num=Integer.parseInt(req.getParameter("write_num"));
+		ArrayList<BoardCommentsVo> commList=BoardCommentsDao.getCommentsDao().getCommList(write_num);
+		req.setAttribute("commList", commList);
+		req.setAttribute("wrtie_num", write_num);
+		String did=req.getParameter("id");
+		if(id.equals(did)) {
+			int n=BoardCommentsDao.getCommentsDao().deleteComm(ref);
+			if(n>0) {
+				req.getRequestDispatcher("/board/detail").forward(req, resp);
+			}else {
+				req.getRequestDispatcher("/board/detail").forward(req, resp);
+			}
 		}else {
 			req.getRequestDispatcher("/board/detail").forward(req, resp);
 		}

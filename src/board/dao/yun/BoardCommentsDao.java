@@ -177,6 +177,22 @@ public class BoardCommentsDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
+	public int deleteComm(int ref) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="delete from comments where ref=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
 
 

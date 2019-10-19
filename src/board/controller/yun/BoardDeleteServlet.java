@@ -14,14 +14,20 @@ import board.vo.yun.BoardVo;
 public class BoardDeleteServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id=(String)req.getSession().getAttribute("id");
+		String did=req.getParameter("id");
 		int write_num=Integer.parseInt(req.getParameter("write_num"));
-		BoardDao dao=new BoardDao();
-		int n=dao.delete(write_num);
-		if(n>0) {
-			resp.sendRedirect(req.getContextPath()+"/board/community");
+		if(id.equals(did)) {	
+			BoardDao dao=new BoardDao();
+			int n=dao.delete(write_num);
+			if(n>0) {
+				resp.sendRedirect(req.getContextPath()+"/board/community");
+			}else {
+				req.setAttribute("page","/board/community.jsp");
+				req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+			}
 		}else {
-			req.setAttribute("page","/board/community.jsp");
-			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+			resp.sendRedirect(req.getContextPath()+"/board/community");
 		}
-	}
+	}		
 }

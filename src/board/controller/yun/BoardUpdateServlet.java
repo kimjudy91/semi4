@@ -15,13 +15,18 @@ import board.vo.yun.BoardVo;
 public class BoardUpdateServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int write_num=Integer.parseInt(req.getParameter("write_num"));
-		BoardDao dao=new BoardDao();
-		BoardVo vo=dao.select(write_num);
-		req.setAttribute("vo", vo);
-		req.setAttribute("page","/board/update.jsp");
-		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
-		
+		String id=(String)req.getSession().getAttribute("id");
+		String did=req.getParameter("id");
+		if(id.equals(did)) {
+			int write_num=Integer.parseInt(req.getParameter("write_num"));
+			BoardDao dao=new BoardDao();
+			BoardVo vo=dao.select(write_num);
+			req.setAttribute("vo", vo);
+			req.setAttribute("page","/board/update.jsp");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+		}else {
+			resp.sendRedirect(req.getContextPath()+"/board/community");
+		}
 	}
 	
 	@Override
