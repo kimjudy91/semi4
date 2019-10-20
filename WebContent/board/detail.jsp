@@ -18,9 +18,16 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
+<style type="text/css">
+	*.p:nth-child(even){
+	background-color: #f0f0f0;
+}
+</style>
 </head>
 <body>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
+<div class="out" style="width: 95%; text-align: center; border: 1px solid black; padding: 20px; margin: 15px">
+<div class="in" style="display: inline-block; padding: 20px; margin: 15px">
 <h1>상세글보기</h1>
 
 <div>
@@ -75,8 +82,12 @@
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">
-댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
+<div>&nbsp;&nbsp;
+<br>
+<div style="float: left">&nbsp;&nbsp;&nbsp;댓글내용</div>
+<textarea rows="5" cols="50" name="comments_contents"></textarea>
 <input type="submit" value="저장">
+</div>
 </form>
 </div>
 <div id="commList">
@@ -134,6 +145,8 @@
 			</form>
 			</div>
 	</c:forEach>
+</div>
+</div>
 </div>
 </div>
 </body>
