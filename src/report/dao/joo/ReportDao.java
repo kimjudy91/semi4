@@ -56,14 +56,23 @@ public class ReportDao {
 			JdbcUtil.close(con, pstmt, rs);
 		}
 	}
-	public ArrayList<Report2Vo> listReport2(){
+	public ArrayList<Report2Vo> listReport2(int startRow, int endRow){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select * from report2 ";
+			String
+			sql="select * from" + 		
+					"    (" + 
+					"        select aa.*,rownum rrnum from" + 
+					"        (" + 
+					"            select * from report2 order by rnum desc" + 
+					"        )aa" + 
+					")where rrnum>=? and  rrnum<=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,startRow);
+			pstmt.setInt(2,endRow);
 			rs=pstmt.executeQuery();
 			ArrayList<Report2Vo> listReport2=new ArrayList<Report2Vo>();
 			while(rs.next()) {
@@ -148,6 +157,27 @@ public class ReportDao {
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int getCount() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=JdbcUtil.getConn();
+			String sql="select NVL(count(*),0) from report2";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				int cnt=rs.getInt(1);
+				return cnt;
+			}
+			return 0;
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return -1;
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
 		}
