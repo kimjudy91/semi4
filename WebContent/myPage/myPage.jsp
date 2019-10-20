@@ -61,14 +61,17 @@
 <body>
 <h1>마이페이지</h1>
 
+<div id="all">
 <!-- 정보수정 -->
 <div id="set">
 <h2>정보수정</h2>
 <form action="${cp }/updateMembers" method="post">
-이메일   <input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"><br>
-전화번호   <input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"><br>
-주소   <input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"><br>
-등급
+<table>
+<tr><th>이메일</th><td><input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"></td></tr>
+<tr><th>전화번호 </th><td><input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"></td></tr>
+<tr><th>주소  </th><td><input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"></td></tr>
+<tr><th>등급</th>
+<td style="text-align: left;">
 <c:choose>
 	<c:when test="${vo.grade=='1' }">
 	<img  src="${cp }/images/bronze.png">
@@ -80,19 +83,25 @@
 	<img  src="${cp }/images/gold.png">
 	</c:when>
 </c:choose>
-<br>
+</td></tr>
+<tr><th colspan="2" id="sav">
 <input type="submit" value="저장하기">
+</th></tr>
+</table>
 </form>
+</div>
 
 <!-- 신고내역 -->
 <div id="rep2">
 <c:if test="${rlist!=null }">
 <h2>신고내역</h2>
+<div id="aa">
 <c:forEach var="aa" items="${rlist }">
 	신고내용:${aa.report_content }<br>
 	답변내용:<c:if test="${aa.comments==null }">X</c:if><c:if test="${aa.comments!=null }">${aa.comments }</c:if>
 	<hr>
 </c:forEach>
+</div>
 </c:if>
 </div>
 </div>

@@ -3,23 +3,67 @@
 h1{
 	font-size: 3em;
 	width: 100%;
-	margin: auto;
     height: 100px;
-    padding-top: 30px;
+    padding-top: 40px;
     text-align: center;
     border-bottom: ridge;	
+
+   
 	
 }
-
+#all{
+	padding-left: 80px;
+	
+}
 div #set{
 	position: absolute;
 	width: 500px;
 	margin-top: 10px;
+	text-align: center;
+	border-style: outset;
 }
 #rep2{
 	position: absolute;
-	width: 500px;
-	margin-top: -188px;
-	margin-left: 900px;
+    width: 500px;
+    height: 700px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 900px;
+    border: 1px solid lightgray;
+    border: outset;
 	
+	
+}
+h2{
+	margin-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+	font-size: 30px;
+}
+#aa{
+	margin-top: 20px;
+	
+	
+}
+table{
+	width: 300px;
+	margin:auto;
+	margin-top: 30px;
+	
+}
+
+th{
+	float:right;
+	font-size: 1.2em;
+}
+td{
+	font-size: 1.2em;
+}
+#sav{
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	float: none;
+	padding-bottom: 20px;
+	padding-top: 15px;
 }
