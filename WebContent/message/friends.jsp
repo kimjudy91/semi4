@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>message/friends.jsp</title>
+<link rel="stylesheet" type="text/css" href="${cp }/message/friends.css">
 </head>
 <body>
 <c:if test="${cmd !=null }">
@@ -34,9 +35,13 @@
 			}
 	}
 </script>
-<h1>친구목록</h1>
+<div id="f"><h1>친구목록</h1></div>
+<div id="f1">
 <input type="text" id="rid" width="40" ><input type="button" value="친구추가" onclick="sendfri('${sessionScope.id}')">
-<table border="1" width="400">
+</div>
+
+<div id="t1">
+<table>
 	<tr>
 		<th>아이디</th><th>메세지</th>
 	</tr>
@@ -53,8 +58,11 @@
 	</tr>
 	</c:forEach>
 </table>
+</div>
+
 <h2>보낸목록</h2>
-<table border="1" width="400">
+<div id="t2">
+<table>
 	<tr>
 		<th>아이디</th><th>수락여부</th>
 	</tr>
@@ -66,8 +74,11 @@
 	</tr>
 	</c:forEach>
 </table>
+</div>
+
 <h2>받은목록</h2>
-<table border="1" width="400">
+<div id="t3">
+<table>
 	<tr>
 		<th>아이디</th><th>수락</th>
 	</tr>
@@ -79,5 +90,6 @@
 	</tr>
 	</c:forEach>
 </table>
+</div>
 </body>
 </html>
