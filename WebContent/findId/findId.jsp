@@ -44,7 +44,7 @@
 <body>
 <div id="main">
 <div id="header">
-<h1>아이디 찾기</h1>
+<h1>ID SEARCH</h1>
 </div>
 <form method="post" action="${cp }/findId" id="findId">
 <input type="text" value="전화번호" id="phone" name="phone" onclick="clearPhone()" onblur="setPhone()" style="color:silver;"><br>

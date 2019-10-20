@@ -45,7 +45,7 @@
 <body>
 <div id="main">
 <div id="header">
-<h1>세미 프로젝트</h1>
+<h1>LOGIN</h1>
 </div>
 <form method="post" action="${cp }/logins" id="login">
 <input type="text" value="아이디" id="id" name="id" onfocus="clearId()" onblur="setId()" style="color:silver;"><br>
