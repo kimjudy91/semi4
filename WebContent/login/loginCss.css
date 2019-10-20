@@ -8,10 +8,16 @@
 	width:100%;
 	height:120px;
 	text-align: center;
+	font-style: oblique;
+    font-size: -webkit-xxx-large;
+}
+
+	
+	
 }
 body{
-	width:1000px;
-	height:800px;
+	width: auto;
+	height: auto;
 	background-color: silver;
 	font-size: 1.5em;
 	position: relative;
@@ -20,6 +26,7 @@ body{
 	width:1000px;
 	height:700px;
 	background-color: white;
+	padding-top: 100px;
 }
 #login{
 	width:100%;
@@ -46,15 +53,24 @@ body{
 	text-align: center;
 	width:1000px;
 	height:100px;
-	position: absolute;bottom: 200px; 
+	position: absolute;
 }
 .menu{
 	color: silver;
 	text-decoration:none;
+	font-style: oblique;
+    font-size: x-large;
 }
 #loginbtn{
 	width:300px;
 	height:50px;
 	font-size: 20px;
-	
+	background-blend-mode: color-burn;
+    border-block-end-color: black;
+    color: white;
+    font-weight: bold;
+    background-color: darkslategrey;
+    border: outset;
+    border-color: dimgrey;
+    
 }
