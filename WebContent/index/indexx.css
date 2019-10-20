@@ -81,8 +81,7 @@ body{
 	list-style: none;
 	margin-left:10px;
 	margin: center;
-	dispalay: block;
-	float: right;
+	
 }
 
 #main #menu #logins input{
@@ -95,6 +94,8 @@ body{
  	 margin-right: auto;
  	 text-align: center;
  	 color: white;
+ 	 dispalay: block;
+	 float: right;
 }
 
 #main #menu #users{
