@@ -14,7 +14,7 @@
 	}
 </script>
 <body>
-<link rel="stylesheet" type="text/css" href="../css.min/detailStyles.css">
+<link rel="stylesheet" type="text/css" href="../css.min/detailStyle.css">
 <div id="nd">
 <h1>나의 문의글</h1>
 <hr>
