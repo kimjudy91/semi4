@@ -27,7 +27,7 @@ public class MainBoardFileDao {
 					   "from music_file " +
 					   "order by likes desc" +
 					   ") " +
-					   "where rownum<=11";
+					   "where rownum<=10";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<MainBoardFileVo> list=new ArrayList<MainBoardFileVo>();
