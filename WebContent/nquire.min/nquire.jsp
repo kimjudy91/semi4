@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>nquire.jsp</title>
 </head>
+
 <body>
 <link rel="stylesheet" type="text/css" href="../css.min/listStyle.css">
+
 <div id="nql">
 <h1>문의게시판</h1>
 <hr>
@@ -34,14 +36,26 @@
 			</tr>
 		</c:forEach>
 </table>
+
+
+
 <!-- form -->
 <div id="ff">
+
 	<form method="get" action="${cp }/nquire/insert">
 		<input type="submit" class="btn-gradient red mini" value="문의하기" id="inp">	
 	</form>
 	<form method="get" action="${cp }/nquire/list">
 		<input type="hidden" name="id" value="${sessionScope.id }">
-		<input type="submit"  class="btn-gradient red mini" value="내문의내역" id="inp">
+		<c:choose>
+			<c:when test="${sessionScope.id!=null }">
+				<input type="submit"  class="btn-gradient red mini" value="내문의내역" id="inp">
+			</c:when>
+			<c:otherwise>
+				<input type="button"  class="btn-gradient red mini" value="내문의내역" id="inp" onclick="btn_nquire_alert_click()">
+			</c:otherwise>
+		</c:choose>
+		
 	</form>
 <br>
 
@@ -70,4 +84,10 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+	function btn_nquire_alert_click(){
+		alert("올바른 아이디로 로그인 하세요.");
+	}
+
+</script>
 </html>
