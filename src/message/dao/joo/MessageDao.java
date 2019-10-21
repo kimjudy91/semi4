@@ -22,13 +22,14 @@ public class MessageDao {
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select * from message where (sid=? and rid=?) or (sid=? and rid=?)";
+			String sql="select * from message where (sid=? and rid=?) or (sid=? and rid=?)  order by message_num asc";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, ssid);
 			pstmt.setString(2, rrid);
 			pstmt.setString(3, rrid);
 			pstmt.setString(4, ssid);
 			rs=pstmt.executeQuery();
+			setChecking(rrid, ssid);
 			ArrayList<MessageVo> list=new ArrayList<MessageVo>();
 			while(rs.next()) {
 				int message_num=rs.getInt("message_num");
@@ -195,7 +196,52 @@ public class MessageDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	
+	public int newMsgs(String sid,ArrayList<String> list) {
+		int count=0;
+		for (int i = 0; i < list.size(); i++) {
+			count+=newMsg(sid, list.get(i));
+		}
+		return count;
+	}
+	public int newMsg(String rid,String sid) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="select count(*) from message where sid=? and rid=? and checking=0";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sid);
+			pstmt.setString(2, rid);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return -1;	
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int setChecking(String sid,String rid) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=JdbcUtil.getConn();
+			String sql="update message set checking=1 where sid=? and rid=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sid);
+			pstmt.setString(2, rid);
+			return pstmt.executeUpdate();
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+	}
 }
 
 
