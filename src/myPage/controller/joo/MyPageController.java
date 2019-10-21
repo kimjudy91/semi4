@@ -20,6 +20,9 @@ public class MyPageController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=(String)req.getSession().getAttribute("id");
+		if(req.getParameter("id")!=null) {
+			id=req.getParameter("id");
+		}
 		MembersVo vo=MembersDao.getDao().search(id);
 		ArrayList<Report2Vo> rlist=ReportDao.getDao().searchListReport2(id);
 		req.setAttribute("rlist", rlist);

@@ -20,7 +20,7 @@
 <c:if test="${grade==0}">
 	<c:redirect url="/nouse"/>
 </c:if>
-<c:if test="${warning!=0 }">
+<c:if test="${warning>0 }">
 <c:set var="warning" value="${warning }"/>
 	<script type="text/javascript">
 		function showWarning(){
@@ -59,7 +59,14 @@
 					<input type="button" value="친구[${newrf }]" onclick="showMsg('${cp }/friends','${sessionScope.id}')">
 				</c:otherwise>
 				</c:choose>
-				<input type="button" value="메세지" onclick="showMsg('${cp }/messageList','${sessionScope.id}')">
+				<c:choose>
+					<c:when test="${countMsgs>0 }">
+						<input type="button" value="메세지[${countMsgs }]" onclick="showMsg('${cp }/messageList','${sessionScope.id}')">
+					</c:when>
+					<c:otherwise>
+						<input type="button" value="메세지" onclick="showMsg('${cp }/messageList','${sessionScope.id}')">
+					</c:otherwise>
+				</c:choose>
 				<input type="button" value="마이페이지" onclick="location.href='${cp}/myPage'">
 				<input type="button" value="로그아웃" onclick="location.href='${cp}/logout'">
 			</c:when>

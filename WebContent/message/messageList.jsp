@@ -8,8 +8,16 @@
 <title>message/message.jsp</title>
 </head>
 <body>
-<c:forEach var="list" items="${msgList }">
-	<a href="${cp }/message/detail?rid=${list }">${list }</a><br>
+<c:forEach var="list" items="${newMsg }">
+	<c:choose>
+		<c:when test="${list.count>0 }">
+			<a href="${cp }/message/detail?rid=${list.id }">${list.id }[${list.count }]</a><br>
+		</c:when>
+		<c:otherwise>
+			<a href="${cp }/message/detail?rid=${list.id }">${list.id }</a><br>
+		</c:otherwise>
+	</c:choose>
+	
 </c:forEach>
 </body>
 </html>

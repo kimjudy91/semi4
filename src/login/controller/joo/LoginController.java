@@ -1,6 +1,7 @@
 package login.controller.joo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,8 +33,10 @@ import report.dao.joo.ReportDao;
 			req.getSession().setAttribute("report2Count", report2Count);
 			int newrf=MessageDao.getDao().getRevFriCount(id);
 			req.getSession().setAttribute("newrf",newrf);
-			System.out.println(newrf);
 			req.getSession().setAttribute("id", id);
+			ArrayList<String> mlist=MessageDao.getDao().getMsgList(id);
+			int countMsgs=MessageDao.getDao().newMsgs(id, mlist);
+			req.setAttribute("countMsgs", countMsgs);
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
