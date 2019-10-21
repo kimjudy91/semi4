@@ -16,7 +16,7 @@
 <body>
 <div id="main">
 <div id="header">
-<h1></h1>
+<h1>Music'sss Guest</h1>
 <c:if test="${grade==0}">
 	<c:redirect url="/nouse"/>
 </c:if>
