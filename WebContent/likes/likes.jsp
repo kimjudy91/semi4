@@ -6,13 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>/likes/likes.jsp</title>
+<style type="text/css">
+	table{
+		text-align: center; 
+		font-size: 20px;
+		width: 500px;
+		
+	}
+	#TTOP{
+		font-size: 13px;
+		padding-bottom: 15px;
+    	border-bottom: inherit;
+	}
+
+
+</style>
 </head>
 <body>
+<div id="TTOP">
+<h1>좋아요TOP10</h1>
+</div>
 
-<h1 style="font-size: 1px;">좋아요TOP10</h1>
-
-
-<table border="1" width="300" style="font-size: 1px;">
+<table>
 	<tr>
 		<th>글번호</th><th>제목</th><th>아이디</th><th>좋아요</th>
 
