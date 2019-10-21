@@ -41,18 +41,17 @@
 
 <!-- form -->
 <div id="ff">
-
 	<form method="get" action="${cp }/nquire/insert">
-		<input type="submit" class="btn-gradient red mini" value="문의하기" id="inp">	
+		<input type="submit" id="nbtn" value="문의하기" id="inp">	
 	</form>
 	<form method="get" action="${cp }/nquire/list">
 		<input type="hidden" name="id" value="${sessionScope.id }">
 		<c:choose>
 			<c:when test="${sessionScope.id!=null }">
-				<input type="submit"  class="btn-gradient red mini" value="내문의내역" id="inp">
+				<input type="submit" value="내문의내역" id="nbtn">
 			</c:when>
 			<c:otherwise>
-				<input type="button"  class="btn-gradient red mini" value="내문의내역" id="inp" onclick="btn_nquire_alert_click1()">
+				<input type="button" value="내문의내역" id="nbtn" onclick="btn_nquire_alert_click1()">
 			</c:otherwise>
 		</c:choose>
 		
