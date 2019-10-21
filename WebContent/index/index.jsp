@@ -92,11 +92,18 @@
 		<hr id="uhr">
 		<%
 		ArrayList<String> userIds=SessionIdListener.getUserId();
-		for(String a:userIds){
+		for(int i=0;i<userIds.size();i++){
+			if(!userIds.get(i).equals("admin")){
 			%>
-			<%=a %><br>
+			<a href="javascript:showsel('<%=userIds.get(i)%>','<%=i%>')"><%=userIds.get(i) %></a>
+			<select id="sss<%=i %>"  style="display: none;width:100%;" size="2" onchange="showMsg2('<%=userIds.get(i) %>',this.value)" onblur="hidesel('<%=userIds.get(i)%>','<%=i%>')">
+				<option value="1">친구추가</option>
+				<option value="2">글보기</option>	
+			</select>
+			<br>
 			<%
-		}
+			}
+			}
 		%>
 		</div>
 	</div>
@@ -111,7 +118,27 @@
 	function showMsg(cp,id){
 		window.open(cp,"메세지",'width=660, height=620, toolbar=yes, menubar=yes, scrollbars=no, resizable=yes');
 	}
-	
+	function showsel(e,n){
+		var sel=document.getElementById("sss"+n);
+		sel.style.display="inline";
+		sel.focus();
+	}function hidesel(e,n){
+		var sel=document.getElementById("sss"+n);
+		sel.style.display="none";
+	}
+	function showMsg2(id,s){
+		
+		if(s==1){
+			if (confirm(id+"님을 친구추가 하시겠습니까?") == true) { 
+				window.open("/semi/insertFri?sid='${sessionScope.id}'&rid="+id,"메세지",'width=660, height=620, toolbar=yes, menubar=yes, scrollbars=no, resizable=yes');
+			}
+				 else { 
+					return;
+				}
+		}else if(s==2){
+			location.href="/semi/board/community?field=id&keyword="+id;
+		}
+	}
 </script>
 </body>
 </html>

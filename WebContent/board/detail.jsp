@@ -189,7 +189,7 @@
 			for(var i=0;i<comm.length;i++){
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
-				div.innerHTML=comm[i].id+"<br>"+comm[i].comments_contents;
+				div.innerHTML="<hr>"+comm[i].id+"<br>"+comm[i].comments_contents;
 				div.style.marginLeft=50*comm[i].lev+"px";
 				div.style.border="1px solid blue";
 				div.className="cl"+comm[i].ref;
