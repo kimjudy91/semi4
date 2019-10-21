@@ -7,10 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-${rid }
+<body style="background-color: #b1b1b1;">
 <script type="text/javascript">
 	window.onload=function(){
+		function focusMsg(){
+			var con=document.getElementById("contents");
+			con.focus();
+		}
 		getMsg1();
 	}
 	var cnt1;
@@ -48,16 +51,34 @@ ${rid }
 				cnt1=cnt2;
 				deleteMsg();
 				for(var i=0;i<msgs.length;i++){
-					var div=document.createElement("div");
-					div.innerHTML=msgs[i].contents;
-					if(msgs[i].rid=='${rid}'){
-						div.style.border="1px solid blue";
+					var div=document.createElement("span");
+					var divs=document.createElement("div");
+					if(msgs[i].sid=='${rid}'){
+						div.innerHTML=msgs[i].contents;
+						divs.style.marginTop="15px";	
+						div.style.backgroundImage="url('/semi/images/mess1.png')";
+						div.style.backgroundRepeat="no-repeat";
+						div.style.backgroundSize ="100%100%";	
+						div.style.padding="5px";
+						divs.style.textAlign="left";
+				
 					}else{
-						div.style.border="1px solid red";
-						div.style.textAlign="right";
+						div.innerHTML=msgs[i].contents;
+						div.style.textAlign="right";	
+						div.style.backgroundImage="url('/semi/images/mess.png')";
+						div.style.backgroundRepeat="no-repeat";
+						div.style.backgroundSize ="100%100%";
+						div.style.padding="5px";
+						div.style.color="#fbfaef";
+						divs.style.marginTop="15px";	
+						
+						
 					}
-					msgList.appendChild(div);
+					divs.appendChild(div);
+					msgList.appendChild(divs);
 					msgList.scrollTop = msgList.scrollHeight;
+					var con=document.getElementById("contents");
+					con.focus();
 				}
 			}else{
 				return;
@@ -79,16 +100,36 @@ ${rid }
 			cnt1=msgs.length;
 			cnt2=msgs.length;
 			for(var i=0;i<msgs.length;i++){
-				var div=document.createElement("div");
-				div.innerHTML=msgs[i].contents;
-				if(msgs[i].rid=='${rid}'){
-					div.style.border="1px solid blue";
+				var div=document.createElement("span");
+				var divs=document.createElement("div");
+				if(msgs[i].sid=='${rid}'){
+					div.innerHTML=msgs[i].contents;
+					div.style.backgroundImage="url('/semi/images/mess1.png')";
+					div.style.backgroundRepeat="no-repeat";
+					div.style.backgroundSize ="100%100%";	
+					div.style.padding="5px";
+					divs.style.marginTop="15px";
+					
+				
+					divs.style.textAlign="left";
 				}else{
-					div.style.border="1px solid red";
-					div.style.textAlign="right";
+					div.innerHTML=msgs[i].contents;
+					div.style.backgroundImage="url('/semi/images/mess.png')";
+					div.style.backgroundRepeat="no-repeat";
+					div.style.backgroundSize ="100%100%";
+					div.style.textAlign="right";	
+					div.style.padding="5px";
+					divs.style.marginTop="15px";	
+							
+					
+					div.style.color="#fbfaef";
+					
 				}
-				msgList.appendChild(div);
+				divs.appendChild(div);
+				msgList.appendChild(divs);
 				msgList.scrollTop = msgList.scrollHeight;
+				var con=document.getElementById("contents");
+				con.focus();
 			}
 		}
 		recmsg();
@@ -107,14 +148,27 @@ ${rid }
 	function rrr(){
 		getMsg();	
 	}
+	function showScroll(){
+		var divs=document.getElementById("msgList");
+		divs.style.overflow="auto";
+	}	function hideScroll(e){
+		var divs=document.getElementById("msgList");
+		divs.style.overflow="hidden";
+	}
 </script>
 <div>
-<div id="msgList" style="height: 600px;width:600px;overflow: auto;" >
+<h3 style="text-align: left; display:inline-block;"><a href="${cp }/messageList" style="font-size: 25px;color:black;text-decoration: none;">＜<c:if test="${countMsgs>0}">${ countMsgs}</c:if></a></h3>
+<h2 style="text-align: center; display:inline-block;margin-left: 250px;">${rid }</h2>
+<div id="msgList" style="height: 450px;width:600px;overflow: hidden;text-align: right;" onmousewheel="showScroll()" onmouseout="hideScroll()">
 
 
 </div>
 </div>
-<form action="javascript:sendMsg('${rid}')">
-<input type="text" width="30" id="contents" > </form><input type="button" value="보내기" onclick="sendMsg('${rid}')">
+<div>
+<form action="javascript:sendMsg('${rid}')" style="display: inline-block;">
+<input type="text"  id="contents" style=" width:500px; height:30px;display: inline-block;border: 1px solid silver;"> </form>
+
+<input type="button" value="보내기" onclick="sendMsg('${rid}')" style="display: inline-block;width:95px; height:40px;border-radius: 10px;background-color: #c7c7c7;color:#fbfbfb;-webkit-text-stroke-width:medium;">
+</div>
 </body>
 </html>

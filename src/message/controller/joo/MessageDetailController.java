@@ -18,6 +18,9 @@ public class MessageDetailController extends HttpServlet{
 		String sid=(String)req.getSession().getAttribute("id");
 		String rid=req.getParameter("rid");
 		ArrayList<MessageVo> list=MessageDao.getDao().msgDetailList(sid, rid);
+		ArrayList<String> mlist=MessageDao.getDao().getMsgList(sid);
+		int countMsgs=MessageDao.getDao().newMsgs(sid, mlist);
+		req.setAttribute("countMsgs", countMsgs);
 		req.setAttribute("rid", rid);
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/message/messageDetail.jsp").forward(req, resp);

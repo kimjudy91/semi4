@@ -109,7 +109,7 @@
 </div>
 <script type="text/javascript">
 	function showMsg(cp,id){
-		window.open(cp,"메세지",'width=800, height=700, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes');
+		window.open(cp,"메세지",'width=660, height=620, toolbar=yes, menubar=yes, scrollbars=no, resizable=yes');
 	}
 	
 </script>
