@@ -43,7 +43,7 @@
 					<input type="button" value="신고" onclick="location.href='${cp}/reportList'">
 				</c:when>
 				<c:otherwise>
-					<input type="button" value="신고[${report2Count }]" onclick="location.href='${cp}/reportList'" size="10"><br>
+					<input type="button" value="신고[${report2Count }]" onclick="location.href='${cp}/reportList'" >
 				</c:otherwise>
 				</c:choose>
 				<input type="button" value="광고" onclick="location.href='${cp}/ad/list'">
