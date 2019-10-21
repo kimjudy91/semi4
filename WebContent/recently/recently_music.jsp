@@ -6,14 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>recently/recently_music.jsp</title>
+<style type="text/css">
+	table{
+		text-align: center; 
+		font-size: 20px;
+		width: 500px;
+		
+	}
+	#TCOM{
+		font-size: 13px;
+		padding-bottom: 15px;
+    	border-bottom: inherit;
+	}
+
+
+</style>
 </head>
 <body>
-<body>
 
-<h1 style="font-size: 1px;">최신글TOP5(커뮤니티)</h1>
+<div id="TCOM">
+<h1>최신글TOP5(커뮤니티)</h1>
+</div>
 
-
-<table border="1" width="300" style="font-size: 1px;">
+<table>
 	<tr>
 		<th>글번호</th><th>제목</th><th>아이디</th><th>작성일</th>
 
@@ -27,6 +42,6 @@
 </c:forEach>
 </table>
 
-</body>
+
 </body>
 </html>

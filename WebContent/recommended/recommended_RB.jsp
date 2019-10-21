@@ -6,12 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>/recommended/recommended_RB.jsp</title>
+<style type="text/css">
+	table{
+		text-align: center; 
+		font-size: 20px;
+		width: 500px;
+		
+	}
+	#TRB{
+		font-size: 13px;
+		padding-bottom: 15px;
+    	border-bottom: inherit;
+    }
+
+
+</style>
 </head>
+<body>
+<div id="TRB">
+<h1>추천장르TOP3(R&B)</h1>
+</div>
 
-<h1 style="font-size: 1px;">추천장르TOP3(R&B)</h1>
-
-
-<table border="1" width="200" style="text-align: center; font-size: 1px;" >
+<table>
 	<tr>
 		<th>글번호</th><th>장르</th><th>좋아요</th>
 	
@@ -41,5 +57,5 @@
 	</tr>
 </c:forEach>
 </table>
-
+</body>
 </html>
