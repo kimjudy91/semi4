@@ -22,7 +22,7 @@
 <!-- 페이징 영역 -->
 <c:choose>
 	<c:when test="${startPage>10}">
-		<a href="${cp }/report/reportList?pageNum=${startPage-1 }">[이전]</a>
+		<a href="${cp }/reportList?pageNum=${startPage-1 }">[이전]</a>
 	</c:when>
 	<c:otherwise>
 		이전
@@ -31,17 +31,17 @@
 	<c:forEach	var="i" begin="${startPage }" end="${endPage }">
 		<c:choose>
 			<c:when test="${i==pageNum }">
-				<a href="${cp }/report/reportList?pageNum=${i}">
+				<a href="${cp }/reportList?pageNum=${i}">
 				<span style='color:blue'>[${i }]</span></a>
 			</c:when>
 			<c:otherwise>
-				<a href="${cp }/report/reportList?pageNum=${i}"><span style='color:#999'>[${i }]</span></a>
+				<a href="${cp }/reportList?pageNum=${i}"><span style='color:#999'>[${i }]</span></a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 <c:choose>
 	<c:when test="${endPage<pageCount }">
-		<a href="${cp }/report/reportList?pageNum=${endPage+1}">[다음]</a>
+		<a href="${cp }/reportList?pageNum=${endPage+1}">[다음]</a>
 	</c:when>
 	<c:otherwise>
 		다음
