@@ -39,6 +39,14 @@
 		<td>${vo.views }</td>
 			<th>좋아요</th>
 		<td>${vo.likes }</td>
+			
+			<td>
+		<form method="post" action="${cp}/fileboard/likes"  >
+	<input type="hidden" value="${vo.likes }" name="likes">
+	<input type="hidden" value="${vo.write_num }" name="write_num">
+	<input type="submit" value="좋아요">
+	</form>
+		</td>
 	</tr>
 	<tr>
 		<th>아이디</th>
@@ -64,7 +72,6 @@
 
 	<tr>
 		<td colspan="4" class="text-center">
-		
 			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/fileboard/update?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/fileboard/delete?write_num=${vo.write_num}&f_num=${vo.f_num}'">
 			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">

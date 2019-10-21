@@ -148,6 +148,30 @@ public int update2(FileUpLoadVo vo3) {
 	}
 }
 
+public int update3(int likess,int write_num) {
+	Connection con=null;
+	
+	PreparedStatement pstmt=null;// 게시판에 좋아요
+	
+	try {
+		con=JdbcUtil.getConn();	
+		int likes=likess+1;
+		String sql="update music_file set  likes= ?  where  write_num = ?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, likes);
+		pstmt.setInt(2, write_num);
+
+		return pstmt.executeUpdate();
+		
+	
+		
+	}catch(SQLException e) {
+		System.out.println(e.getMessage());
+		return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, null);
+	}
+}
 	
 public FileBoardVo detail(int write_num) {
 	Connection con=null;
@@ -168,14 +192,14 @@ public FileBoardVo detail(int write_num) {
 			Date r_date=rs.getDate("r_date");
 			int views=rs.getInt("views");
 			int genre_num=rs.getInt("genre_num");
-			
+			int likes=rs.getInt("likes");
 			views ++;
 			sql="update music_file set views=? where write_num=?";
 			pstmt2=con.prepareStatement(sql);
 			pstmt2.setInt(1, views);
 			pstmt2.setInt(2, write_num);
 			pstmt2.executeUpdate();
-			FileBoardVo vo=new FileBoardVo(write_num, id, f_num, p_title, contents, r_date, views, 0, genre_num);
+			FileBoardVo vo=new FileBoardVo(write_num, id, f_num, p_title, contents, r_date, views, likes, genre_num);
 			return vo;
 		}
 		return null;
