@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<link rel="stylesheet" type="text/css" href="../css.min/listStyle.css">
+<link rel="stylesheet" type="text/css" href="../css.min/listStyles.css">
 
 <div id="nql">
 <h1>문의게시판</h1>
