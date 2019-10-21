@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>findId</title>
-<link rel="stylesheet" type="text/css" href="${cp }/findId/findIdCss.css">
+<link rel="stylesheet" type="text/css" href="${cp }/findId/findId.css">
 <script type="text/javascript">
 	function clearPhone(){
 		var phone=document.getElementById("phone");

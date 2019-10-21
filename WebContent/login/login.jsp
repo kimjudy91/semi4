@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>login.jsp</title>
-<link rel="stylesheet" type="text/css" href="${cp }/login/loginCss.css">
+<link rel="stylesheet" type="text/css" href="${cp }/login/login.css">
 </head>
 <script type="text/javascript">
 	function clearId(){
