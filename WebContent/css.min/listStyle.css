@@ -1,16 +1,16 @@
 @charset "UTF-8";
 
-*{
-	margin: 0px;
-	padding: 0px;
-}
-
 
 #home{
 	padding-left: -100px;
 	
 }
 
+#nql{
+	 white-space: pre;
+    text-align: center;
+    -webkit-text-stroke-width: thin;
+}
 table {
 	width: 100%; 
 	text-align: center;
@@ -55,26 +55,21 @@ tr:nth-child(even){
 	background-color: #11442d;
 }
 
-.btn {
-	position: relative;
-	border: 0;
-	padding: 15px 25px;
-	display: inline-block;
-	text-align: center;
-	color: white;
+#nbtn {
+	width:100px;
+	height:30px;
+	font-size: 13px;
+	background-blend-mode: color-burn;
+    border-block-end-color: #11442d;
+    color: white;
+    font-weight: bold;
+    background-color: #092317;
+    border: outset;
+    border-color: #023309;
 }
 
-.btn-gradient red mini{
-	margin-top: 25px;
-    background-color: #11442d;
-    display: block;
-    width: 50%;
-    font-size: 1.3em;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: white;
 }
+
 #paging{
 	margin-top: 20px;
 	font-size: 1.2em;
