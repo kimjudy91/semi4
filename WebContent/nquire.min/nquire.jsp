@@ -9,8 +9,10 @@
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="../css.min/listStyle.css">
+<div id="nql">
 <h1>문의게시판</h1>
 <hr>
+</div>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <table >
 	<tr id="tr1"><th>글번호</th><th>작성자</th><th>제목</th><th>답변여부</th><th>작성일</th></tr>

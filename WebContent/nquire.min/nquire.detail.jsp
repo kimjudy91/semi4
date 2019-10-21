@@ -15,8 +15,10 @@
 </script>
 <body>
 <link rel="stylesheet" type="text/css" href="../css.min/detailStyle.css">
-<h1>문의하기</h1>
+<div id="nd">
+<h1>나의 문의글</h1>
 <hr>
+</div>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <input type="hidden" value="${vo.id }" name="id">
 <table>
