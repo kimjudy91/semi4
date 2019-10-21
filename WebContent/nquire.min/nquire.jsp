@@ -52,7 +52,7 @@
 				<input type="submit"  class="btn-gradient red mini" value="내문의내역" id="inp">
 			</c:when>
 			<c:otherwise>
-				<input type="button"  class="btn-gradient red mini" value="내문의내역" id="inp" onclick="btn_nquire_alert_click()">
+				<input type="button"  class="btn-gradient red mini" value="내문의내역" id="inp" onclick="btn_nquire_alert_click1()">
 			</c:otherwise>
 		</c:choose>
 		
@@ -85,7 +85,7 @@
 </div>
 </body>
 <script type="text/javascript">
-	function btn_nquire_alert_click(){
+	function btn_nquire_alert_click1(){
 		alert("올바른 아이디로 로그인 하세요.");
 	}
 
