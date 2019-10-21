@@ -20,7 +20,7 @@
 </head>
 <c:set var="cp" value="${cp }"/>
 <script type="text/javascript">
-	function showMsg(id,g){
+	function showMsg1(id,g){
 		var grade="";
 		if(g==1){
 			grade="브론즈";
@@ -67,7 +67,7 @@
 				        골드<img  src="${cp }/images/gold.png">
 			</c:when>
 			</c:choose>	
-				<select name="selgrade" onchange="showMsg('${vo.id }',this.value)">
+				<select name="selgrade" onchange="showMsg1('${vo.id }',this.value)">
 						<option value="0" <c:if test='${vo.grade==0 }'>selected</c:if>>정지</option>				
 						<option value="1" <c:if test='${vo.grade==1 }'>selected</c:if>>브론즈</option>
 						<option value="2" <c:if test='${vo.grade==2 }'>selected</c:if>>실버</option>
