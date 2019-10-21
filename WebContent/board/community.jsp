@@ -2,12 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" type="text/css" href="${cp }/board/community.css">
+<link rel="stylesheet" type="text/css" href="${cp }/board/communitys.css">
 
-<div id="home">
+
+<div id="cm">
+<h1>COMMUNITY 게시판</h1>
+</div>
+<div id="sel">
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 	<c:set var="a" value="${genre }"/>
-<div id="sel">
 	<select id="viewSongList" onchange="aa(this.value)">
 			<option value="0" <c:if test='${a==0 }'>selected</c:if> >전체선택</option>
 			<option value="1" <c:if test='${a==1 }'>selected</c:if> >알앤비</option>
@@ -15,9 +18,8 @@
 			<option value="3" <c:if test='${a==3 }'>selected</c:if> >가요</option>
 	</select>
 </div>
+
 <!-- 게시판 body 영역 -->
-
-
 <table>
 	<tr id="tr1">
 		<th>글번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회</th>
@@ -78,6 +80,10 @@
 
 <!-- 게시판 페이징 -->
 <div id="divPaging">
+	   <form method="get" action="${cp }/board/insert">
+          <input type="hidden" value="${id }" name="id">
+          <input type='submit' value='글쓰기' id="cbtn2">
+       </form>
      <c:choose>
      	<c:when test="${startPageNum>10 }">
      		<a href="${cp }/board/community?pageNum=${startPageNum-1 }&field=${field }&keyword=${keyword}">◀</a> 
@@ -112,8 +118,8 @@
   		<c:otherwise>
   			▶
   		</c:otherwise>
-  	</c:choose>   
-	</div>         
+  	</c:choose>   	  
+</div>         
 
   	
  
@@ -128,16 +134,11 @@
          <option value='id' <c:if test="${field=='id' }">selected</c:if>>작성자</option>
       </select>
          <input type="text" id="keyword" name="keyword" value="${keyword }" >
-         <input type='submit' value='검색' id="sub">      
-       </form>
-       <form method="get" action="${cp }/board/insert">
-         	 <input type="hidden" value="${id }" name="id">
-          <input type='submit' value='글쓰기' id="dv2">
-       	</form>
-        
+         <input type='submit' value='검색' id="cbtn1">      
+       </form>    
 </div>	
 
-</div>
+
 <script type="text/javascript">
 function aa(n){
 	location.href='${cp }/board/community?genre='+n;
