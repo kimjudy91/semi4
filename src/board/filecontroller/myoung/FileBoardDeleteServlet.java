@@ -22,10 +22,11 @@ public class FileBoardDeleteServlet extends HttpServlet{
 		if(n>0) {
 			resp.sendRedirect(req.getContextPath()+"/fileboard/community");
 		}else {
-			req.setAttribute("top", "header.jsp");
-			req.setAttribute("content", "/fileboard/community.jsp");
-			req.getRequestDispatcher("/fileboard/main.jsp").forward(req, resp);
+			req.setAttribute("page", "/fileboard/community.jsp");
+			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}
 	}
+		
+	
 
 }

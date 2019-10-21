@@ -15,7 +15,7 @@
 	<label><input type="radio" name="trans" value="oldsong">가요</label><br>
 	내용<br>
 	<textarea rows="5" cols="60" name="contents"></textarea><Br>
-	첨부파일 <input type="file" name="file1"><br>
+	첨부파일 <input type="file" name="file"><br>
 	<input type="submit" value="등록">	
 </form>
 </div>

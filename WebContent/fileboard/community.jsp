@@ -158,7 +158,8 @@
 
 <script type="text/javascript">
 function aa(n){
-	location.href='${cp }/fileboard/community?genre='+n;
+
+	location.href='${pageContext.request.contextPath }/fileboard/community?genre='+n;
 	
 
 }

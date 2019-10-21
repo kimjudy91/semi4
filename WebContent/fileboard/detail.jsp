@@ -37,6 +37,8 @@
 		<td>${vo.write_num }</td>
 		<th>조회수</th>
 		<td>${vo.views }</td>
+			<th>좋아요</th>
+		<td>${vo.likes }</td>
 	</tr>
 	<tr>
 		<th>아이디</th>
@@ -58,10 +60,11 @@
 		</td>
 	</tr>
 	
-	
+
+
 	<tr>
 		<td colspan="4" class="text-center">
-			
+		
 			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/fileboard/update?write_num=${vo.write_num}'">
 			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/fileboard/delete?write_num=${vo.write_num}&f_num=${vo.f_num}'">
 			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
@@ -161,6 +164,8 @@
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
 				div.innerHTML=comm[i].id+"<br>"+comm[i].comments_contents;
+				
+				//여기 댓글 div css
 				div.style.marginLeft=50*comm[i].lev+"px";
 				div.style.border="1px solid blue";
 				div.className="cl"+comm[i].ref;
@@ -189,6 +194,9 @@
 		var sr=document.getElementById("sr"+c);
 		sr.style.display="none";
 	}
+	
+
+
 </script>
 </html>
 

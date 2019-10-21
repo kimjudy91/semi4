@@ -25,9 +25,8 @@ import members.vo.min.MembersVo;
 public class FileBoardInsertServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/fileboard/insert.jsp");
-		req.getRequestDispatcher("/fileboard/insert.jsp").forward(req, resp);
+		req.setAttribute("page", "/fileboard/insert.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,16 +43,18 @@ public class FileBoardInsertServlet extends HttpServlet{
 				new DefaultFileRenamePolicy()
 		);
 		
-		String  orgfilename=mr.getOriginalFileName("file1");//전송된 파일명
-		String  savefilename=mr.getFilesystemName("file1");//저장된 파일명
-		File file1=mr.getFile("file1");//업로드된 파일에 대한 정보를 갖는 File객체
-		int filesize=(int) file1.length();//업로드된 파일크기
+		String  orgfilename=mr.getOriginalFileName("file");//전송된 파일명
+		String  savefilename=mr.getFilesystemName("file");//저장된 파일명
+		File file=mr.getFile("file");//업로드된 파일에 대한 정보를 갖는 File객체
+		int filesize=(int) file.length();//업로드된 파일크기
 		
 		
 	
 		String id=mr.getParameter("id");
 		String p_title=mr.getParameter("p_title");
 		String contents=mr.getParameter("contents");
+		int likes=Integer.parseInt(mr.getParameter("likes"));
+		System.out.println("likes"+likes);
 		
 		//여기는 장르 구분하는곳
 		String trans=mr.getParameter("trans");
@@ -71,7 +72,7 @@ public class FileBoardInsertServlet extends HttpServlet{
 		
 		
 		//이거는 그냥 글내용이랑 아이디 저장
-		FileBoardVo vo=new FileBoardVo(0, id, 0, p_title, contents, null, 0, 0, genre_num);
+		FileBoardVo vo=new FileBoardVo(0, id, 0, p_title, contents, null, 0, likes, genre_num);
 		//DB에 전송된 파일정보 저장하기
 		FileUpLoadVo vo1=new FileUpLoadVo(0, orgfilename, savefilename, filesize);
 		FileBoardDao dao1=FileBoardDao.getinstance();
@@ -81,8 +82,7 @@ public class FileBoardInsertServlet extends HttpServlet{
 		}else {
 			req.setAttribute("code", "fail");
 		}
-		req.setAttribute("top", "header.jsp");
-		req.setAttribute("content", "/fileboard/result.jsp");
-		req.getRequestDispatcher("/fileboard/main.jsp").forward(req, resp);
+		req.setAttribute("page", "/fileboard/result.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

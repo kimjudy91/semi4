@@ -120,6 +120,34 @@ public int insert(FileUpLoadVo vo1,FileBoardVo vo) {
 		JdbcUtil.close(con, pstmt, null);
 	}
 }
+
+public int update2(FileUpLoadVo vo3) {
+	Connection con=null;
+	
+	PreparedStatement pstmt1=null;//업로드 게시판에 파일 저장할거
+	
+	
+	try {
+		con=JdbcUtil.getConn();	
+		String sql1="update upload set Orgfilename = ?, Savefilename = ?, Filesize = ?  where  f_num = ?";
+		
+		pstmt1=con.prepareStatement(sql1);
+		pstmt1.setString(1, vo3.getOrgfilename());
+		pstmt1.setString(2, vo3.getSavefilename());
+		pstmt1.setInt(3, vo3.getFilesize());
+		pstmt1.setInt(4,vo3.getF_num());
+		return pstmt1.executeUpdate();
+		
+	
+		
+	}catch(SQLException e) {
+		System.out.println(e.getMessage());
+		return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt1, null);
+	}
+}
+
 	
 public FileBoardVo detail(int write_num) {
 	Connection con=null;
@@ -220,18 +248,21 @@ public FileUpLoadVo detail1(int f_num) {
 		}
 	}
 	
-	public int update(FileBoardVo vo) {
+	public int update(FileBoardVo vo2) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
-
 		try {
 			con=JdbcUtil.getConn();
-			String sql="update music_file set contents=?, p_title=? where write_num=?";
+			
+			String sql="update music_file  set id=?,p_title=?,contents=? where write_num=? ";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, vo.getContents());
-			pstmt.setString(2, vo.getP_title());	
-			pstmt.setInt(3, vo.getWrite_num());			
+			pstmt.setString(1, vo2.getId());
+			pstmt.setString(2, vo2.getP_title());
+			pstmt.setString(3, vo2.getContents());
+			pstmt.setInt(4, vo2.getWrite_num());
 			return pstmt.executeUpdate();
+	
+			
 		}catch(SQLException se) {
 			System.out.println(se.getMessage());
 			return -1;
@@ -252,12 +283,13 @@ public FileUpLoadVo detail1(int f_num) {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				String id=rs.getString("id");
+				int f_num=rs.getInt("f_num");
 				String p_title=rs.getString("p_title");
 				String contents=rs.getString("contents");
 				Date r_date=rs.getDate("r_date");
 				int views=rs.getInt("views");
 				int genre_num=rs.getInt("genre_num");
-				FileBoardVo vo=new FileBoardVo(write_num, id, 0, p_title, contents, r_date, views, 0, genre_num);
+				FileBoardVo vo=new FileBoardVo(write_num, id, f_num, p_title, contents, r_date, views, 0, genre_num);
 				return vo;
 			}
 			return null;
@@ -301,10 +333,18 @@ public FileUpLoadVo detail1(int f_num) {
 
 	public int delete(int write_num,int f_num) {
 		Connection con=null;
-		PreparedStatement pstmt=null;
-		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt=null; //본문 지우기
+		PreparedStatement pstmt1=null;//파일지우기
+		PreparedStatement pstmt2=null;//댓글지우기
 		try {
 			con=JdbcUtil.getConn();
+			
+			String sql2="delete from comment_file where write_num=?";
+			pstmt2=con.prepareStatement(sql2);
+			pstmt2.setInt(1, write_num);
+			pstmt2.executeUpdate();
+			
+			
 			String sql="delete from music_file where write_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,write_num);
@@ -312,11 +352,10 @@ public FileUpLoadVo detail1(int f_num) {
 			 
 			String sql1="delete from upload where f_num=?";
 			pstmt1=con.prepareStatement(sql1);
-			pstmt1.setInt(1, f_num);
-			
-			
-			
+			pstmt1.setInt(1, f_num);	
 			return pstmt1.executeUpdate();
+			
+			
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 			return -1;

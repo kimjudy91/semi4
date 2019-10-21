@@ -30,12 +30,9 @@ public class FileBoardDetailServlet extends HttpServlet{
 		GenreDao dao1=new GenreDao();
 		String genre_name=dao1.GenreSelect(vo.getGenre_num());
 		
-		
-	
 		req.setAttribute("genre_name", genre_name);
 		req.setAttribute("vo", vo);
-		req.setAttribute("top","/fileboard/header.jsp");
-		req.setAttribute("content","/fileboard/detail.jsp");
-		req.getRequestDispatcher("/fileboard/main").forward(req, resp);
+		req.setAttribute("page","/fileboard/detail.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

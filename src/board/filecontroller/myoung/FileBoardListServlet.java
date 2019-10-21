@@ -18,11 +18,19 @@ import board.vo.yun.BoardVo;
 public class FileBoardListServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("ok");
 		req.setCharacterEncoding("utf-8");
 		String genre=req.getParameter("genre");
 		String spageNum=req.getParameter("pageNum");
 		String field=req.getParameter("field");
 		String keyword=req.getParameter("keyword");
+		
+		String spage=req.getParameter("page");
+		
+		if(spage==null) {
+			req.setAttribute("page", "/fileboard/community.jsp");
+		}
+		
 		int pageNum=1;
 		if(spageNum!=null) {
 			pageNum=Integer.parseInt(spageNum);
@@ -41,8 +49,6 @@ public class FileBoardListServlet extends HttpServlet{
 			endPageNum=pageCount;
 		}
 		req.setAttribute("genre",genre);
-		req.setAttribute("top","/fileboard/header.jsp");
-		req.setAttribute("content","/fileboard/community.jsp");
 		req.setAttribute("list", list);
 		req.setAttribute("pageCount", pageCount);
 		req.setAttribute("startPageNum", startPageNum);
@@ -50,7 +56,8 @@ public class FileBoardListServlet extends HttpServlet{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("field", field);
 		req.setAttribute("keyword", keyword);
-		req.getRequestDispatcher("/fileboard/main").forward(req, resp);
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
+	
 
 }
