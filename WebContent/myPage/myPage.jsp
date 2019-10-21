@@ -59,8 +59,9 @@
 	}
 </script>
 <body>
+<div id="myp">
 <h1>마이페이지</h1>
-
+</div>
 <div id="all">
 <!-- 정보수정 -->
 <div id="set">
