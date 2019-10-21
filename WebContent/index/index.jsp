@@ -16,7 +16,7 @@
 <body>
 <div id="main">
 <div id="header">
-<h1>Music'sss Guest</h1>
+<a href="${cp }/index" style="color: white; text-decoration: none"><h1>Music'sss Guest</h1></a>
 <c:if test="${grade==0}">
 	<c:redirect url="/nouse"/>
 </c:if>
