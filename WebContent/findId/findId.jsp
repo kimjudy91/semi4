@@ -47,8 +47,8 @@
 <h1>ID SEARCH</h1>
 </div>
 <form method="post" action="${cp }/findId" id="findId">
-<input type="text" value="전화번호" id="phone" name="phone" onclick="clearPhone()" onblur="setPhone()" style="color:silver;"><br>
-<input type="text" value="이메일" id="email" name="email" onclick="clearEmail()" onblur="setEmail()" style="color:silver;"><br>
+<input type="text" value="전화번호" id="phone" name="phone" onfocus="clearPhone()" onblur="setPhone()" style="color:silver;"><br>
+<input type="text" value="이메일" id="email" name="email" onfocus="clearEmail()" onblur="setEmail()" style="color:silver;"><br>
 <c:if test="${errMsg!=null}">
 <span style="color:red;font-size: 12px; " id="errMsg">아이디가 존재하지 않습니다.</span><br>
 </c:if>
