@@ -80,7 +80,7 @@
 			<li><br><a href="${cp }/nquire/list">문의하기<br></a></li>
 			<li><br></li>
 			<li id="nus1">음악게시판<br></li>
-			<li><br><a href="/fileboard/community">Rock<br></a></li>
+			<li><br><a href="${cp }/fileboard/community">Rock<br></a></li>
 			<li><br><a href="">folk<br></a></li>
 			<li><br><a href="">R&B<br></a></li>
 			<li><br></li>
