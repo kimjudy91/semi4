@@ -68,10 +68,29 @@
 	
 	<tr>
 		<td colspan="4" class="text-center">
-			<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}&id=${vo.id}'">
-			<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}&id=${vo.id}'">
-			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
-			<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
+			
+			<c:choose>
+				<c:when test="${sessionScope.id eq vo.id}">	
+					<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}&id=${vo.id}'">
+					<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}&id=${vo.id}'">
+				</c:when>
+				<c:otherwise>
+						<input type="button" class="btn-modify" value="수정하기" onclick="btn_mo_alert_click();">
+						<input type="button" class="btn-delete" value="삭제하기" onclick="btn_de_alert_click();">
+				</c:otherwise>
+			</c:choose>
+			
+			
+			
+			<c:choose>
+				<c:when test="${sessionScope.id!=null }">	
+					<c:if test="${ sessionScope.id ne vo.id}">
+						<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
+					</c:if>
+				</c:when>
+			</c:choose>
+			
+				<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>
 	</tr>	
 </table>
@@ -198,6 +217,13 @@
 	function hideSr(c){
 		var sr=document.getElementById("sr"+c);
 		sr.style.display="none";
+	}
+	
+	function btn_mo_alert_click(){
+		alert("올바른 아이디로 로그인 하세요.");
+	}
+	function btn_de_alert_click(){
+		alert("올바른 아이디로 로그인 하세요.");
 	}
 </script>
 </html>
