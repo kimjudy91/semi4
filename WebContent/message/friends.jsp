@@ -49,10 +49,10 @@
 	<tr>
 	<c:choose>
 	<c:when test="${(fri.sid eq sessionScope.id ) and (fri.commit==1 )}">
-		<td><a href="${cp }/messageList?rid=${fri.rid}">${fri.rid }</a></td><td><a href="${cp }/message/detail?rid=${fri.rid }">메세지</a></td>
+		<td>${fri.rid }</td><td><a href="${cp }/message/detail?rid=${fri.rid }">메세지</a></td>
 	</c:when>
 	<c:when test="${(fri.rid eq sessionScope.id ) and (fri.commit==1 )}">
-		<td><a href="${cp }/messageList?rid=${fri.sid}">${fri.sid }</a></td><td><a href="${cp }/message/detail?rid=${fri.sid }">메세지</a></td>
+		<td>${fri.sid }</td><td><a href="${cp }/message/detail?rid=${fri.sid }">메세지</a></td>
 	</c:when>
 	</c:choose>	
 	</tr>

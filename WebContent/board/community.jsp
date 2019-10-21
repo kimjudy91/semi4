@@ -8,7 +8,7 @@
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 	<c:set var="a" value="${genre }"/>
 <div id="sel">
-	<select id="viewSongList" onclick="aa(this.value)">
+	<select id="viewSongList" onchange="aa(this.value)">
 			<option value="0" <c:if test='${a==0 }'>selected</c:if> >전체선택</option>
 			<option value="1" <c:if test='${a==1 }'>selected</c:if> >알앤비</option>
 			<option value="2" <c:if test='${a==2 }'>selected</c:if> >팝</option>
