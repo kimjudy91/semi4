@@ -14,22 +14,23 @@
 	}
 </script>
 <body>
-<link rel="stylesheet" type="text/css" href="../css.min/detailStyle.css">
+<link rel="stylesheet" type="text/css" href="../css.min/detailStyles.css">
 <div id="nd">
 <h1>나의 문의글</h1>
 <hr>
 </div>
+
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <input type="hidden" value="${vo.id }" name="id">
 <table>
 	<tr><th>아이디</th><td>${vo.id}</td></tr>
 	<tr><th>제목</th><td>${vo.title}</td></tr>
-	<tr><th>내용</th><td><textarea cols='50' rows='8' name="contents">${vo.contents}</textarea></td></tr>
+	<tr><th>내용</th><td><textarea cols='50' rows='8' name="contents" readonly="readonly">${vo.contents}</textarea></td></tr>
 </table>
 <c:choose>
 <c:when test="${vo.comments!=null }">
 <table>
-			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments" readonly="readonly">${vo.comments }</textarea></td></tr>
+			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments" disabled="disabled">${vo.comments }</textarea></td></tr>
 </table>
 </c:when>
 <c:otherwise>
@@ -39,12 +40,12 @@
 <form method="post" action="${cp }/nquire/comm" id="comm" style="display: none;">
 <input type="hidden" value=${vo.nquire_num } name="nquire_num">
 <table>
-			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments"></textarea></td></tr>
+			<tr><th>답변</th><td><textarea cols='50' rows='8' name="comments" ></textarea></td></tr>
 </table>
 	<input type="submit" value="저장"><br>
 </form>
 </c:otherwise>
-</c:choose><br><br><br>
-<a href="${cp }/nquire/list">목록으로 돌아가기</a>
+</c:choose>
+<div id="nlist"><a href="${cp }/nquire/list">목록으로 돌아가기</a></div>
 </body>
 </html>
