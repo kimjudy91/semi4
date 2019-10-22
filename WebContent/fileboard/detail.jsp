@@ -96,7 +96,7 @@
 </div>
 
 
-<div id="commList">
+<div id="commList" >
 	<c:forEach var="comLi" items="${commList }">
 			<div id="cw${comLi.comments_num }">
 			<div style="border:1px solid red;" id="c${comLi.comments_num }" >

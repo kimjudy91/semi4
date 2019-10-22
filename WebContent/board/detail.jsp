@@ -105,10 +105,10 @@
 </div>
 </form>
 </div>
-<div id="commList" style="overflow: auto;">
+<div id="commList" style="overflow: auto; width: 100%; height: 900px;">
 	<c:forEach var="comLi" items="${commList }">
-			<div id="cw${comLi.comments_num }" >
-			<div style="background-color: lightgray; overflow: auto; height: auto; border-bottom: 1px solid black;" id="c${comLi.comments_num }" class="show">
+			<div id="cw${comLi.comments_num }" style="text-align: left;" >
+			<div style="background-color: lightgray; overflow: auto; height: auto; border-bottom: 1px solid black; " id="c${comLi.comments_num }" class="show">
 				<c:set var="id" value="${comLi.id }"/>
 				<c:set var="ref" value="${comLi.comments_num }"/>
 				<%
@@ -185,10 +185,11 @@
 			for(var i=0;i<comm.length;i++){
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
-				div.innerHTML="<hr>"+comm[i].id+"<br>"+comm[i].comments_contents;
+				div.innerHTML="<hr>└"+comm[i].id+"<br>"+comm[i].comments_contents;
 				div.style.marginTop=20*comm[i].lev+"px";
-				div.style.backgroundColor="lightgray";
-				div.style.textAlign="center";
+				div.style.backgroundColor="#0000003d";
+				div.style.textAlign="left";
+				div.style.marginLeft="20px";
 				div.className="cl"+comm[i].ref;
 				div.style.paddingBottom=15*comm[i].lev+"px";
 				div.id=id;
