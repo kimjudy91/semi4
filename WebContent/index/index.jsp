@@ -23,7 +23,7 @@
 <div id="main">
 <div id="header">
 <a href="${cp }/index" style="color: white; text-decoration: none"><h1>Music'sss Guest</h1></a>
-<c:if test="${grade==0}">
+<c:if test="${sessionScope.grade==0}">
 	<c:redirect url="/nouse"/>
 </c:if>
 <c:if test="${warning>0 }">
@@ -85,7 +85,14 @@
 			<li id="nus1">음악게시판<br></li>
 			<c:choose>
 				<c:when test="${sessionScope.id!=null }">
-					<li><br><a href="${cp }/fileboard/community">Music<br></a></li>
+					<c:choose>
+						<c:when test="${sessionScope.grade<2  }">
+							<li><br><a href="javascript:gradepl()">Music<br></a></li>
+						</c:when>
+						<c:otherwise>
+						<li><br><a href="${cp }/fileboard/community">Music<br></a></li>	
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<li><br><a href="javascript:loginpl()">Music<br></a></li>
@@ -125,8 +132,12 @@
 풋터
 </div>
 <script type="text/javascript">
+	
 	function loginpl(){
 		alert("로그인후 이용하실수 있습니다.");
+	}
+	function gradepl(){
+		alert("등급이 실버 이상만 들어갈 수 있습니다.");
 	}
 	function showMsg(cp,id){
 		window.open(cp,"메세지",'width=660, height=620, toolbar=yes, menubar=yes, scrollbars=no, resizable=yes');

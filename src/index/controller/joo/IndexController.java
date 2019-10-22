@@ -29,10 +29,8 @@ public class IndexController extends HttpServlet{
 			int countMsgs=MessageDao.getDao().newMsgs(id, mlist);
 			req.setAttribute("countMsgs", countMsgs);
 			req.getSession().setAttribute("id", id);
-			int grade=BoardDao.getinstance().getGrade(id);
 			}
 		if(spage==null||spage.equals("")) {
-			
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {

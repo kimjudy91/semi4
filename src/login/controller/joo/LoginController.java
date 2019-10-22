@@ -28,7 +28,7 @@ import report.dao.joo.ReportDao;
 		if(n>0) {
 			LoginIdsDao.getDao().insertLogins(id);
 			int grade=MembersDao.getDao().getGrade(id);
-			req.setAttribute("grade", grade);
+			req.getSession().setAttribute("grade", grade);
 			int warning=MembersDao.getDao().getWarning(id);
 			req.setAttribute("warning", warning);
 			int report2Count=ReportDao.getDao().newReport2Count();	
@@ -38,6 +38,7 @@ import report.dao.joo.ReportDao;
 			req.getSession().setAttribute("id", id);
 			ArrayList<String> mlist=MessageDao.getDao().getMsgList(id);
 			int countMsgs=MessageDao.getDao().newMsgs(id, mlist);
+			
 			req.setAttribute("countMsgs", countMsgs);
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
