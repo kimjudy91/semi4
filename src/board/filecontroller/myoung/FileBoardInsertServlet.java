@@ -53,6 +53,7 @@ public class FileBoardInsertServlet extends HttpServlet{
 		String id=mr.getParameter("id");
 		String p_title=mr.getParameter("p_title");
 		String contents=mr.getParameter("contents");
+		
 	
 		
 		//여기는 장르 구분하는곳
