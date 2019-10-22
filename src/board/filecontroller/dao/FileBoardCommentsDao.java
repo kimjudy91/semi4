@@ -27,7 +27,6 @@ public class FileBoardCommentsDao {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, write_num);
 			rs=pstmt.executeQuery();
-			
 			ArrayList<FileBoardCommentsVo> list=new ArrayList<FileBoardCommentsVo>();
 			while(rs.next()) {
 				int comments_num=rs.getInt("comments_num");

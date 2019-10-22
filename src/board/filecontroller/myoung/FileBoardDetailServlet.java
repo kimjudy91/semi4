@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.controller.myoung.GenreDao;
 import board.dao.yun.BoardDao;
+import board.filecontroller.dao.FileBoardCommentsDao;
 import board.filecontroller.dao.FileBoardDao;
+import board.filecontroller.vo.FileBoardCommentsVo;
 import board.filecontroller.vo.FileBoardVo;
 import board.filecontroller.vo.FileUpLoadVo;
 import board.vo.myoung.GenreVo;
@@ -24,7 +26,8 @@ public class FileBoardDetailServlet extends HttpServlet{
 		int write_num=Integer.parseInt(req.getParameter("write_num"));
 		FileBoardDao dao=new FileBoardDao();
 		FileBoardVo vo=dao.detail(write_num);
-	
+		ArrayList<FileBoardCommentsVo> commList=FileBoardCommentsDao.getCommentsDao().getCommList(write_num);
+		req.setAttribute("commList", commList);
 				
 		//장르 테이블이랑 이어서 장르를 쓰게 하는것
 		GenreDao dao1=new GenreDao();
