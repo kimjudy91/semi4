@@ -37,7 +37,7 @@ public class LoginIdsDao{
 		PreparedStatement pstmt=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="delete from loginids where id=?";
+			String sql="delete from loginids where ids=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			return pstmt.executeUpdate();

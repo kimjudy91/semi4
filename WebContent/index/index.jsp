@@ -132,6 +132,8 @@
 풋터
 </div>
 <script type="text/javascript">
+
+
 	
 	function loginpl(){
 		alert("로그인후 이용하실수 있습니다.");
