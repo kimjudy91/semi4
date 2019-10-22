@@ -68,7 +68,7 @@
 	<tr>
 		<th>다운로드 파일</th>
 		<td>
-	<a href="${cp}/fileboard.download?f_num=${vo.f_num} ">다운로드</a>
+	<a href="${cp}/fileboard.download?f_num=${vo.f_num}">다운로드</a>
 		</td>
 	</tr>
 		<tr>
