@@ -27,11 +27,14 @@ public class IndexController extends HttpServlet{
 			ArrayList<String> mlist=MessageDao.getDao().getMsgList(id);
 			int countMsgs=MessageDao.getDao().newMsgs(id, mlist);
 			req.setAttribute("countMsgs", countMsgs);
-		}
+			req.getSession().setAttribute("id", id);
+			}
 		if(spage==null||spage.equals("")) {
+			
 			req.setAttribute("page", "/main/main.jsp");
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}else {
+		
 			req.setAttribute("page", spage);
 			req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 		}			
