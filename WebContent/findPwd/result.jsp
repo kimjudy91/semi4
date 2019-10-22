@@ -8,6 +8,8 @@
 <title>/findPwd/result.jsp</title>
 </head>
 <body>
+<div class="out" style="width: 95%; text-align: center; border: 1px solid black; padding: 20px; margin: 15px">
+<div class="in" style="display: inline-block; padding: 20px; margin: 15px">
 <c:choose>
 	<c:when test="${code=='success' }">
 		<h1>${email }로 입시비밀번호를 보냈습니다.확인후 로그인해주세요</h1>
@@ -18,7 +20,8 @@
 		<a href="${cp }/index/index.jsp">메인으로 가기</a>
 	</c:otherwise>
 </c:choose>
-
+</div>
+</div>
 
 </body>
 </html>
