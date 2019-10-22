@@ -18,7 +18,9 @@ public class recentlyListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<RecentlyVo> list=RecentlyDao.getDao().list();
 		req.setAttribute("recently", list);
-		req.getRequestDispatcher("/recently/recently.jsp").forward(req, resp);
+		
 
+		req.setAttribute("page", "/recently/recently.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

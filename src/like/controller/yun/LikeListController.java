@@ -19,7 +19,8 @@ public class LikeListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<MainBoardFileVo> list=MainBoardFileDao.getDao().list();
 		req.setAttribute("likeslist", list);
-		req.getRequestDispatcher("/likes/likes.jsp").forward(req, resp);
+		req.setAttribute("page", "/likes/likes.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	
 		
 	}

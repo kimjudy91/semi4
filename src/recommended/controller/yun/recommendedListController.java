@@ -18,7 +18,9 @@ public class recommendedListController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<RecommendedVo> list=RecommendedDao.getDao().list();
 		req.setAttribute("recommended", list);
-		req.getRequestDispatcher("/recommended/recommended.jsp").forward(req, resp);
 
+
+		req.setAttribute("page", "/recommended/recommended.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }

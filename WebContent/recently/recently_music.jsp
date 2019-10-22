@@ -35,13 +35,19 @@
 	</tr>	
 <c:forEach var="vo" items="${recently_music }">
 	<tr>
-		<td><a href="${cp }/board/detail?write_num=${vo.write_num}">${vo.write_num }</a></td>
+	<c:choose>
+		<c:when test="${sessionScope.id!=null }">
+			<td><a href="${cp }/board/detail?write_num=${vo.write_num}">${vo.write_num }</a></td>
+		</c:when>
+		<c:otherwise>
+			<td><a href="javascript:loginpl();">${vo.write_num }</a></td>
+		</c:otherwise>
+	</c:choose>
+		
 		<td>${vo.p_title }</td><td>${vo.id }</td><td>${vo.r_date }</td>
-
 	</tr>
 </c:forEach>
 </table>
-
 
 </body>
 </html>

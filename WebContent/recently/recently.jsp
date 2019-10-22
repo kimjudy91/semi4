@@ -34,7 +34,22 @@
 	</tr>	
 <c:forEach var="vo" items="${recently }">
 	<tr>
-		<td>${vo.write_num }</td><td>${vo.p_title }</td><td>${vo.id }</td><td>${vo.r_date }</td>
+	<c:choose>
+				<c:when test="${sessionScope.id!=null }">
+					<c:choose>
+						<c:when test="${sessionScope.grade<2  }">
+							<td><a href="javascript:gradepl()">${vo.write_num }</a></td>
+						</c:when>
+						<c:otherwise>
+						<td><a href="${cp }/likes?write_num=${vo.write_num}">${vo.write_num }</a></td>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+						<td><a href="javascript:loginpl();">${vo.write_num }</a></td>
+				</c:otherwise>
+			</c:choose>
+		<td>${vo.p_title }</td><td>${vo.id }</td><td>${vo.r_date }</td>
 	</tr>
 </c:forEach>
 </table>

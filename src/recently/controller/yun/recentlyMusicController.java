@@ -20,7 +20,9 @@ public class recentlyMusicController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<RecentlyMusicVo> list=RecentlyMusicDao.getDao().list();
 		req.setAttribute("recently_music", list);
-		req.getRequestDispatcher("/recently/recently_music.jsp").forward(req, resp);
 
+
+		req.setAttribute("page", "/recently/recently_music.jsp");
+		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
 	}
 }
