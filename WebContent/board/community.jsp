@@ -165,7 +165,11 @@ function aa(n){
 	location.href='${cp }/board/community?genre='+n;
 }
 function nowrite(){
-	alert("로그인후 이용하실수 있습니다.");
+	if (confirm("로그인후 이용하실수 있습니다.") == true) { 
+		location.href="${cp}/logins";
+		} else { 
+			return;
+		}
 }
 
 </script>

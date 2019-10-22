@@ -119,6 +119,16 @@ h1{
 	font-family: sans-serif;
 	
 }
+#main #menu #users #uss {
+	overflow: auto;
+    width: 100%;
+    height: 265px;
+}
+
+#main #menu #users #uss a{
+	color:#676767;
+	text-decoration: none;
+}
 #main #menu #users #uhr{
 	display: #092317;
 	border: #092317 0 none;

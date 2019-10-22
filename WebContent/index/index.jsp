@@ -15,7 +15,7 @@
 
 
 </script>
-<link rel="stylesheet" type="text/css" href="${cp }/index/indexx.css">
+<link rel="stylesheet" type="text/css" href="${cp }/index/indexxx.css">
 <style>
 </style>
 </head>
@@ -28,6 +28,7 @@
 </c:if>
 <c:if test="${warning>0 }">
 <c:set var="warning" value="${warning }"/>
+<c:set var="sessionScope.id" value="${sessionScope.id }"/>
 	<script type="text/javascript">
 		function showWarning(){
 			alert("경고"+${warning}+"번을 받았습니다. 조심하세요");
@@ -106,7 +107,8 @@
 		</ul>
 		<div id="users">		
 		접속자명단<br>
-		<hr id="uhr">
+		<hr id="uhr" >
+		<div id="uss" style="overflow:scroll;">
 		<%
 		ArrayList<LoginIdVO> userIds=LoginIdsDao.getDao().list();
 		for(int i=0;i<userIds.size();i++){
@@ -123,6 +125,7 @@
 			}
 		%>
 		</div>
+		</div>
 	</div>
 	<div id="home">
 			<c:import url="${page }"/>
@@ -133,21 +136,30 @@
 </div>
 <script type="text/javascript">
 window.onbeforeunload = function() {
+	
 	var dxhr=null;
-	function showComm(w,c){
+	function deleteIds(){
 		dxhr=new XMLHttpRequest();
-		dxhr.onreadystatechange=deleteIds;
-		dxhr.open('get','deleteIds.jsp?id='+${sessionScope.id},true);
+		dxhr.onreadystatechange=suc;
+		dxhr.open("get",'${cp}/index/deleteIds.jsp?id=${sessionScope.id}',true);
 		dxhr.send();
 	}
-	function deleteIds(){
-		
+	function suc(){
+		if(dxhr.readyState==4 && dxhr.status==200){
+		var data=xhr.responseText;
+		var json=JSON.parse(data);
+		}
 	}
-	}
+	deleteIds();
 }
 
+
 	function loginpl(){
-		alert("로그인후 이용하실수 있습니다.");
+		if (confirm("로그인후 이용하실수 있습니다.") == true) { 
+			location.href="${cp}/logins";
+			} else { 
+				return;
+			}
 	}
 	function gradepl(){
 		alert("등급이 실버 이상만 들어갈 수 있습니다.");

@@ -14,7 +14,7 @@ public class LogoutController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=(String)req.getSession().getAttribute("id");
-		LoginIdsDao.getDao().insertLogins(id);
+		LoginIdsDao.getDao().deleteLogins(id);
 		req.getSession().invalidate();
 		req.setAttribute("page", "/main/main.jsp");
 		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);

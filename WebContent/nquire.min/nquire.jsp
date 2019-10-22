@@ -93,7 +93,11 @@
 </body>
 <script type="text/javascript">
 	function btn_nquire_alert_click1(){
-		alert("로그인후 이용하실수 있습니다.");
+		if (confirm("로그인후 이용하실수 있습니다.") == true) { 
+			location.href="${cp}/logins";
+			} else { 
+				return;
+			}
 	}
 
 </script>
