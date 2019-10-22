@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- ad/list.jsp -->
+<div class="out" style="width: 95%; text-align: center; border: 1px solid black; padding: 20px; margin: 15px">
+<div class="in" style="display: inline-block; padding: 20px; margin: 15px">
 <div>
 	<table border="1" width="400">
 		<tr>
@@ -13,5 +15,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+</div>
+</div>
 </div>
 <a href="${cp }/ad/insert">광고추가</a>

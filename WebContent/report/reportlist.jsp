@@ -8,6 +8,8 @@
 <title>report/reportlist.jsp</title>
 </head>
 <body>
+<div class="out" style="width: 95%; text-align: center; border: 1px solid black; padding: 20px; margin: 15px">
+<div class="in" style="display: inline-block; padding: 20px; margin: 15px">
 <table border="1" width="500" >
 	<tr>
 		<th>신고한 아이디</th><th>답글달기</th><th>답여부</th>
@@ -47,6 +49,7 @@
 		다음
 	</c:otherwise>
 </c:choose>
-
+</div>
+</div>
 </body>
 </html>
