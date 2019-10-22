@@ -150,6 +150,7 @@ window.onbeforeunload = function() {
 		var json=JSON.parse(data);
 		deleteIds();
 		}
+		
 	}
 }
 
