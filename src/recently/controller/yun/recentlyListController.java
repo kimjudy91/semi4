@@ -20,7 +20,7 @@ public class recentlyListController extends HttpServlet{
 		req.setAttribute("recently", list);
 		
 
-		req.setAttribute("page", "/recently/recently.jsp");
-		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+
+		req.getRequestDispatcher("/recently/recently.jsp").forward(req, resp);
 	}
 }

@@ -43,7 +43,7 @@
 							<td><a href="javascript:gradepl()">${vo.write_num }</a></td>
 						</c:when>
 						<c:otherwise>
-						<td><a href="${cp }/likes?write_num=${vo.write_num}">${vo.write_num }</a></td>
+						<td><a href="${cp }/fileboard/detail?write_num=${vo.write_num}">${vo.write_num }</a></td>
 						</c:otherwise>
 					</c:choose>
 				</c:when>

@@ -22,7 +22,7 @@ public class recentlyMusicController extends HttpServlet{
 		req.setAttribute("recently_music", list);
 
 
-		req.setAttribute("page", "/recently/recently_music.jsp");
-		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+	
+		req.getRequestDispatcher("/recently/recently_music.jsp").forward(req, resp);
 	}
 }

@@ -21,7 +21,7 @@ public class recommendedListController_RB extends HttpServlet{
 		req.setAttribute("recommended_RB", list);
 	
 
-		req.setAttribute("page", "/recommended/recommended_RB.jsp");
-		req.getRequestDispatcher("/index/index.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("/recommended/recommended_RB.jsp").forward(req, resp);
 	}
 }
