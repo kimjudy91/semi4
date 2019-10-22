@@ -63,6 +63,7 @@
 	
 	<%
 		String music=(String)request.getAttribute("music");
+		 System.out.println(music);
 	%>
 	
 	<tr>
@@ -76,7 +77,7 @@
 		<td>
 		<form action="${cp }/fileboard/play?f_num=${vo.f_num}&write_num=${vo.write_num}" method="post"  >
 		<input type="submit" value="실행">
-		<audio src=<%=music %> controls="controls"  autoplay="autoplay" ></audio>
+		<audio src="<%=music %>" controls="controls"  autoplay="autoplay" ></audio>
 		</form>
 		</td>
 	</tr>

@@ -40,10 +40,7 @@ public class FileBoardPlayServlet  extends HttpServlet{
 		//req.getContextPath() 프로젝트 주소명 
 	
 		//이게 통합주소
-		String music=req.getContextPath()+"\\upload\\"+ name;
-		System.out.println(music);
-
-		
+		String music="//C:/Users/JHTA/Downloads/"+ name;		
 		req.setAttribute("genre_name", genre_name);
 		req.setAttribute("vo", vo);
 		req.setAttribute("music", music);
