@@ -23,7 +23,7 @@ public class AdDao {
 		ResultSet rs=null;
 		try{
 			con=JdbcUtil.getConn();
-			String sql="select * from advertise";
+			String sql="select * from advertise where ad_start_date < sysdate and sysdate <ad_end_date";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			ArrayList<AdVo> list=new ArrayList<AdVo>();

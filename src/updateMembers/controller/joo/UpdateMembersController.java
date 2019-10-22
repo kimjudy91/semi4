@@ -18,7 +18,8 @@ public class UpdateMembersController extends HttpServlet {
 		String email=req.getParameter("email");
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
-		int n=UpdateDao.getDao().update(id, email, phone, address);
+		String pwd=req.getParameter("pwd");
+		int n=UpdateDao.getDao().update(id, email, phone, address,pwd);
 		if(n>0) {
 			req.setAttribute("code", "success");
 		}else {

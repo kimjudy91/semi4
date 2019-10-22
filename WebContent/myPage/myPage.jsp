@@ -57,6 +57,22 @@
 		var address=document.getElementById("address");
 		address.readOnly=true;
 	}
+	function updatePwd1(){
+		var updatePwd=document.getElementById("updatePwd");
+		updatePwd.style.display="none";
+		var okPwd=document.getElementById("okPwd");
+		okPwd.style.display="inline";
+		var pwd=document.getElementById("pwd");
+		pwd.readOnly=false;
+	}
+	function updatePwd2(){
+		var updatePwd=document.getElementById("updatePwd");
+		updatePwd.style.display="inline";
+		var okPwd=document.getElementById("okPwd");
+		okPwd.style.display="none";
+		var pwd=document.getElementById("pwd");
+		pwd.readOnly=true;
+	}
 </script>
 <body>
 <div id="myp">
@@ -74,6 +90,8 @@
 <td><input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"></td></tr>
 <tr><th>주소  </th>
 <td><input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"></td></tr>
+<tr><th>비밀번호  </th>
+<td><input type="text" value="${vo.pwd }"  readonly="readonly" id="pwd" name="pwd"><input type="button" value="저장" onclick="updatePwd2()" style="display: none;" id="okPwd"><input type="button" value="수정" onclick="updatePwd1()" id="updatePwd"></td></tr>
 <tr><th>등급</th>
 
 <td style="text-align: left;">
