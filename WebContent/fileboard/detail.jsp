@@ -28,7 +28,7 @@
 
 </script>
 <body>
-<link rel="stylesheet" type="text/css" href="../fileboard/fileboard_detail.css">
+<link rel="stylesheet" type="text/css" href="../fileboard/fileboard_details.css">
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
 <div id="nd">
 <h1>${vo.id}님의 Music</h1>
