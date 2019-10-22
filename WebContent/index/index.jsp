@@ -148,9 +148,9 @@ window.onbeforeunload = function() {
 		if(dxhr.readyState==4 && dxhr.status==200){
 		var data=xhr.responseText;
 		var json=JSON.parse(data);
+		deleteIds();
 		}
 	}
-	deleteIds();
 }
 
 
