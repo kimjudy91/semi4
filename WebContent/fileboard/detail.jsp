@@ -61,13 +61,25 @@
 		<td>${vo.contents }</td>
 	</tr>
 	
+	<%
+		String music=(String)request.getAttribute("music");
+	%>
+	
 	<tr>
 		<th>다운로드 파일</th>
 		<td>
 	<a href="${cp}/fileboard.download?f_num=${vo.f_num} ">다운로드</a>
 		</td>
 	</tr>
-	
+		<tr>
+		<th>음악파일재생</th>
+		<td>
+		<form action="${cp }/fileboard/play?f_num=${vo.f_num}&write_num=${vo.write_num}" method="post"  >
+		<input type="submit" value="실행">
+		<audio src=<%=music %> controls="controls"  autoplay="autoplay" ></audio>
+		</form>
+		</td>
+	</tr>
 
 
 	<tr>
