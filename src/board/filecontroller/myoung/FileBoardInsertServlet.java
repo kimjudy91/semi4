@@ -53,7 +53,11 @@ public class FileBoardInsertServlet extends HttpServlet{
 		String id=mr.getParameter("id");
 		String p_title=mr.getParameter("p_title");
 		String contents=mr.getParameter("contents");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> branch 'master' of https://github.com/kimjudy91/semi4.git
 		
 		//여기는 장르 구분하는곳
 		String trans=mr.getParameter("trans");
