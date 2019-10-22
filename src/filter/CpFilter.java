@@ -20,6 +20,10 @@ public class CpFilter implements Filter{
 			throws IOException, ServletException {
 		request.getServletContext().setAttribute("cp",((HttpServletRequest)request).getContextPath());
 		chain.doFilter(request, response);
+		
+		
+		
+		
 	}@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		

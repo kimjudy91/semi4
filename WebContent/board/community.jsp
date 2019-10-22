@@ -18,7 +18,7 @@
 			<option value="3" <c:if test='${a==3 }'>selected</c:if> >가요</option>
 	</select>
 </div>
-${sessionScope.id }
+
 <!-- 게시판 body 영역 -->
 <table>
 	<tr id="tr1">

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import login.dao.joo.LoginDao;
+import loginIds.dao.joo.LoginIdsDao;
 import members.dao.min.MembersDao;
 import message.dao.joo.MessageDao;
 import report.dao.joo.ReportDao;
@@ -25,6 +26,7 @@ import report.dao.joo.ReportDao;
 		String pwd=req.getParameter("pwd");
 		int n=LoginDao.getDao().login(id,pwd);
 		if(n>0) {
+			LoginIdsDao.getDao().insertLogins(id);
 			int grade=MembersDao.getDao().getGrade(id);
 			req.setAttribute("grade", grade);
 			int warning=MembersDao.getDao().getWarning(id);

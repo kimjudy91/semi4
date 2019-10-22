@@ -1,3 +1,5 @@
+<%@page import="loginIds.dao.joo.LoginIdsDao"%>
+<%@page import="loginIds.vo.joo.LoginIdVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="sessionListener.joo.SessionIdListener"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -91,12 +93,12 @@
 		접속자명단<br>
 		<hr id="uhr">
 		<%
-		ArrayList<String> userIds=SessionIdListener.getUserId();
+		ArrayList<LoginIdVO> userIds=LoginIdsDao.getDao().list();
 		for(int i=0;i<userIds.size();i++){
-			if(!userIds.get(i).equals("admin")){
+			if(!(userIds.get(i).getIds()).equals("admin")){
 			%>
-			<a href="javascript:showsel('<%=userIds.get(i)%>','<%=i%>')"><%=userIds.get(i) %></a>
-			<select id="sss<%=i %>"  style="display: none;width:100%;" size="2" onchange="showMsg2('<%=userIds.get(i) %>',this.value)" onblur="hidesel('<%=userIds.get(i)%>','<%=i%>')">
+			<a href="javascript:showsel('<%=userIds.get(i)%>','<%=i%>')"><%=userIds.get(i).getIds() %></a>
+			<select id="sss<%=i %>"  style="display: none;width:100%;" size="2" onchange="showMsg2('<%=userIds.get(i).getIds()%>',this.value)" onblur="hidesel('<%=userIds.get(i)%>','<%=i%>')">
 				<option value="1">친구추가</option>
 				<option value="2">글보기</option>	
 			</select>
