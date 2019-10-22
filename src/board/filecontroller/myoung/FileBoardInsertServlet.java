@@ -34,9 +34,8 @@ public class FileBoardInsertServlet extends HttpServlet{
 		//서블릿에서 사용하는 파일첨부 프로그램 우리가 배운
 		//application 이거랑 동일하다 이거 사용하면 위에 HttpServletRequest 이거 못쓰고
 		//아래에 잇는 MultipartRequest mr 이걸로 사용해야한다
-		String path=getServletContext().getRealPath("/upload");
-		System.out.println(path);
-		MultipartRequest mr =new MultipartRequest(
+		String path=("//192.168.0.25/과제/up4");
+				MultipartRequest mr =new MultipartRequest(
 				req,
 				path,
 				1024*1024*5,

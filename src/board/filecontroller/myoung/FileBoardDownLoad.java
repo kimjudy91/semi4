@@ -44,7 +44,7 @@ public class FileBoardDownLoad extends HttpServlet{
 		resp.setHeader("Content-Disposition", "attachment;filename="+filename);
 		
 		//2. 파일을 다운로드하기
-		String path=getServletContext().getRealPath("/upload");
+		String path=("//192.168.0.25/과제/up4");
 		FileInputStream fis=new FileInputStream(path+"\\"+vo.getSavefilename());//서버에 잇는 파일을 읽어보는것 실제 저장된곳을 찾아서 가져오는것
 		OutputStream os=resp.getOutputStream();
 		BufferedInputStream bis=new BufferedInputStream(fis); //버퍼크기를 조정할수잇다
