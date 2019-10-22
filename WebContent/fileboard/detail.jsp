@@ -28,24 +28,27 @@
 
 </script>
 <body>
+<link rel="stylesheet" type="text/css" href="../fileboard/fileboard_detail.css">
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<h1>상세글보기</h1>
-<table border="1" width="600" style="text-align: center";>
+<div id="nd">
+<h1>${vo.id}님의 Music</h1>
+<hr>
+</div>
 
+<table>
 	<tr>
 		<th>글번호</th>
 		<td>${vo.write_num }</td>
 		<th>조회수</th>
-		<td>${vo.views }</td>
+		<td style="width: 50px;">${vo.views }</td>
 			<th>좋아요</th>
-		<td>${vo.likes }</td>
-			
-			<td>
+		<td style="width: 50px;">${vo.likes }</td>	
+		<td style="width: 50px;">
 		<form method="post" action="${cp}/fileboard/likes"  >
-	<input type="hidden" value="${vo.likes }" name="likes">
-	<input type="hidden" value="${vo.write_num }" name="write_num">
-	<input type="submit" value="좋아요">
-	</form>
+			<input type="hidden" value="${vo.likes }" name="likes">
+			<input type="hidden" value="${vo.write_num }" name="write_num">
+			<input type="submit" value="좋아요">
+		</form>
 		</td>
 	</tr>
 	<tr>
@@ -61,49 +64,38 @@
 		<td>${vo.contents }</td>
 	</tr>
 	
-	<%
-		String music=(String)request.getAttribute("music");
-		 System.out.println(music);
-	%>
-	
 	<tr>
 		<th>다운로드 파일</th>
 		<td>
-	<a href="${cp}/fileboard.download?f_num=${vo.f_num}">다운로드</a>
+	<a href="${cp}/fileboard.download?f_num=${vo.f_num} ">다운로드</a>
 		</td>
 	</tr>
-		<tr>
-		<th>음악파일재생</th>
-		<td>
-		<form action="${cp }/fileboard/play?f_num=${vo.f_num}&write_num=${vo.write_num}" method="post"  >
-		<input type="submit" value="실행">
-		<audio src="<%=music %>" controls="controls"  autoplay="autoplay" ></audio>
-		</form>
-		</td>
-	</tr>
-
-
+	
 	<tr>
-		<td colspan="4" class="text-center">
-			<input type="submit" class="btn-modify" value="수정하기" onclick="location.href='${cp}/fileboard/update?write_num=${vo.write_num}'">
-			<input type="submit" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/fileboard/delete?write_num=${vo.write_num}&f_num=${vo.f_num}'">
-			<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
-			<input type="submit" class="btn-list" value="목록보기" onclick="location.href='${cp}/fileboard/community'">
+		<td colspan='9' style="padding-left: 538px;">
+			<input type="submit" class="btn-modify" id="fileBtn" value="수정하기" onclick="location.href='${cp}/fileboard/update?write_num=${vo.write_num}'">
+			<input type="submit" class="btn-delete" id="fileBtn" value="삭제하기" onclick="location.href='${cp}/fileboard/delete?write_num=${vo.write_num}&f_num=${vo.f_num}'">
+			<c:choose>
+					<c:when test="${sessionScope.id ne vo.id }">
+				<input type="button" class="btn-report" id="fileBtn" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
+					</c:when>
+			</c:choose>
+			<input type="submit" class="btn-list" id="fileBtn" value="목록보기" onclick="location.href='${cp}/fileboard/community'">
 		</td>
 	</tr>
 </table>
 
-
-
-<div>
+<div id="d1">
 <form action="${cp }/fileboard/comments" method="post"  >
-<input type="hidden" value="${sessionScope.id }" name="id">
-<input type="hidden" value="insert" name="cmd">
-<input type="hidden" value="${vo.write_num }" name="write_num">
-			댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
-<input type="submit" value="저장">
+	<input type="hidden" value="${sessionScope.id }" name="id">
+	<input type="hidden" value="insert" name="cmd">
+	<input type="hidden" value="${vo.write_num }" name="write_num">
+			<p>댓글</p><textarea rows="3" cols="100" name="comments_contents"></textarea>
+	<input type="submit" value="저장">
 </form>
 </div>
+
+
 <div id="commList">
 	<c:forEach var="comLi" items="${commList }">
 			<div id="cw${comLi.comments_num }">
@@ -130,11 +122,10 @@
 						<img  src="${cp }/images/gold.png">
 					</c:when>
 				</c:choose>
-				${comLi.id }<br>
-				
+				${comLi.id }<br>		
 				${comLi.comments_contents }
 				<a href="">삭제</a>
-				<br>
+
 				<c:choose>
 					<c:when test="${cnt!=0 }">
 						<input type="button" value="댓글보기(${cnt })" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
@@ -145,9 +136,9 @@
 						<input type="button" value="댓글보기" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:otherwise>
 				</c:choose>
-				<br>
+
 			</div>
-						<form action="${cp }/fileboard/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
+				<form action="${cp }/fileboard/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
 					<input type="hidden" value="${sessionScope.id }" name="id">
 					<input type="hidden" value="insertCom" name="cmd">
 					<input type="hidden" value="${comLi.write_num }" name="write_num">
@@ -156,7 +147,7 @@
 					<input type="hidden" value="${comLi.step }" name="step">
 					댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
 					<input type="submit" value="저장"><br>
-			</form>
+				</form>
 			</div>
 	</c:forEach>
 </div>
