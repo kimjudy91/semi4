@@ -14,3 +14,4 @@
 </c:choose>
 </div>
 </div>
+<a href ="${cp }/index">메인가기</a>
