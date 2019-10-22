@@ -68,10 +68,14 @@
 <h2>정보수정</h2>
 <form action="${cp }/updateMembers" method="post">
 <table>
-<tr><th>이메일</th><td><input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"></td></tr>
-<tr><th>전화번호 </th><td><input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"></td></tr>
-<tr><th>주소  </th><td><input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"></td></tr>
+<tr><th>이메일</th>
+<td><input type="text" value="${vo.email }" readonly="readonly" id="email" name="email"><input type="button" value="저장" onclick="updateEmail2()" style="display: none;" id="okEmail"><input type="button" value="수정" onclick="updateEmail1()" id="updateEmail"></td></tr>
+<tr><th>전화번호 </th>
+<td><input type="text" value="${vo.phone }" readonly="readonly" id="phone" name="phone"><input type="button" value="저장" onclick="updatePhone2()" style="display: none;" id="okPhone"><input type="button" value="수정" onclick="updatePhone1()" id="updatePhone"></td></tr>
+<tr><th>주소  </th>
+<td><input type="text" value="${vo.address }"  readonly="readonly" id="address" name="address"><input type="button" value="저장" onclick="updateAddress2()" style="display: none;" id="okAddress"><input type="button" value="수정" onclick="updateAddress1()" id="updateAddress"></td></tr>
 <tr><th>등급</th>
+
 <td style="text-align: left;">
 <c:choose>
 	<c:when test="${vo.grade=='1' }">
@@ -85,6 +89,10 @@
 	</c:when>
 </c:choose>
 </td></tr>
+
+<tr><th>게시글 작성수</th>
+<td><input type="text" value="${vo.write_count }"  readonly="readonly"></td></tr>
+
 <tr><th colspan="2" id="sav">
 <input type="submit" value="저장하기">
 </th></tr>
