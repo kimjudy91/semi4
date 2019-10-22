@@ -46,9 +46,9 @@ public class BoardInsertServlet extends HttpServlet{
 			req.setAttribute("code", "success");
 			dao1.increWriteCount(id);
 			int writeco=dao1.getWriteCount(id);
-			if(writeco>5) {
+			if(writeco==5) {
 				dao1.increGrade(id);
-			}else if(writeco>10) {
+			}else if(writeco==10) {
 				dao1.increGrade(id);
 			}
 			
