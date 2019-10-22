@@ -6,47 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <title>join.jsp</title>
+<link rel="stylesheet" type="text/css" href="${cp }/css.min/style.css">
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="../css.min/style.css">
 </head>
 <body>
+<div id="join">
 <h1>회원가입</h1>
 <hr>
-<form name="frm" onsubmit="return checkForm();" method="post"   action="${pageContext.request.contextPath }/join/insert">
-<div id="form">
-<span>
-	<label>이름</label><input type="text" name="name" id="name" onkeyup="namecheck()"><br>
-	<span id="namespan"></span><br>
-	<label>아이디</label><input type="text" name="id"  id="id" onkeyup="idcheck()" ><br>
-	<span id="idcheck"></span><br> 
-	<label>비밀번호</label><input type="password" name="pwd" id="pwd1" onkeyup="pwdcheck()"><br>
-	<span id="c">3자이상,영문 대소문자,특수문자(@또는!)를 포함하여 입력해주세요.</span><br>
-	<label>비밀번호확인</label><input type="password" name="pwd" id="pwd2" onkeyup="pwdcheck()"><br>
-	<span id="pwdcheck"></span><br>
-	<label>주민등록번호</label><input type="text" name="jumin" id="j6" onkeyup="jumincheck()">
-	 -<input type="text" name="jumin" id="j1" onkeyup="jumincheck()">xxxxxx<br>
-	 <p>예) 123456-1xxxxxx</p><br> 
-	<span id="jumincheck"></span><br> 
-	<label>전화번호</label><input type="text" name="phone" id="phone" onkeyup="phonecheck()">
-	 <p>예) 010-0000-0000</p><br>
-	<span id="phonecheck"></span><br>
-	<label>주소</label><input type="text" name="address" id="addr" onkeyup="addrcheck()"><br>
-	<span id="addrcheck"></span><br>
-	<label>이메일</label><input type="text" name="email" id="email" onkeyup="emailcheck()"><br>
-	<span id="emailcheck"></span><br><br>
-	<label id="favjanre">좋아하는 음악장르</label>
-	<select name="janre" id="janre" size="1">
+</div>
+
+<form name="frm" id="jform" onsubmit="return checkForm();" method="post"   action="${pageContext.request.contextPath }/join/insert">
+<table>
+	<tr><th>이름</th><td><input type="text" name="name" id="name" onkeyup="namecheck()"></td></tr>
+	<tr><th></th><td id="namespan"></td></tr>
+	<tr><th>아이디</th><td><input type="text" name="id"  id="id" onkeyup="idcheck()" ></td></tr>
+	<tr><th style="height: 25px;"></th><td id="idcheck"></td></tr>
+	<tr><th>비밀번호</th><td><input type="password" name="pwd" id="pwd1" onkeyup="pwdcheck()"></td></tr>
+	<tr><th></th><td style="font-style: oblique;">3자이상,영문 대소문자,특수문자(@또는!)를 포함하여 입력해주세요.</td></tr>
+	<tr><th>비밀번호확인</th><td><input type="password" name="pwd" id="pwd2" onkeyup="pwdcheck()"></td></tr>
+	<tr><th style="height: 25px;"></th><td id="pwdcheck" colspan='2'></td></tr>
+	<tr><th>주민등록번호</th><td><input type="text" name="jumin" id="j6" onkeyup="jumincheck()">
+	 -&nbsp<input type="text" name="jumin1" id="j1" onkeyup="jumincheck()">xxxxxx
+	 <tr><th></th><td style="font-style: oblique;">예) 123456-1xxxxxx</td></tr>
+	<tr><th style="height: 25px;"></th><td id="jumincheck"></td></tr> 
+	<tr><th>전화번호</th><td><input type="text" name="phone" id="phone" onkeyup="phonecheck()"></td></tr>
+	<tr><th></th><td style="font-style: oblique;">예) 010-0000-0000</td></tr>
+	<tr><th style="height: 25px;"></th><td id="phonecheck"></td></tr>
+	<tr><th>주소</th><td><input type="text" name="address" id="addr" onkeyup="addrcheck()"></td></tr>
+	<tr><th style="height: 25px;"></th><td id="addrcheck"></td></tr>
+	<tr><th>이메일</th><td><input type="text" name="email" id="email" onkeyup="emailcheck()"></td></tr>
+	<tr><th style="height: 25px;"></th><td id="emailcheck"></td></tr>
+	<tr><th id="favjanre">좋아하는 음악장르</th>
+	<td><select name="janre" id="janre" size="1" style="height: 25px; width: 60px;">
 		<option selected>선택</option>
 		<option value="1" id="Rock">Rock</option>
 		<option value="2" id="folk">folk</option>
 		<option value="3" id="RB">RB</option>
-	</select><br>
-	<input type="submit" value="회원가입">
-	<input type="reset" value="회원가입취소">
-	</span>
-</div>
+	</select></td></tr>
+	<tr><th colspan='2' style="text-align: center;" id="jbtn"><input type="submit" id="subBtn" value="회원가입">
+	<a href="${cp }/logins"><input type="button" id="canBtn" value="회원가입취소" ></a></th></tr>
+</table>
 </form>
+
+
 <script type="text/javascript">
 	
 	function checkForm(){

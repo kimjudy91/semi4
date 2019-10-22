@@ -29,7 +29,10 @@ public class JoinServlet extends HttpServlet{
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
 		int janre=Integer.parseInt(req.getParameter("janre"));
-		int jumin=Integer.parseInt(req.getParameter("jumin"));
+		String jumin2=req.getParameter("jumin");
+		String jumin1=req.getParameter("jumin1");
+		String jumin3=jumin2+jumin1;
+		int jumin=Integer.parseInt(jumin3);
 		MembersVo vo=new MembersVo(id, pwd, name, email, address, phone, 0, 0, 1, 0, janre, jumin);
 		int n=MembersDao.getDao().insert(vo);
 	
