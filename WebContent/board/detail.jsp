@@ -18,6 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
+<link rel="stylesheet" type="text/css" href="../board/board_detail.css">
 <style type="text/css">
 	*.p:nth-child(even){
 	background-color: #f0f0f0;
@@ -25,14 +26,16 @@
 </style>
 </head>
 <body>
+<div id="nd">
+<h1>${vo.id}님의 글</h1>
+<hr>
+</div>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
-<div class="out" style="width: 95%; text-align: center; border: 1px solid black; padding: 20px; margin: 15px">
-<div class="in" style="display: inline-block; padding: 20px; margin: 15px">
-<h1>상세글보기</h1>
+<div class="out" style=" text-align: center;">
+<div class="in" style="display: inline-block;">
 
-<div>
 
-<table border="1" width="600">
+<table>
 	<tr>
 		<th>글번호</th>
 		<td>${vo.write_num }</td>
@@ -64,37 +67,30 @@
 	<tr>
 		<th>글 내용</th>
 		<td>${vo.contents }</td>
-	</tr>
-	
+	</tr>	
 	<tr>
-		<td colspan="4" class="text-center">
-			
+		<td colspan="5" class="text-center" style="padding-left: 538px;">		
 			<c:choose>
 				<c:when test="${sessionScope.id eq vo.id}">	
-					<input type="button" class="btn-modify" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}&id=${vo.id}'">
-					<input type="button" class="btn-delete" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}&id=${vo.id}'">
+					<input type="button" class="btn-modify"  id="bdBtn" value="수정하기" onclick="location.href='${cp}/board/update?write_num=${vo.write_num}&id=${vo.id}'">
+					<input type="button" class="btn-delete" id="bdBtn" value="삭제하기" onclick="location.href='${cp}/board/delete?write_num=${vo.write_num}&id=${vo.id}'">
 				</c:when>
 				<c:otherwise>
-						<input type="button" class="btn-modify" value="수정하기" onclick="btn_mo_alert_click();">
-						<input type="button" class="btn-delete" value="삭제하기" onclick="btn_de_alert_click();">
+						<input type="button" class="btn-modify"  id="bdBtn" value="수정하기" onclick="btn_mo_alert_click();">
+						<input type="button" class="btn-delete"  id="bdBtn" value="삭제하기" onclick="btn_de_alert_click();">
 				</c:otherwise>
-			</c:choose>
-			
-			
-			
+			</c:choose>			
 			<c:choose>
 				<c:when test="${sessionScope.id!=null }">	
 					<c:if test="${ sessionScope.id ne vo.id}">
-						<input type="button" class="btn-report" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
+						<input type="button" class="btn-report" id="bdBtn" value="신고하기" onclick="location.href='${cp}/report2?write_num=${vo.write_num}'">
 					</c:if>
 				</c:when>
-			</c:choose>
-			
-				<input type="button" class="btn-list" value="목록보기" onclick="location.href='${cp}/board/community'">
+			</c:choose>		
+				<input type="button" class="btn-list" id="bdBtn" value="목록보기" onclick="location.href='${cp}/board/community'">
 		</td>
 	</tr>	
 </table>
-
 
 <div>
 <form action="${cp }/board/comments" method="post"  >
@@ -103,16 +99,16 @@
 <input type="hidden" value="${vo.write_num }" name="write_num">
 <div>&nbsp;&nbsp;
 <br>
-<div style="float: left">&nbsp;&nbsp;&nbsp;댓글내용</div>
-<textarea rows="5" cols="50" name="comments_contents"></textarea>
-<input type="submit" value="저장">
+<div>댓글내용</div>
+<textarea rows="3" cols="100" name="comments_contents"></textarea>
+<input type="submit" value="저장" id="bdBtn">
 </div>
 </form>
 </div>
-<div id="commList">
+<div id="commList" style="overflow: auto;">
 	<c:forEach var="comLi" items="${commList }">
-			<div id="cw${comLi.comments_num }">
-			<div style="border:1px solid red;" id="c${comLi.comments_num }" >
+			<div id="cw${comLi.comments_num }" >
+			<div style="background-color: lightgray; overflow: auto; height: auto; border-bottom: 1px solid black;" id="c${comLi.comments_num }" class="show">
 				<c:set var="id" value="${comLi.id }"/>
 				<c:set var="ref" value="${comLi.comments_num }"/>
 				<%
@@ -152,22 +148,22 @@
 				</c:choose>
 				<br>
 			</div>
-						<form action="${cp }/board/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
+			<form action="${cp }/board/comments"  method="post"  id="sr${comLi.comments_num }" style="display: none;">
 					<input type="hidden" value="${sessionScope.id }" name="id">
 					<input type="hidden" value="insertCom" name="cmd">
 					<input type="hidden" value="${comLi.write_num }" name="write_num">
 					<input type="hidden" value="${comLi.ref }" name="ref">
 					<input type="hidden" value="${comLi.lev }" name="lev">
 					<input type="hidden" value="${comLi.step }" name="step">
-					댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
-					<input type="submit" value="저장"><br>
+					<p style="margin-right: 50px;">댓글</p><textarea rows="3" cols="100" class="show" name="comments_contents"></textarea>
+					<input type="submit" value="저장">
 			</form>
 			</div>
 	</c:forEach>
 </div>
 </div>
 </div>
-</div>
+
 </body>
 <script type="text/javascript">
 	var xhr=null;
@@ -190,9 +186,11 @@
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
 				div.innerHTML="<hr>"+comm[i].id+"<br>"+comm[i].comments_contents;
-				div.style.marginLeft=50*comm[i].lev+"px";
-				div.style.border="1px solid blue";
+				div.style.marginTop=20*comm[i].lev+"px";
+				div.style.backgroundColor="lightgray";
+				div.style.textAlign="center";
 				div.className="cl"+comm[i].ref;
+				div.style.paddingBottom=15*comm[i].lev+"px";
 				div.id=id;
 				com.appendChild(div);
 			}

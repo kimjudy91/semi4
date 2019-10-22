@@ -28,7 +28,7 @@ h1{
 }
 #main{
 	width:100%;
-	height:100%;	
+	height:auto;	
 	background-color: #ffffff;
 	overflow: hidden;
 }
@@ -44,7 +44,7 @@ h1{
 }
 #main #home{
 	width:1550px;
-	height: 1385px;
+	height: auto;
 	float: right;
 	position: relative;
 	overflow: hidden;

@@ -87,7 +87,6 @@
     </c:choose>	
 	</c:forEach>
 	
-	
 </table>
 
 
