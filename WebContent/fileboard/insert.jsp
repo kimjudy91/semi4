@@ -7,9 +7,10 @@
 <h1>글등록하기</h1>
 <form method="post" action="${cp }/fileboard/insert" enctype="multipart/form-data">
 	작성자<br>
-	<input type="text" name="id"><br>
+	<input type="text" name="id" value="${id }" readonly="readonly" ><br>
 	제목<br>
 	<input type="text" name="p_title"><br>
+		장르&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<label><input type="radio" name="trans" value="rnb">알앤비</label>
 	<label><input type="radio" name="trans" value="pop">팝</label>
 	<label><input type="radio" name="trans" value="oldsong">가요</label><br>
