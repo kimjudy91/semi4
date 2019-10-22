@@ -25,6 +25,7 @@
 <c:if test="${warning>0 }">
 <c:set var="warning" value="${warning }"/>
 	<script type="text/javascript">
+	
 		function showWarning(){
 			alert("경고"+${warning}+"번을 받았습니다. 조심하세요");
 		}
