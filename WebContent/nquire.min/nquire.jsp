@@ -42,7 +42,15 @@
 <!-- form -->
 <div id="ff">
 	<form method="get" action="${cp }/nquire/insert">
-		<input type="submit" id="nbtn" value="문의하기" id="inp">	
+	<c:choose>
+			<c:when test="${sessionScope.id!=null }">
+				<input type="submit" id="nbtn" value="문의하기" id="inp">	
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="문의하기" id="nbtn" onclick="btn_nquire_alert_click1()">
+			</c:otherwise>
+		</c:choose>
+		
 	</form>
 	<form method="get" action="${cp }/nquire/list">
 		<input type="hidden" name="id" value="${sessionScope.id }">
@@ -85,7 +93,7 @@
 </body>
 <script type="text/javascript">
 	function btn_nquire_alert_click1(){
-		alert("올바른 아이디로 로그인 하세요.");
+		alert("로그인후 이용하실수 있습니다.");
 	}
 
 </script>

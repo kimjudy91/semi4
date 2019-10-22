@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style >
+input[type=text]:focus {border:2px #FF0000 solid}
+
+</style>
 <body style="background-color: #b1b1b1;">
 <script type="text/javascript">
 	window.onload=function(){

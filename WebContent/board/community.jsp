@@ -18,7 +18,7 @@
 			<option value="3" <c:if test='${a==3 }'>selected</c:if> >가요</option>
 	</select>
 </div>
-
+${sessionScope.id }
 <!-- 게시판 body 영역 -->
 <table>
 	<tr id="tr1">
@@ -42,8 +42,15 @@
 				[가요]
 			</c:when>	
 		</c:choose>
-		<a href="${cp }/board/detail?write_num=${vo.write_num}">
-		${vo.p_title }</a></td> 
+		<c:choose>
+			<c:when test="${sessionScope.id == null }">
+				<a href="javascript:nowrite();">${vo.p_title }</a>
+			</c:when>
+			<c:otherwise>
+				 <a href="${cp }/board/detail?write_num=${vo.write_num}"> ${vo.p_title }</a> 
+			</c:otherwise>
+		</c:choose>
+          </td> 
 		<td>${vo.id }</td>
 		<td>${vo.r_date }</td>
 		<td>${vo.views }</td>
@@ -64,8 +71,14 @@
 					[가요]
 				</c:when>	
 			</c:choose>
-			<a href="${cp }/board/detail?write_num=${vo.write_num}">
-			${vo.p_title }</a></td> 
+				<c:choose>
+			<c:when test="${sessionScope.id == null }">
+				<a href="javascript:nowrite();">${vo.p_title }</a>
+			</c:when>
+			<c:otherwise>
+				 <a href="${cp }/board/detail?write_num=${vo.write_num}">${vo.p_title }</a> 
+			</c:otherwise>
+			</c:choose></td> 
 			<td>${vo.id }</td>
 			<td>${vo.r_date }</td>
 			<td>${vo.views }</td>
@@ -82,7 +95,15 @@
 <div id="divPaging">
 	   <form method="get" action="${cp }/board/insert">
           <input type="hidden" value="${id }" name="id">
-          <input type='submit' value='글쓰기' id="cbtn2">
+          <c:choose>
+	          <c:when test="${sessionScope.id==null }">
+	       	   	 <input type="button" value='글쓰기' id="cbtn2" onclick="nowrite()">
+	          </c:when>
+	          <c:otherwise>
+	         	 <input type='submit' value='글쓰기' id="cbtn2">
+	          </c:otherwise>
+          </c:choose>
+    
        </form>
      <c:choose>
      	<c:when test="${startPageNum>10 }">
@@ -142,6 +163,9 @@
 <script type="text/javascript">
 function aa(n){
 	location.href='${cp }/board/community?genre='+n;
+}
+function nowrite(){
+	alert("로그인후 이용하실수 있습니다.");
 }
 
 </script>

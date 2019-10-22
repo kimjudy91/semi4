@@ -74,7 +74,7 @@
 		</div>
 		<ul id="menus">
 			<li id="nus1">커뮤니티게시판<br></li>
-			<li><br><a href="${cp }/board/community">Community</a></li>
+			<li><br><a href="${cp }/board/community?">Community</a></li>
 			<li><br></li>
 			<li id="nus1">문의게시판<br></li>
 			<li><br><a href="${cp }/nquire/list">문의하기<br></a></li>
