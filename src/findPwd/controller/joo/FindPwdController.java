@@ -60,7 +60,7 @@ public class FindPwdController extends HttpServlet{
 			}catch(MessagingException me) {
 				me.printStackTrace();
 			}
-			req.setAttribute("id", email);
+			req.setAttribute("email", email);
 			req.setAttribute("code", "success");
 			req.getRequestDispatcher("/findPwd/result.jsp").forward(req, resp);
 		}else {
