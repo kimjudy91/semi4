@@ -132,9 +132,20 @@
 풋터
 </div>
 <script type="text/javascript">
+window.onbeforeunload = function() {
+	var dxhr=null;
+	function showComm(w,c){
+		dxhr=new XMLHttpRequest();
+		dxhr.onreadystatechange=deleteIds;
+		dxhr.open('get','deleteIds.jsp?id='+${sessionScope.id},true);
+		dxhr.send();
+	}
+	function deleteIds(){
+		
+	}
+	}
+}
 
-
-	
 	function loginpl(){
 		alert("로그인후 이용하실수 있습니다.");
 	}
