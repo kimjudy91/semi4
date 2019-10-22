@@ -11,6 +11,10 @@
 <meta charset="UTF-8">
 <title>tset10_css.html</title>
 <c:set var="cp" value="${pageContext.request.contextPath }"/>
+<script type="text/javascript">
+
+
+</script>
 <link rel="stylesheet" type="text/css" href="${cp }/index/indexx.css">
 <style>
 </style>
@@ -25,7 +29,6 @@
 <c:if test="${warning>0 }">
 <c:set var="warning" value="${warning }"/>
 	<script type="text/javascript">
-	
 		function showWarning(){
 			alert("경고"+${warning}+"번을 받았습니다. 조심하세요");
 		}
@@ -77,18 +80,22 @@
 		</div>
 		<ul id="menus">
 			<li id="nus1">커뮤니티게시판<br></li>
-			<li><br><a href="${cp }/board/community?">Community</a></li>
+			<li><br><a href="${cp }/board/community">Community</a></li>
+			<li><br></li>
+			<li id="nus1">음악게시판<br></li>
+			<c:choose>
+				<c:when test="${sessionScope.id!=null }">
+					<li><br><a href="${cp }/fileboard/community">Music<br></a></li>
+				</c:when>
+				<c:otherwise>
+					<li><br><a href="javascript:loginpl()">Music<br></a></li>
+				</c:otherwise>
+			</c:choose>
+			
 			<li><br></li>
 			<li id="nus1">문의게시판<br></li>
 			<li><br><a href="${cp }/nquire/list">문의하기<br></a></li>
 			<li><br></li>
-			<li id="nus1">음악게시판<br></li>
-			<li><br><a href="${cp }/fileboard/community">Rock<br></a></li>
-			<li><br><a href="">folk<br></a></li>
-			<li><br><a href="">R&B<br></a></li>
-			<li><br></li>
-			<li id="nus1">기타<br></li>
-			<li><br><a href="">문의하기<br></a></li>
 		</ul>
 		<div id="users">		
 		접속자명단<br>
@@ -118,6 +125,9 @@
 풋터
 </div>
 <script type="text/javascript">
+	function loginpl(){
+		alert("로그인후 이용하실수 있습니다.");
+	}
 	function showMsg(cp,id){
 		window.open(cp,"메세지",'width=660, height=620, toolbar=yes, menubar=yes, scrollbars=no, resizable=yes');
 	}

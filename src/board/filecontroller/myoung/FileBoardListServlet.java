@@ -18,7 +18,6 @@ import board.vo.yun.BoardVo;
 public class FileBoardListServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("ok");
 		req.setCharacterEncoding("utf-8");
 		String genre=req.getParameter("genre");
 		String spageNum=req.getParameter("pageNum");

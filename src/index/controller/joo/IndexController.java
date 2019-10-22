@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.dao.yun.BoardDao;
 import message.dao.joo.MessageDao;
 import report.dao.joo.ReportDao;
 
@@ -28,6 +29,7 @@ public class IndexController extends HttpServlet{
 			int countMsgs=MessageDao.getDao().newMsgs(id, mlist);
 			req.setAttribute("countMsgs", countMsgs);
 			req.getSession().setAttribute("id", id);
+			int grade=BoardDao.getinstance().getGrade(id);
 			}
 		if(spage==null||spage.equals("")) {
 			
