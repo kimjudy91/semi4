@@ -53,8 +53,7 @@ public class FileBoardInsertServlet extends HttpServlet{
 		String id=mr.getParameter("id");
 		String p_title=mr.getParameter("p_title");
 		String contents=mr.getParameter("contents");
-		int likes=Integer.parseInt(mr.getParameter("likes"));
-		System.out.println("likes"+likes);
+	
 		
 		//여기는 장르 구분하는곳
 		String trans=mr.getParameter("trans");
@@ -72,7 +71,7 @@ public class FileBoardInsertServlet extends HttpServlet{
 		
 		
 		//이거는 그냥 글내용이랑 아이디 저장
-		FileBoardVo vo=new FileBoardVo(0, id, 0, p_title, contents, null, 0, likes, genre_num);
+		FileBoardVo vo=new FileBoardVo(0, id, 0, p_title, contents, null, 0, 0, genre_num);
 		//DB에 전송된 파일정보 저장하기
 		FileUpLoadVo vo1=new FileUpLoadVo(0, orgfilename, savefilename, filesize);
 		FileBoardDao dao1=FileBoardDao.getinstance();
