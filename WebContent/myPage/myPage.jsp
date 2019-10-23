@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>myPage.jsp</title>
-<link rel="stylesheet" type="text/css" href="${cp }/myPage/myPage.css">
+<link rel="stylesheet" type="text/css" href="${cp }/myPage/myPages.css">
 </head>
 <script type="text/javascript">
 	function updateEmail1(){
