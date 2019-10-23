@@ -96,10 +96,10 @@
 </div>
 
 
-<div id="commList" style="overflow: auto; width: 100%; height: 900px; padding-top: 10px;">
+<div id="commList" style="overflow: auto; width: 70%; height: 900px; margin-top: 28px;margin-left:400px;">
 	<c:forEach var="comLi" items="${commList }">
 			<div id="cw${comLi.comments_num }">
-			<div style="border:1px solid red;" id="c${comLi.comments_num }" >
+			<div style="background-color: lightgray; overflow: auto; height: auto; border-bottom: 1px solid black; " id="c${comLi.comments_num }" class="show">
 				<c:set var="id" value="${comLi.id }"/>
 				<c:set var="ref" value="${comLi.comments_num }"/>
 				<%
@@ -136,7 +136,7 @@
 						<input type="button" value="댓글보기" class="fileBtn"  onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:otherwise>
 				</c:choose>
-
+				<br>
 			</div>
 				<form action="${cp }/fileboard/comments" method="post"  id="sr${comLi.comments_num }" style="display: none;">
 					<input type="hidden" value="${sessionScope.id }" name="id">
@@ -145,7 +145,7 @@
 					<input type="hidden" value="${comLi.ref }" name="ref">
 					<input type="hidden" value="${comLi.lev }" name="lev">
 					<input type="hidden" value="${comLi.step }" name="step">
-					댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
+					<p style="margin-right: 50px;">댓글</p><textarea rows="3" cols="100" class="show" name="comments_contents"></textarea>
 					<input type="submit" value="저장" id="fileBtn"><br>
 				</form>
 			</div>
@@ -174,7 +174,7 @@
 			for(var i=0;i<comm.length;i++){
 				var div=document.createElement("div");
 				var id=comm[0].ref+""+ i;
-				div.innerHTML=comm[i].id+"<br>"+comm[i].comments_contents;
+				div.innerHTML="<hr>└"+comm[i].id+"<br>"+comm[i].comments_contents;
 				
 				//여기 댓글 div css
 				div.style.marginTop=20*comm[i].lev+"px";
