@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String id=(String)request.getParameter("id");
-	System.out.println(id);
 	int n=LoginIdsDao.getDao().deleteLogins(id);
 	JSONObject json=new JSONObject();
 	if(n>0){

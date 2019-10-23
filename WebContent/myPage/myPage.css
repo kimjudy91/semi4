@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #myp{
-	width: 100%;
+	position: absolute;
 	width: 100%;
     white-space: pre;
     border: ridge;
@@ -9,7 +9,7 @@
 }
 #all{
 	padding-left: 80px;
-	
+	height: 1500px;
 }
 div #set{
 	position: absolute;
