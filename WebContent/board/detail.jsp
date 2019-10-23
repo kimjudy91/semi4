@@ -92,14 +92,13 @@
 	</tr>	
 </table>
 
-<div>
+<div id="d1">
 <form action="${cp }/board/comments" method="post"  >
 <input type="hidden" value="${sessionScope.id }" name="id">
 <input type="hidden" value="insert" name="cmd">
 <input type="hidden" value="${vo.write_num }" name="write_num">
-<div>&nbsp;&nbsp;
-<br>
-<div>댓글내용</div>
+<div>
+<p>댓글</p>
 <textarea rows="3" cols="100" name="comments_contents"></textarea>
 <input type="submit" value="저장" id="bdBtn">
 </div>
@@ -191,7 +190,7 @@
 				div.style.textAlign="left";
 				div.style.marginLeft="20px";
 				div.className="cl"+comm[i].ref;
-				div.style.paddingBottom=15*comm[i].lev+"px";
+				div.style.paddingBottom=10*comm[i].lev+"px";
 				div.id=id;
 				com.appendChild(div);
 			}

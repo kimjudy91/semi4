@@ -61,3 +61,17 @@ td{
     border: outset;
     border-color: #023309;
 }
+
+.class{
+	width:80px;
+	height:20px;
+	font-size: 11px;
+	background-blend-mode: color-burn;
+    border-block-end-color: #11442d;
+    color: white;
+    font-weight: bold;
+    background-color: #092317;
+    border: outset;
+    border-color: #023309;
+	
+}

@@ -91,12 +91,12 @@
 	<input type="hidden" value="insert" name="cmd">
 	<input type="hidden" value="${vo.write_num }" name="write_num">
 			<p>댓글</p><textarea rows="3" cols="100" name="comments_contents"></textarea>
-	<input type="submit" value="저장">
+	<input type="submit" value="저장" id="bdBtn">
 </form>
 </div>
 
 
-<div id="commList" >
+<div id="commList" style="overflow: auto; width: 100%; height: 900px; padding-top: 10px;">
 	<c:forEach var="comLi" items="${commList }">
 			<div id="cw${comLi.comments_num }">
 			<div style="border:1px solid red;" id="c${comLi.comments_num }" >
@@ -128,12 +128,12 @@
 
 				<c:choose>
 					<c:when test="${cnt!=0 }">
-						<input type="button" value="댓글보기(${cnt })" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
-						<input type="button" value="댓글보기(${cnt })" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+						<input type="button" value="댓글보기(${cnt })" class="fileBtn" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기(${cnt })"  class="fileBtn" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:when>
 					<c:otherwise>	
-						<input type="button" value="댓글보기" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
-						<input type="button" value="댓글보기" onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
+						<input type="button" value="댓글보기" class="fileBtn" onclick="showSr(${comLi.comments_num}), showComm('${comLi.write_num }','${comLi.comments_num}') " id="b1${comLi.comments_num }">
+						<input type="button" value="댓글보기" class="fileBtn"  onclick="hideSr(${comLi.comments_num}), hideComm('${comLi.write_num }','${comLi.comments_num}')" id="b2${comLi.comments_num }" style="display: none">
 					</c:otherwise>
 				</c:choose>
 
@@ -146,7 +146,7 @@
 					<input type="hidden" value="${comLi.lev }" name="lev">
 					<input type="hidden" value="${comLi.step }" name="step">
 					댓글내용<br><textarea rows="5" cols="50" name="comments_contents"></textarea>
-					<input type="submit" value="저장"><br>
+					<input type="submit" value="저장" id="fileBtn"><br>
 				</form>
 			</div>
 	</c:forEach>
@@ -177,8 +177,12 @@
 				div.innerHTML=comm[i].id+"<br>"+comm[i].comments_contents;
 				
 				//여기 댓글 div css
-				div.style.marginLeft=50*comm[i].lev+"px";
-				div.style.border="1px solid blue";
+				div.style.marginTop=20*comm[i].lev+"px";
+				div.style.backgroundColor="#0000003d";
+				div.style.textAlign="left";
+				div.style.marginLeft="20px";
+				div.className="cl"+comm[i].ref;
+				div.style.paddingBottom=10*comm[i].lev+"px";
 				div.className="cl"+comm[i].ref;
 				div.id=id;
 				com.appendChild(div);
